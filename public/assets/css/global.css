@@ -156,7 +156,7 @@ abbr[title] {
 
    The class is doubled deliberately. global.css loads before
    components.css, so a plain .placeholder-text would lose to component
-   text colours such as .def-list__desc. Doubling raises specificity to
+   text colors such as .def-list__desc. Doubling raises specificity to
    (0,2,0) without resorting to !important, which keeps it overridable. */
 .placeholder-text.placeholder-text {
   color: var(--color-muted);

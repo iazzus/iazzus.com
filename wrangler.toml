@@ -14,7 +14,7 @@ main = "./src/index.js"
 # Set in the past on purpose. Wrangler rejects a compatibility_date newer
 # than the release it was built from, so a same-day value can fail the
 # build depending on which version npm resolves. Nothing here depends on
-# recent runtime behaviour.
+# recent runtime behavior.
 compatibility_date = "2025-06-01"
 
 # Routes must end in /* to match every path. A bare "iazzus.com" pattern

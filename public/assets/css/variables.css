@@ -2,12 +2,12 @@
    variables.css - the single source of truth for the IAZZUS design system.
 
    Change a value here and it propagates across every page. Nothing else in
-   the stylesheet set should hardcode a colour, size, radius or duration.
+   the stylesheet set should hardcode a color, size, radius or duration.
    ========================================================================== */
 
 :root {
   /* ---------------------------------------------------------------------
-     Colour - dark neutral base, one restrained accent.
+     Color - dark neutral base, one restrained accent.
      Accent is a muted brass: premium and athletic without reading as neon.
      Contrast ratios below are measured against --color-bg (#08090A).
      --------------------------------------------------------------------- */
@@ -19,7 +19,7 @@
   --color-text: #f4f4f5;            /* primary text          - 18.4:1       */
   --color-text-secondary: #a1a1aa;  /* body / supporting     -  7.8:1       */
   --color-muted: #8b8b94;           /* metadata, captions    -  5.9:1       */
-  /* There is deliberately no dimmer text colour than --color-muted. The
+  /* There is deliberately no dimmer text color than --color-muted. The
      obvious next step down (#71717a) measures 4.1:1 here, which fails
      WCAG AA for body-sized text. Use size and weight to express hierarchy
      below this point, not less contrast. */
@@ -29,7 +29,7 @@
 
   /* ---------------------------------------------------------------------
      Accent - teal. This is the everyday accent: links, eyebrows, rules,
-     focus rings, status dots. If you change one colour on this site,
+     focus rings, status dots. If you change one color on this site,
      change this one.
      --------------------------------------------------------------------- */
   --color-accent: #45b8ac;          /* teal                  -  8.3:1       */

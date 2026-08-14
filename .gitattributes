@@ -1,4 +1,4 @@
-# Normalise line endings. Everything is stored in the repository with LF,
+# Normalize line endings. Everything is stored in the repository with LF,
 # which is what Cloudflare Pages serves and what .editorconfig expects.
 * text=auto eol=lf
 

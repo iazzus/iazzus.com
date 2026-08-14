@@ -2,7 +2,7 @@
 """Local development server for iazzus.com.
 
 Optional. `python -m http.server` is enough for day-to-day editing; this
-script exists so local behaviour matches Cloudflare Pages more closely:
+script exists so local behavior matches Cloudflare Pages more closely:
 
   * response headers are replayed from the repository's `_headers` file,
     so the Content-Security-Policy can be tested before deploying;

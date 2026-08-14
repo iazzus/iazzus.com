@@ -58,8 +58,8 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 │
 ├── assets/
 │   ├── css/
-│   │   ├── reset.css       Normalisation only, no design decisions
-│   │   ├── variables.css   ← every colour, size, space and duration
+│   │   ├── reset.css       Normalization only, no design decisions
+│   │   ├── variables.css   ← every color, size, space and duration
 │   │   ├── global.css      Base elements, layout primitives, utilities
 │   │   ├── components.css  Buttons, nav, cards, forms, footer…
 │   │   ├── responsive.css  Breakpoints, reduced motion, print
@@ -170,7 +170,7 @@ its own. The tool exists only so fifteen copies of the same nav cannot drift
 apart. Active state is driven by `aria-current="page"`, which the tool
 applies from the nav key; there is no separate "active" class.
 
-### Colours, spacing, type
+### Colors, spacing, type
 
 Everything lives in [`assets/css/variables.css`](assets/css/variables.css).
 Changing `--color-accent` re-themes the entire site: buttons, eyebrows,
@@ -185,7 +185,7 @@ it.
 If you change either, keep the contrast against `--color-bg` at **4.5:1 or
 better**. Current values measure 8.3:1 and 6.9:1.
 
-Two colours are **not** in `variables.css` and must be changed by hand if
+Two colors are **not** in `variables.css` and must be changed by hand if
 you re-theme: the stroke in `favicon.svg`, and the generated
 `assets/images/og-default.png` and `assets/icons/apple-touch-icon.png`.
 
@@ -196,7 +196,7 @@ phrase you want to change and edit it.
 
 Two conventions are used to mark provisional content:
 
-- `class="placeholder-text"` renders in italic muted grey and marks a value
+- `class="placeholder-text"` renders in italic muted gray and marks a value
   that is deliberately not published yet.
 - `<!-- EDIT: … -->` comments mark spots where you are expected to add real
   detail. Search the repository for `EDIT:` to find all of them.
@@ -249,7 +249,7 @@ having it: a visitor learns within one page that coral means "this is the
 one that costs something". Start using it decoratively and it stops being a
 signal.
 
-There is deliberately no dimmer text colour than `--color-muted`; the
+There is deliberately no dimmer text color than `--color-muted`; the
 obvious next step down fails WCAG AA at body size. Express hierarchy below
 that point with size and weight instead.
 
@@ -283,7 +283,7 @@ design is intended to look finished that way.
 ## Images
 
 There are no photographs in the repository yet. Every image slot is a
-labelled placeholder that reserves the correct aspect ratio, so dropping in
+labeled placeholder that reserves the correct aspect ratio, so dropping in
 a real photo will not shift the layout.
 
 Filenames, dimensions, formats and the exact markup to swap in are
@@ -351,7 +351,7 @@ that has agreed to receive:
 
 1. **Enable Email Routing on `iazzus.com`.**
    Dashboard → **Compute** → **Email Service** → **Email Routing**, select
-   the zone, enable. This is what authorises `CONTACT_FROM`
+   the zone, enable. This is what authorizes `CONTACT_FROM`
    (`contact@iazzus.com`) as a sender. The mailbox does not have to exist.
 2. **Verify the destination address.**
    Same section → **Destination Addresses** → add `ian.vulovic@live.com`,
@@ -536,7 +536,7 @@ Do this yourself in the dashboard; nothing here changes DNS.
    the reports for a couple of weeks, then move to `p=quarantine` and
    finally `p=reject`. Do not start at `p=reject`.
 5. **MTA-STS and TLS-RPT** are worth adding once the above is stable.
-6. Set the MX and mail-related records to **DNS only** (grey cloud). Proxying
+6. Set the MX and mail-related records to **DNS only** (gray cloud). Proxying
    them breaks mail.
 
 Afterwards, verify with an external checker before trusting it, and send a
@@ -626,7 +626,7 @@ not agreed to any of it. Keep it that way even when adding content.
 
 ## Workers gotchas that cost real time
 
-Two behaviours differ from Cloudflare Pages and both fail in ways that do
+Two behaviors differ from Cloudflare Pages and both fail in ways that do
 not point at the cause. Recorded here so they are not rediscovered.
 
 **`_redirects` allows only relative URLs.** Pages accepted absolute
