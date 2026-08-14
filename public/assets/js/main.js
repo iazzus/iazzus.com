@@ -9,6 +9,7 @@
      3. Scroll reveal
      4. Current year in the footer
      5. Contact form validation
+     6. Contact topic prefill
    ========================================================================== */
 
 (function () {
@@ -361,6 +362,37 @@
   }
 
   /* ========================================================================
+     6. Contact topic prefill
+
+     Pages that send people to the contact form can say what the message is
+     about: /contact/?topic=coaching preselects the Coaching category.
+
+     The value is only ever compared against the options already in the
+     markup, so an arbitrary string in the query does nothing. An existing
+     selection is left alone, which matters when the browser restores the
+     form on a back navigation.
+     ======================================================================== */
+
+  function initTopicPrefill() {
+    var select = document.querySelector("[data-contact-form] #category");
+    if (!select || select.value) return;
+
+    var topic;
+    try {
+      topic = new URL(window.location.href).searchParams.get("topic");
+    } catch (error) {
+      return;
+    }
+    if (!topic) return;
+
+    var match = Array.prototype.filter.call(select.options, function (option) {
+      return option.value && option.value === topic.toLowerCase();
+    })[0];
+
+    if (match) select.value = match.value;
+  }
+
+  /* ========================================================================
      Boot
      ======================================================================== */
 
@@ -369,4 +401,5 @@
   initReveal();
   initYear();
   initContactForm();
+  initTopicPrefill();
 })();

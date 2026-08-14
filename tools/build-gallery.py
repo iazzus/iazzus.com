@@ -72,10 +72,18 @@ GALLERIES: dict[str, dict] = {
         "images": "assets/images/military",
         "shape": "landscape",
     },
-    "bodybuilding/index.html": {
-        "images": "assets/images/physique",
-        "shape": "portrait",
-    },
+    # bodybuilding/index.html is deliberately absent. Physique photographs
+    # are published as dated check-ins (front / side / rear grouped with the
+    # phase and notes), which a flat auto-generated grid cannot express, and
+    # until the first one exists the page renders no gallery at all rather
+    # than an empty placeholder. The markup template lives in a comment in
+    # the "Documented, not remembered" section of that page. To switch to a
+    # plain generated grid instead, add:
+    #     "bodybuilding/index.html": {
+    #         "images": "assets/images/physique",
+    #         "shape": "portrait",
+    #     },
+    # and put gallery:start / gallery:end markers back on the page.
 }
 
 

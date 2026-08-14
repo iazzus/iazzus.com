@@ -94,6 +94,11 @@
     align-items: start;
   }
 
+  /* Date and metadata beside the photographs rather than above them. */
+  .checkin {
+    grid-template-columns: minmax(150px, 210px) 1fr;
+  }
+
 }
 
 /* --------------------------------------------------------------------------

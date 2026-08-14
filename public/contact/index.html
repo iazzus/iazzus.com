@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact — Ian Vulovic | IAZZUS</title>
+<title>Contact | IAZZUS</title>
 <meta name="description" content="Get in touch with Ian Vulovic about IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <link rel="canonical" href="https://iazzus.com/contact/">
 <meta name="author" content="Ian Vulovic">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IAZZUS">
 <meta property="og:url" content="https://iazzus.com/contact/">
-<meta property="og:title" content="Contact — Ian Vulovic">
+<meta property="og:title" content="Contact Ian Vulovic">
 <meta property="og:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <meta property="og:image" content="https://iazzus.com/assets/images/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact — Ian Vulovic">
+<meta name="twitter:title" content="Contact Ian Vulovic">
 <meta name="twitter:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <meta name="twitter:image" content="https://iazzus.com/assets/images/og-default.png">
 
@@ -45,7 +45,7 @@
   "@type": "ContactPage",
   "@id": "https://iazzus.com/contact/",
   "url": "https://iazzus.com/contact/",
-  "name": "Contact — Ian Vulovic",
+  "name": "Contact Ian Vulovic",
   "description": "Contact form for IT consulting, bodybuilding and general enquiries.",
   "inLanguage": "en",
   "isPartOf": { "@id": "https://iazzus.com/#website" },
@@ -113,7 +113,7 @@
           <p>
             <span class="notice__title">Form status</span>
             Message delivery is not connected yet. The form validates your
-            input, but nothing is transmitted or stored — no backend endpoint
+            input, but nothing is transmitted or stored: no backend endpoint
             has been configured. See the README for how to wire it up.
           </p>
         </div>
@@ -170,8 +170,12 @@
               name="category"
               required
               aria-describedby="category-error">
+              <!-- The value strings are referenced by ?topic= links from
+                   other pages (see initTopicPrefill in main.js). Renaming
+                   one means updating those links too. -->
               <option value="">Select one…</option>
               <option value="it-consulting">IT / Consulting</option>
+              <option value="coaching">Coaching</option>
               <option value="bodybuilding">Bodybuilding</option>
               <option value="motorcycle">Motorcycle</option>
               <option value="general">General</option>
@@ -264,16 +268,25 @@
             </dd>
           </div>
           <div class="def-list__row">
+            <dt class="def-list__term">Coaching</dt>
+            <dd class="def-list__desc">
+              Online lifestyle coaching, training plans and meal planning.
+              Say what your goal is, how many days you can train and what
+              equipment you can get to. See
+              <a class="text-link" href="/bodybuilding/#coaching">IAZZUS coaching</a>.
+            </dd>
+          </div>
+          <div class="def-list__row">
             <dt class="def-list__term">Bodybuilding</dt>
             <dd class="def-list__desc">
-              Training, preparation and anything related to the physique side
-              of IAZZUS.
+              My own training and preparation, and anything else about the
+              physique side of IAZZUS.
             </dd>
           </div>
           <div class="def-list__row">
             <dt class="def-list__term">Motorcycle</dt>
             <dd class="def-list__desc">
-              Anything about the Ninja 650 — riding, maintenance or parts.
+              Anything about the Ninja 650: riding, maintenance or parts.
             </dd>
           </div>
           <div class="def-list__row">

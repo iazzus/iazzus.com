@@ -290,6 +290,10 @@ a.text-link:hover {
   gap: var(--space-md);
 }
 
+.stack--lg {
+  gap: var(--space-lg);
+}
+
 .cluster {
   display: flex;
   flex-wrap: wrap;

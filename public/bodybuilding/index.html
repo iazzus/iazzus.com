@@ -3,18 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bodybuilding — Ian Vulovic | IAZZUS</title>
-<meta name="description" content="Men's Physique training, nutrition and physique development. Ian Vulovic's approach to structured training, measurement and documented progress.">
+<title>Bodybuilding &amp; Online Coaching | IAZZUS</title>
+<meta name="description" content="Men's Physique development, training, nutrition, progress tracking, and realistic online fitness coaching from IAZZUS.">
 <link rel="canonical" href="https://iazzus.com/bodybuilding/">
 <meta name="author" content="Ian Vulovic">
 <meta name="theme-color" content="#08090A">
 <meta name="color-scheme" content="dark">
 
-<meta property="og:type" content="profile">
+<!--
+  MAINTENANCE NOTES (never rendered)
+
+  Brand
+    IAZZUS is the only brand on this page. There is no separate physique
+    brand, and no reference to one anywhere in the repository.
+
+  Punctuation
+    No em dash characters in visitor-facing copy on this page. Use a plain
+    hyphen. Arrows are fine. Check before committing:
+      python -c "print(open('public/bodybuilding/index.html',encoding='utf-8').read().count(chr(8212)))"
+
+  Numbers
+    Nothing quantitative is published here: no bodyweight, calories, macros,
+    set counts or dates. That is deliberate rather than an oversight. Any
+    figure added later must be current, not carried over from an older file.
+    The status grid in "Current phase" is the place for phase-level facts;
+    all of its values are words, so it stays true as the numbers move.
+
+  Progress photographs
+    There are none yet, so no gallery or empty table is rendered. When they
+    exist:
+      1. Put the files in public/assets/images/physique/
+      2. Uncomment the .checkin template in the "Documented, not remembered"
+         section and duplicate it per check-in, or
+      3. Re-register this page in tools/build-gallery.py (see the note in
+         GALLERIES there) and add gallery:start / gallery:end markers.
+    The .checkin styles already exist in components.css.
+
+  Affiliate link
+    The rfsn parameter on the Black Magic URL is the affiliate ID. The FTC
+    disclosure above it is required, not decorative. Do not remove it.
+-->
+
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="IAZZUS">
 <meta property="og:url" content="https://iazzus.com/bodybuilding/">
-<meta property="og:title" content="Bodybuilding — Ian Vulovic">
-<meta property="og:description" content="Men's Physique training, nutrition and physique development. Structured, measured, documented.">
+<meta property="og:title" content="Bodybuilding &amp; Online Coaching | IAZZUS">
+<meta property="og:description" content="Men's Physique development and realistic online coaching. Training, nutrition and progress, built around the life you actually have.">
 <meta property="og:image" content="https://iazzus.com/assets/images/og-default.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,8 +56,8 @@
 <meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bodybuilding — Ian Vulovic">
-<meta name="twitter:description" content="Men's Physique training, nutrition and physique development.">
+<meta name="twitter:title" content="Bodybuilding &amp; Online Coaching | IAZZUS">
+<meta name="twitter:description" content="Men's Physique development and realistic online coaching from Ian Vulovic.">
 <meta name="twitter:image" content="https://iazzus.com/assets/images/og-default.png">
 
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -42,14 +76,37 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": "https://iazzus.com/bodybuilding/",
-  "url": "https://iazzus.com/bodybuilding/",
-  "name": "Bodybuilding — Ian Vulovic",
-  "description": "Men's Physique training, nutrition and physique development.",
-  "inLanguage": "en",
-  "isPartOf": { "@id": "https://iazzus.com/#website" },
-  "about": { "@id": "https://iazzus.com/#ian" }
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://iazzus.com/bodybuilding/",
+      "url": "https://iazzus.com/bodybuilding/",
+      "name": "Bodybuilding & Online Coaching | IAZZUS",
+      "description": "Men's Physique development, training, nutrition, progress tracking, and realistic online fitness coaching from IAZZUS.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://iazzus.com/#website" },
+      "about": { "@id": "https://iazzus.com/#ian" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://iazzus.com/bodybuilding/#coaching",
+      "name": "IAZZUS Coaching",
+      "serviceType": "Online fitness coaching",
+      "description": "Online lifestyle coaching, personalized exercise programming and meal planning, built around the client's schedule, experience, equipment and food preferences.",
+      "provider": { "@id": "https://iazzus.com/#ian" },
+      "areaServed": "Online",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Coaching services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Online lifestyle coaching" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Personalized exercise plans" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meal planning" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Complete coaching" } }
+        ]
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -92,69 +149,86 @@
   <!-- ============================================================ Hero -->
   <section class="page-hero">
     <div class="container page-hero__inner">
-      <p class="eyebrow">Men's Physique</p>
-      <h1 class="page-hero__title">Development on a schedule</h1>
+      <p class="eyebrow">IAZZUS / Physique</p>
+      <h1 class="page-hero__title">Development on a schedule.</h1>
       <p class="lead page-hero__intro">
-        Men's Physique is judged on shape and balance, not on how much weight
-        moved. The training reflects that: specific targets, honest
-        measurement, and revision when the evidence says the plan is not
-        working.
+        I am building toward Men's Physique one training block at a time.
+        Right now I am in a growth phase, adding size where the division
+        rewards it most, improving weak points, and keeping the process
+        measurable enough to know whether the work is actually working.
       </p>
-    </div>
-  </section>
-
-  <!-- ================================================== Current focus -->
-  <section class="section" aria-labelledby="focus-title">
-    <div class="container split split--weighted" data-reveal>
-      <div>
-        <p class="eyebrow">Current focus</p>
-        <h2 id="focus-title">Where the work is going right now</h2>
-        <div class="prose">
-          <p>
-            The current block prioritises upper-body structure — delts, chest
-            and arms — with dedicated back work split between width and
-            thickness rather than treated as one thing. Lower body is trained
-            to support proportion, not to compete with it.
-          </p>
-          <p>
-            Conditioning is managed gradually. Losing size to reveal shape is
-            a bad trade, so the target is slow enough that strength holds.
-          </p>
-        </div>
+      <p class="page-hero__intro">
+        Push. Pull. Legs. Food. Recovery. Repeat. Nothing particularly
+        exotic. Just a lot of controlled variables and enough time to see
+        what they produce.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#training">
+          View the process <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="btn btn--commerce" href="#coaching">Coaching</a>
       </div>
-
-      <!-- EDIT: replace the "Not yet published" values with your real block
-           details. Keep the <dt>/<dd> pattern. -->
-      <dl class="def-list">
-        <div class="def-list__row">
-          <dt class="def-list__term">Division</dt>
-          <dd class="def-list__desc">Men's Physique</dd>
-        </div>
-        <div class="def-list__row">
-          <dt class="def-list__term">Current phase</dt>
-          <dd class="def-list__desc placeholder-text">Not yet published</dd>
-        </div>
-        <div class="def-list__row">
-          <dt class="def-list__term">Weekly structure</dt>
-          <dd class="def-list__desc placeholder-text">Not yet published</dd>
-        </div>
-        <div class="def-list__row">
-          <dt class="def-list__term">Primary emphasis</dt>
-          <dd class="def-list__desc">Shoulders, back, arms</dd>
-        </div>
-        <div class="def-list__row">
-          <dt class="def-list__term">Next competition</dt>
-          <dd class="def-list__desc placeholder-text">Not yet announced</dd>
-        </div>
-      </dl>
     </div>
   </section>
 
-  <!-- ============================================ Development priorities -->
-  <section class="section section--band" aria-labelledby="priorities-title">
+  <!-- =================================================== Current phase -->
+  <section class="section" id="phase" aria-labelledby="phase-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Emphasis</p>
+        <p class="eyebrow">Current phase</p>
+        <h2 class="section-header__title" id="phase-title">Growth</h2>
+        <p class="section-header__intro">
+          The objective is useful size.
+        </p>
+      </div>
+
+      <div class="stack stack--lg">
+        <div class="prose" data-reveal>
+          <p>
+            More shoulder. More chest. More arm. More back, particularly the
+            thickness that gives a physique depth instead of just width.
+          </p>
+          <p>
+            Bodyweight matters, but it is not the goal by itself. The goal is
+            to finish the phase with more muscle in the places I intended to
+            build, and to be able to point at what produced it.
+          </p>
+        </div>
+
+        <!-- Every value here is a word rather than a figure, so the section
+             stays accurate as the phase runs. Add numbers only when they are
+             current. -->
+        <ul class="status-grid" data-reveal>
+          <li class="status">
+            <span class="status__label">Phase</span>
+            <span class="status__value">Growth</span>
+          </li>
+          <li class="status">
+            <span class="status__label">Division</span>
+            <span class="status__value">Men's Physique</span>
+          </li>
+          <li class="status">
+            <span class="status__label">Split</span>
+            <span class="status__value">Push / Pull / Legs</span>
+          </li>
+          <li class="status">
+            <span class="status__label">Priority</span>
+            <span class="status__value">Overall development</span>
+          </li>
+          <li class="status">
+            <span class="status__label">Special emphasis</span>
+            <span class="status__value">Back thickness</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ Physique priorities -->
+  <section class="section section--band" id="priorities" aria-labelledby="priorities-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Priorities</p>
         <h2 class="section-header__title" id="priorities-title">What the physique is being built around</h2>
         <p class="section-header__intro">
           Six priorities. Everything in a session has to justify itself
@@ -165,10 +239,11 @@
       <div class="grid grid--3" data-reveal>
         <article class="card">
           <p class="card__index">01</p>
-          <h3 class="card__title">Shoulders</h3>
+          <h3 class="card__title">Delts</h3>
           <p class="card__body">
-            Lateral and rear development for the width that defines the
-            division. High frequency, controlled range, no ego loading.
+            Width changes the entire silhouette. Side and rear delt
+            development remain central to creating the shoulder-to-waist
+            contrast Men's Physique rewards.
           </p>
         </article>
 
@@ -176,8 +251,9 @@
           <p class="card__index">02</p>
           <h3 class="card__title">Chest</h3>
           <p class="card__body">
-            Full development across upper and mid regions, trained through
-            angles rather than through a single pressing pattern.
+            More overall chest development, with particular attention to the
+            upper chest so the torso looks complete from the front rather
+            than simply lean.
           </p>
         </article>
 
@@ -185,8 +261,9 @@
           <p class="card__index">03</p>
           <h3 class="card__title">Arms</h3>
           <p class="card__body">
-            Biceps and triceps trained directly and deliberately. In a
-            board-shorts division they are visible in every pose.
+            Enough size to match the torso and shoulders. Biceps and triceps
+            need to contribute to the silhouette instead of disappearing
+            beside it.
           </p>
         </article>
 
@@ -194,8 +271,9 @@
           <p class="card__index">04</p>
           <h3 class="card__title">Back width</h3>
           <p class="card__body">
-            Vertical pulling for the taper that carries the front and rear
-            presentation. Range and lat engagement over load.
+            Lat development creates the frame. Width from the front and rear
+            remains one of the defining visual characteristics of the
+            division.
           </p>
         </article>
 
@@ -203,42 +281,121 @@
           <p class="card__index">05</p>
           <h3 class="card__title">Back thickness</h3>
           <p class="card__body">
-            Horizontal pulling for mid-back and rear detail — the half of
-            back training that usually gets skipped.
+            A major priority. Width gives the outline. Thickness gives the
+            physique depth, density, and a more complete look from every
+            angle.
           </p>
         </article>
 
         <article class="card">
           <p class="card__index">06</p>
-          <h3 class="card__title">Conditioning &amp; symmetry</h3>
+          <h3 class="card__title">Proportion</h3>
           <p class="card__body">
-            A waist and body-fat level that keeps the proportion readable,
-            with left-to-right balance checked in photographs, not in mirrors.
+            No body part exists in isolation. The objective is not to
+            maximize everything independently. It is to build a physique
+            where the pieces make sense together.
           </p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============================================= Training philosophy -->
-  <section class="section" aria-labelledby="philosophy-title">
+  <!-- ======================================================== Training -->
+  <section class="section" id="training" aria-labelledby="training-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Training philosophy</p>
-        <h2 class="section-header__title" id="philosophy-title">Four rules that do most of the work</h2>
+        <p class="eyebrow">Training</p>
+        <h2 class="section-header__title" id="training-title">Push. Pull. Legs.</h2>
+      </div>
+
+      <div class="stack stack--lg">
+        <div class="split" data-reveal>
+          <div class="prose">
+            <p>
+              My training is built around a traditional Push / Pull / Legs
+              rotation. It is not complicated for the sake of being
+              complicated. Priority movements go where I can perform them
+              well, enough productive volume gets distributed across the
+              week, and the goal is to gradually make the work harder without
+              allowing execution to deteriorate.
+            </p>
+          </div>
+
+          <div class="prose">
+            <p>
+              Exercises do not get replaced simply because I am bored with
+              them. Movements earn their place by giving me something I can
+              execute, progress, and recover from.
+            </p>
+            <p>
+              If something stops producing what I need from it, I change it.
+              Otherwise, I keep working.
+            </p>
+          </div>
+        </div>
+
+        <div class="stack stack--md" data-reveal>
+          <div class="grid grid--3">
+            <article class="card">
+              <h3 class="card__title">Push</h3>
+              <ul class="tag-list">
+                <li><span class="tag">Chest</span></li>
+                <li><span class="tag">Shoulders</span></li>
+                <li><span class="tag">Triceps</span></li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Pull</h3>
+              <ul class="tag-list">
+                <li><span class="tag">Back</span></li>
+                <li><span class="tag">Rear delts</span></li>
+                <li><span class="tag">Biceps</span></li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3 class="card__title">Legs</h3>
+              <ul class="tag-list">
+                <li><span class="tag">Quads</span></li>
+                <li><span class="tag">Hamstrings</span></li>
+                <li><span class="tag">Glutes</span></li>
+                <li><span class="tag">Calves</span></li>
+              </ul>
+            </article>
+          </div>
+
+          <ol class="rotation">
+            <li>Push</li>
+            <li>Pull</li>
+            <li>Legs</li>
+            <li>Repeat</li>
+            <li>Rest</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================== Training philosophy -->
+  <section class="section section--band" id="rules" aria-labelledby="rules-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Philosophy</p>
+        <h2 class="section-header__title" id="rules-title">The rules I train by</h2>
       </div>
 
       <ol class="entry-list" data-reveal>
         <li class="entry">
           <div class="entry__aside">
             <p class="card__index">01</p>
-            <h3 class="entry__title">Progression is the programme</h3>
+            <h3 class="entry__title">Progression is the program</h3>
           </div>
           <div class="entry__main">
             <p class="entry__body">
-              Load, reps or quality has to move over a block. Novelty is not
-              progress, and a session that cannot be compared to the last one
-              is a session that cannot be improved.
+              More weight is one form of progression, not the only one. More
+              reps, better control, improved range of motion, stronger
+              execution, and greater output from the target tissue all count.
             </p>
           </div>
         </li>
@@ -250,9 +407,9 @@
           </div>
           <div class="entry__main">
             <p class="entry__body">
-              Execution decides which muscle receives the work. Controlled
-              range, deliberate tempo and honest positioning beat a heavier
-              number that the target muscle never sees.
+              Loading a movement means very little if the intended muscle is
+              no longer doing the work. Execution determines whether
+              progression is productive or merely measurable.
             </p>
           </div>
         </li>
@@ -260,13 +417,13 @@
         <li class="entry">
           <div class="entry__aside">
             <p class="card__index">03</p>
-            <h3 class="entry__title">Recovery is part of the plan</h3>
+            <h3 class="entry__title">Recovery is part of training</h3>
           </div>
           <div class="entry__main">
             <p class="entry__body">
-              Sleep, food and managed volume are inputs, not afterthoughts.
-              Training beyond what can be recovered from produces fatigue,
-              not development.
+              The session creates the stimulus. Food, sleep, fatigue
+              management, and time determine what I can actually recover from
+              and build upon.
             </p>
           </div>
         </li>
@@ -278,9 +435,9 @@
           </div>
           <div class="entry__main">
             <p class="entry__body">
-              Bodyweight, training logs and photographs taken under the same
-              conditions. Decisions come from the trend line, not from how a
-              given day felt.
+              One difficult session, one bad weigh-in, or one good pump does
+              not justify rewriting the plan. Patterns matter more than
+              individual data points.
             </p>
           </div>
         </li>
@@ -288,131 +445,443 @@
     </div>
   </section>
 
-  <!-- ========================================== Training and nutrition -->
-  <section class="section section--band" aria-labelledby="method-title">
+  <!-- ======================================================= Nutrition -->
+  <section class="section" id="nutrition" aria-labelledby="nutrition-title">
     <div class="container">
-      <h2 class="visually-hidden" id="method-title">Training and nutrition</h2>
-      <div class="split" data-reveal>
-        <div>
-          <p class="eyebrow">Training</p>
-          <h3>How sessions are structured</h3>
-          <div class="prose">
-            <p>
-              Each session opens with the priority movement for that day while
-              fatigue is lowest, then moves outward to supporting work and
-              finishes with isolation for whichever region is being
-              emphasised in the current block.
-            </p>
-            <p>
-              Volume is distributed across the week rather than concentrated
-              into one heroic session per muscle group, and everything is
-              logged: exercise, load, reps and the note that explains why a
-              number changed.
-            </p>
-          </div>
-          <!-- EDIT: add your actual split, weekly frequency and session
-               length here once you want it public. -->
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Nutrition</p>
+        <h2 class="section-header__title" id="nutrition-title">Food has to work in real life.</h2>
+      </div>
+
+      <div class="split split--weighted" data-reveal>
+        <div class="prose">
+          <p>
+            Nutrition supports the objective, but the plan still has to
+            survive the rest of my life.
+          </p>
+          <p>
+            Protein stays consistent. Calories reflect the current phase.
+            Bodyweight and visual changes are watched as trends rather than
+            judged from a single morning.
+          </p>
+          <p>
+            I prefer meals that are repeatable enough to measure and flexible
+            enough that eating does not become a second full-time job.
+          </p>
+          <p>
+            The objective is not to eat perfectly. It is to eat predictably
+            enough that I can tell what the plan is doing.
+          </p>
         </div>
 
-        <div>
-          <p class="eyebrow">Nutrition</p>
-          <h3>How food is managed</h3>
-          <div class="prose">
-            <p>
-              Protein is held constant, calories are adjusted against the
-              bodyweight trend rather than a single morning reading, and food
-              choices stay repeatable enough to be tracked accurately without
-              becoming miserable.
-            </p>
-            <p>
-              Adjustments are made on a schedule, not on impulse. If the trend
-              has not moved for long enough to be meaningful, something
-              changes; if it has, nothing does.
-            </p>
+        <!-- Qualitative on purpose. Protein and calorie figures move with
+             the phase, and a stale number here would be worse than none. -->
+        <dl class="def-list">
+          <div class="def-list__row">
+            <dt class="def-list__term">Protein</dt>
+            <dd class="def-list__desc">Held consistent across the phase</dd>
           </div>
-          <!-- EDIT: add specific macro targets or a sample day if you want
-               that level of detail published. -->
-        </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Calories</dt>
+            <dd class="def-list__desc">Set by the phase, not by the day</dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Bodyweight</dt>
+            <dd class="def-list__desc">Read as a trend, never as one morning</dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Meals</dt>
+            <dd class="def-list__desc">Repeatable enough to measure accurately</dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Adjustments</dt>
+            <dd class="def-list__desc">Made on schedule, not on impulse</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- ======================================================== Progress -->
-  <section class="section" aria-labelledby="progress-title">
+  <section class="section section--band" id="progress" aria-labelledby="progress-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Progress</p>
-        <h2 class="section-header__title" id="progress-title">Documented, not remembered</h2>
-        <p class="section-header__intro">
-          Check-ins recorded on the same day of the week, in the same
-          conditions, so the comparison actually means something.
+        <h2 class="section-header__title" id="progress-title">Documented, not remembered.</h2>
+      </div>
+
+      <div class="prose" data-reveal>
+        <p>
+          Memory is terrible at judging gradual change.
+        </p>
+        <p>
+          Photographs, bodyweight trends, training performance, and repeated
+          check-ins provide something better: a record taken under the same
+          conditions each time, which makes the comparison mean something.
+        </p>
+        <p>
+          As this physique develops, this becomes the record. Not only of
+          what improved, but of what did not, what changed, and what I
+          learned from it.
         </p>
       </div>
 
-      <!-- EDIT: add one <tr> per check-in and delete the empty-state row. -->
-      <div class="table-scroll" data-reveal>
-        <table class="data-table">
-          <caption>Progress log</caption>
-          <thead>
-            <tr>
-              <th scope="col">Date</th>
-              <th scope="col">Bodyweight</th>
-              <th scope="col">Phase</th>
-              <th scope="col">Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="data-table__empty" colspan="4">
-                No check-ins published yet.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <!--
+        CHECK-IN TEMPLATE
+
+        Nothing is rendered here until real photographs exist, because an
+        empty gallery says less than no gallery. To switch the record on,
+        put the files in public/assets/images/physique/, then uncomment the
+        block below and duplicate the <li> for each check-in. The .checkin
+        styles are already in components.css.
+
+        <ol class="checkin-list" data-reveal>
+          <li class="checkin">
+            <div>
+              <p class="checkin__date">2026-09-01</p>
+              <dl class="def-list def-list--compact">
+                <div class="def-list__row">
+                  <dt class="def-list__term">Phase</dt>
+                  <dd class="def-list__desc">Growth</dd>
+                </div>
+                <div class="def-list__row">
+                  <dt class="def-list__term">Bodyweight</dt>
+                  <dd class="def-list__desc">000 lb</dd>
+                </div>
+              </dl>
+            </div>
+            <div>
+              <div class="checkin__views">
+                <figure class="gallery__item">
+                  <div class="media media--portrait">
+                    <img src="/assets/images/physique/0000-00-00-front.jpg" alt="Front relaxed, 1 September 2026." width="1280" height="1600" loading="lazy" decoding="async">
+                  </div>
+                </figure>
+                <figure class="gallery__item">
+                  <div class="media media--portrait">
+                    <img src="/assets/images/physique/0000-00-00-side.jpg" alt="Side, 1 September 2026." width="1280" height="1600" loading="lazy" decoding="async">
+                  </div>
+                </figure>
+                <figure class="gallery__item">
+                  <div class="media media--portrait">
+                    <img src="/assets/images/physique/0000-00-00-rear.jpg" alt="Rear, 1 September 2026." width="1280" height="1600" loading="lazy" decoding="async">
+                  </div>
+                </figure>
+              </div>
+              <p class="checkin__notes">
+                What improved, what did not, and what changes next.
+              </p>
+            </div>
+          </li>
+        </ol>
+      -->
     </div>
   </section>
 
-  <!-- ========================================================= Gallery -->
-  <section class="section section--band" aria-labelledby="gallery-title">
+  <!-- ================================================= IAZZUS Coaching -->
+  <section class="section" id="coaching" aria-labelledby="coaching-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Gallery</p>
-        <h2 class="section-header__title" id="gallery-title">Physique documentation</h2>
+        <p class="eyebrow">IAZZUS Coaching</p>
+        <h2 class="section-header__title" id="coaching-title">Build around the life you actually have.</h2>
+      </div>
+
+      <div class="split split--weighted" data-reveal>
+        <div class="prose">
+          <p>
+            A good plan is not the most complicated plan. It is the plan you
+            can realistically execute.
+          </p>
+          <p>
+            I build training, nutrition, and lifestyle recommendations around
+            your actual circumstances: schedule, goals, experience,
+            equipment, food preferences, limitations, and what you genuinely
+            have access to.
+          </p>
+          <p>
+            If circumstances change, the plan changes with them.
+          </p>
+        </div>
+
+        <div class="statement">
+          <p class="statement__text">
+            Adjust the plan to the person, not the person to the template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ Coaching services -->
+  <section class="section section--band" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Services</p>
+        <h2 class="section-header__title" id="services-title">What coaching covers</h2>
         <p class="section-header__intro">
-          Comparison photographs taken from fixed positions under consistent
-          lighting. Real images will replace these placeholders.
+          Take one piece or the whole thing. Each one is built from what you
+          tell me about your situation, and each one changes when your
+          situation does.
         </p>
       </div>
 
-      <!-- gallery:start -->
-        <!-- Empty: add files to public/assets/images/physique/ then run
-             python tools/build-gallery.py -->
-        <div class="empty-state">
-          <h3 class="empty-state__title">No photos yet</h3>
-          <p class="empty-state__body">Coming soon.</p>
-        </div>
-      <!-- gallery:end -->
+      <div class="grid grid--2" data-reveal>
+        <article class="card service">
+          <span class="badge badge--commerce">Ongoing</span>
+          <h3 class="card__title">Online lifestyle coaching</h3>
+          <p class="card__body">
+            Ongoing guidance for people who want more structure around
+            training, nutrition, habits, recovery, and day-to-day execution.
+          </p>
+          <p class="card__body">
+            We establish what is realistic, track what actually happens, and
+            adjust from there rather than repeatedly starting over.
+          </p>
+          <ul class="feature-list">
+            <li>Individualized starting plan and goal setting</li>
+            <li>Regular check-ins and progress review</li>
+            <li>Routine, habit and accountability work</li>
+            <li>Training and nutrition adjusted as life changes</li>
+          </ul>
+        </article>
 
-      <div class="empty-state" data-reveal>
-        <h3 class="empty-state__title">Gallery status</h3>
-        <p class="empty-state__body">
-          Personal photography has not been published yet. Recommended export
-          settings are documented in <code>assets/images/README.md</code>.
+        <article class="card service">
+          <span class="badge badge--commerce">Programming</span>
+          <h3 class="card__title">Personalized exercise plans</h3>
+          <p class="card__body">
+            Training built around your goal and the equipment you actually
+            have. Commercial gym, apartment gym, garage setup, home
+            equipment, limited machines, dumbbells only. The program should
+            reflect reality.
+          </p>
+          <p class="card__body">
+            Your program should not require equipment you do not own or time
+            you do not have. If either changes, so does the plan.
+          </p>
+          <ul class="feature-list">
+            <li>Goal, experience and recovery capacity</li>
+            <li>Available equipment and training days</li>
+            <li>Session length that fits your week</li>
+            <li>Movement preferences and limitations</li>
+          </ul>
+        </article>
+
+        <article class="card service">
+          <span class="badge badge--commerce">Nutrition</span>
+          <h3 class="card__title">Meal planning</h3>
+          <p class="card__body">
+            Practical meal structure based around your objective,
+            preferences, schedule, budget, and the food you can actually get.
+          </p>
+          <p class="card__body">
+            The objective is not to hand someone a fantasy diet they follow
+            for four days. It is to build something repeatable enough to
+            become normal.
+          </p>
+          <ul class="feature-list">
+            <li>Calorie and protein targets for your goal</li>
+            <li>Foods you like, and the ones you will not eat</li>
+            <li>Meal frequency around your work schedule</li>
+            <li>Budget, cooking ability and eating out</li>
+          </ul>
+        </article>
+
+        <article class="card service">
+          <span class="badge badge--commerce">Combined</span>
+          <h3 class="card__title">Complete coaching</h3>
+          <p class="card__body">
+            Training, nutrition, lifestyle structure, check-ins, and ongoing
+            adjustments in one coaching relationship.
+          </p>
+          <p class="card__body">
+            The most comprehensive option, and the one that makes the most
+            sense if the three pieces above keep pulling against each other.
+          </p>
+          <ul class="feature-list">
+            <li>Everything in the three services above</li>
+            <li>One plan, kept consistent with itself</li>
+            <li>Adjustments across training and food together</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="notice notice--quiet" data-reveal>
+        <p>
+          <span class="notice__title">Scope</span>
+          Coaching and meal planning here are educational and
+          fitness-oriented. They are not medical care, and they are not a
+          substitute for individual advice from a licensed medical
+          professional or a registered dietitian. If you have a medical
+          condition, are pregnant, or are managing something that needs
+          clinical input, speak to the appropriate professional and I will
+          work around their guidance.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ======================================================= Supplements -->
-  <section class="section" aria-labelledby="supplements-title">
+  <!-- ============================================== Who coaching is for -->
+  <section class="section" id="who" aria-labelledby="who-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Who it is for</p>
+        <h2 class="section-header__title" id="who-title">Coaching for normal lives.</h2>
+      </div>
+
+      <div class="split split--weighted" data-reveal>
+        <div class="prose">
+          <p>
+            You do not need to be a bodybuilder.
+          </p>
+          <p>
+            You might want to build muscle, lose body fat, train consistently
+            for the first time, stop improvising every session, learn how to
+            eat toward a goal, or simply establish a routine you can
+            maintain.
+          </p>
+          <p>
+            The starting point matters less than being willing to follow a
+            plan, communicate what is and is not working, and make
+            adjustments when needed.
+          </p>
+        </div>
+
+        <ul class="tag-list tag-list--lg">
+          <li><span class="tag">Busy professionals</span></li>
+          <li><span class="tag">Beginners</span></li>
+          <li><span class="tag">Intermediate lifters</span></li>
+          <li><span class="tag">Returning to training</span></li>
+          <li><span class="tag">Limited gym access</span></li>
+          <li><span class="tag">Building muscle</span></li>
+          <li><span class="tag">Losing body fat</span></li>
+          <li><span class="tag tag--accent">Structure over complexity</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== How coaching works -->
+  <section class="section section--band" id="process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Process</p>
+        <h2 class="section-header__title" id="process-title">How coaching works</h2>
+      </div>
+
+      <ol class="entry-list" data-reveal>
+        <li class="entry">
+          <div class="entry__aside">
+            <p class="card__index">01</p>
+            <h3 class="entry__title">Understand</h3>
+          </div>
+          <div class="entry__main">
+            <p class="entry__body">
+              Goals, schedule, experience, equipment, food preferences,
+              constraints, and current habits.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <p class="card__index">02</p>
+            <h3 class="entry__title">Build</h3>
+          </div>
+          <div class="entry__main">
+            <p class="entry__body">
+              Create the simplest plan capable of moving you toward the
+              objective.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <p class="card__index">03</p>
+            <h3 class="entry__title">Execute</h3>
+          </div>
+          <div class="entry__main">
+            <p class="entry__body">
+              Run the plan long enough to produce useful feedback.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <p class="card__index">04</p>
+            <h3 class="entry__title">Measure</h3>
+          </div>
+          <div class="entry__main">
+            <p class="entry__body">
+              Review progress, adherence, performance, recovery, and what
+              actually happened in real life.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <p class="card__index">05</p>
+            <h3 class="entry__title">Adjust</h3>
+          </div>
+          <div class="entry__main">
+            <p class="entry__body">
+              Keep what works. Change what does not.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================================================== About Ian -->
+  <section class="section" id="approach" aria-labelledby="approach-title">
+    <div class="container container--narrow">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">About my approach</p>
+        <h2 class="section-header__title" id="approach-title">Built while doing it myself.</h2>
+      </div>
+
+      <div class="prose" data-reveal>
+        <p>
+          I am not documenting a finished physique from the other side of the
+          process. I am in it.
+        </p>
+        <p>
+          I train for Men's Physique and I am in a growth phase, working
+          through the same basic variables I ask anyone else to respect:
+          training, food, recovery, consistency, measurement, and patience.
+        </p>
+        <p>
+          My approach tends to be analytical. Establish the baseline. Change
+          what needs changing. Give the change enough time to produce
+          evidence. Keep what works.
+        </p>
+        <p>
+          A decade of technical work probably explains part of the mentality.
+          I am much more interested in identifying what is actually failing
+          than in repeatedly replacing the entire system.
+        </p>
+        <p>
+          That is how I approach my own development, and it is the foundation
+          of how IAZZUS coaching works.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== Supplements -->
+  <section class="section section--band" id="supplements" aria-labelledby="supplements-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Supplements</p>
-        <h2 class="section-header__title" id="supplements-title">What I actually take</h2>
+        <h2 class="section-header__title" id="supplements-title">Supplements</h2>
         <p class="section-header__intro">
-          Supplements are the smallest lever here. Training, food and sleep
-          decide the outcome; this is the margin on top of them.
+          Supplements sit behind training, nutrition, and recovery, which is
+          where they belong. When I publish products here, they will be
+          things I personally use, have used, or have a specific reason to
+          discuss.
         </p>
       </div>
 
@@ -423,9 +892,9 @@
         <p>
           <span class="notice__title">Affiliate disclosure</span>
           The Black Magic Supply link below is an affiliate link. If you buy
-          through it I earn a commission at no extra cost to you. I only
-          link things I use myself, and a commission does not change what I
-          would tell you to take.
+          through it I earn a commission at no extra cost to you. I only link
+          things I use myself, and a commission does not change what I would
+          tell you to take.
         </p>
       </div>
 
@@ -439,8 +908,8 @@
             </p>
             <!-- The rfsn parameter is the affiliate ID and is the only one
                  that matters. The fbclid on the original copied link was
-                 Facebook click-tracking picked up in transit - passing it
-                 on would hand Facebook data about visitors here for no
+                 Facebook click-tracking picked up in transit. Passing it on
+                 would hand Facebook data about visitors here for no
                  benefit, so it is stripped. -->
             <p>
               <a class="btn btn--commerce" href="https://www.blackmagicsupps.com/?rfsn=7153007.6c07d9" rel="sponsored noopener">
@@ -463,8 +932,8 @@
             <dd class="def-list__desc">IAZZUS</dd>
           </div>
           <div class="def-list__row">
-            <dt class="def-list__term">What I run</dt>
-            <dd class="def-list__desc placeholder-text">Not yet published</dd>
+            <dt class="def-list__term">Where it sits</dt>
+            <dd class="def-list__desc">Behind training, food and sleep</dd>
           </div>
         </dl>
       </div>
@@ -472,7 +941,7 @@
   </section>
 
   <!-- =========================================================== Goals -->
-  <section class="section section--band" aria-labelledby="goals-title">
+  <section class="section" id="goals" aria-labelledby="goals-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Goals</p>
@@ -481,44 +950,66 @@
 
       <div class="grid grid--3" data-reveal>
         <article class="card">
-          <h3 class="card__title">Near term</h3>
+          <p class="card__index">Now</p>
+          <h3 class="card__title">Make the growth phase productive</h3>
           <p class="card__body">
-            Complete the current development block with measurable progress in
-            shoulder and upper-back development, without losing conditioning.
+            Add visible tissue where the Men's Physique silhouette needs it
+            most: shoulders, chest, arms, back width, and back thickness.
           </p>
         </article>
+
         <article class="card">
-          <h3 class="card__title">Medium term</h3>
+          <p class="card__index">Next</p>
+          <h3 class="card__title">Bring the size into condition</h3>
           <p class="card__body">
-            Build a physique that holds proportion at a lower body-fat level —
-            the point where a stage-ready presentation becomes realistic.
+            Carry the additional size into a phase where conditioning,
+            symmetry, posing, and proportion can be assessed without body fat
+            hiding the result.
           </p>
         </article>
+
         <article class="card">
-          <h3 class="card__title">Long term</h3>
+          <p class="card__index">The point</p>
+          <h3 class="card__title">A package I can trace backward</h3>
           <p class="card__body">
-            Compete in Men's Physique, and keep a documented record of the
-            process that got there rather than just the result.
+            Build a Men's Physique package I can trace backward through years
+            of photographs, training logs, mistakes, adjustments, and
+            measurable work.
           </p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================= CTA -->
-  <section class="section section--tight">
+  <!-- ==================================================== Coaching CTA -->
+  <section class="section section--tight" id="start">
     <div class="container">
-      <div class="cta" data-reveal>
-        <div>
-          <h2 class="cta__title">Training, coaching or collaboration.</h2>
+      <div class="cta cta--commerce" data-reveal>
+        <div class="stack">
+          <p class="eyebrow">Get started</p>
+          <h2 class="cta__title">Interested in coaching?</h2>
           <p class="cta__body">
-            If it is about the physique side rather than the technology side,
-            select the bodybuilding category on the contact form.
+            Tell me where you are, where you want to go, and what you are
+            realistically working with. We can build from there.
           </p>
+          <!-- Prompting for this up front saves a round trip. Nothing here
+               asks for health information. -->
+          <ul class="feature-list">
+            <li>Your main goal, and roughly when you want it</li>
+            <li>Training experience, and days per week you can train</li>
+            <li>Equipment you can actually get to</li>
+            <li>Which of the services above you are interested in</li>
+          </ul>
         </div>
         <div class="cta__actions">
-          <a class="btn btn--primary" href="/contact/">
-            Get in touch <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          <!-- ?topic=coaching preselects the Coaching category on the
+               contact form (see initTopicPrefill in main.js). The link works
+               without JavaScript; the category is simply not preselected. -->
+          <a class="btn btn--commerce" href="/contact/?topic=coaching">
+            Start a conversation <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="btn btn--secondary" href="mailto:ian.vulovic@live.com?subject=IAZZUS%20coaching%20enquiry">
+            Email directly
           </a>
         </div>
       </div>
