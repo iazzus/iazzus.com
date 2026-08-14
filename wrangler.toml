@@ -1,0 +1,25 @@
+# Cloudflare Workers configuration — static assets only.
+#
+# Deliberately minimal. There is no "main" key because there is no Worker
+# script: this site is pure static files, so Cloudflare serves them from
+# the edge and no code runs per request.
+#
+# "name" must match the Worker in the dashboard, or `wrangler deploy`
+# creates a second Worker and the custom domain stays on the old one.
+# Verified against the account: iazzus-com is correct.
+name = "iazzus-com"
+
+# Set in the past on purpose. Wrangler rejects a compatibility_date newer
+# than the release it was built from, so a same-day value can fail the
+# build depending on which version npm resolves. Nothing here depends on
+# recent runtime behaviour.
+compatibility_date = "2025-06-01"
+
+[assets]
+# Everything that gets served lives in public/. Deployable content and
+# project tooling are separate directories on purpose, so nothing outside
+# public/ can be published by accident.
+directory = "./public"
+
+# Serve public/404.html with a real 404 status for unmatched paths.
+not_found_handling = "404-page"
