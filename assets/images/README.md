@@ -17,6 +17,9 @@ already reference these:
 | `ian-technology-workspace.webp` | reserved             | 3:2    | 1800 × 1200 |
 | `og-default.png`                | social preview       | 1.91:1 | 1200 × 630  |
 
+The Apple touch icon lives in **`assets/icons/apple-touch-icon.png`**, not
+here — that is the path referenced by every page's `<link rel>`.
+
 ## Format and size
 
 - **WebP** for photography. Quality 78–85 is usually indistinguishable from
