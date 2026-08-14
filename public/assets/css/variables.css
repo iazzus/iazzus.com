@@ -1,5 +1,5 @@
 /* ==========================================================================
-   variables.css — the single source of truth for the IAZZUS design system.
+   variables.css - the single source of truth for the IAZZUS design system.
 
    Change a value here and it propagates across every page. Nothing else in
    the stylesheet set should hardcode a colour, size, radius or duration.
@@ -7,7 +7,7 @@
 
 :root {
   /* ---------------------------------------------------------------------
-     Colour — dark neutral base, one restrained accent.
+     Colour - dark neutral base, one restrained accent.
      Accent is a muted brass: premium and athletic without reading as neon.
      Contrast ratios below are measured against --color-bg (#08090A).
      --------------------------------------------------------------------- */
@@ -16,9 +16,9 @@
   --color-surface: #151719;         /* cards and panels                     */
   --color-surface-hover: #1b1e21;   /* card hover state                     */
 
-  --color-text: #f4f4f5;            /* primary text          — 18.4:1       */
-  --color-text-secondary: #a1a1aa;  /* body / supporting     —  7.8:1       */
-  --color-muted: #8b8b94;           /* metadata, captions    —  5.9:1       */
+  --color-text: #f4f4f5;            /* primary text          - 18.4:1       */
+  --color-text-secondary: #a1a1aa;  /* body / supporting     -  7.8:1       */
+  --color-muted: #8b8b94;           /* metadata, captions    -  5.9:1       */
   /* There is deliberately no dimmer text colour than --color-muted. The
      obvious next step down (#71717a) measures 4.1:1 here, which fails
      WCAG AA for body-sized text. Use size and weight to express hierarchy
@@ -28,11 +28,11 @@
   --color-border-strong: rgba(255, 255, 255, 0.14);
 
   /* ---------------------------------------------------------------------
-     Accent — teal. This is the everyday accent: links, eyebrows, rules,
+     Accent - teal. This is the everyday accent: links, eyebrows, rules,
      focus rings, status dots. If you change one colour on this site,
      change this one.
      --------------------------------------------------------------------- */
-  --color-accent: #45b8ac;          /* teal                  —  8.3:1       */
+  --color-accent: #45b8ac;          /* teal                  -  8.3:1       */
   --color-accent-bright: #5fd0c3;   /* hover / active                       */
   --color-accent-line: color-mix(in srgb, var(--color-accent) 34%, transparent);
   --color-accent-soft: color-mix(in srgb, var(--color-accent) 11%, transparent);
@@ -40,14 +40,14 @@
   --color-on-accent: #04201d;       /* text on a filled accent surface      */
 
   /* ---------------------------------------------------------------------
-     Commerce — warm coral, the complement of the teal.
+     Commerce - warm coral, the complement of the teal.
 
      Reserved for moments where money or engagement is on the table: the
      Work With Me button, service pricing, booking CTAs. Nothing else.
-     Its whole value is that it means something specific — start using it
+     Its whole value is that it means something specific - start using it
      decoratively and it stops reading as a signal.
      --------------------------------------------------------------------- */
-  --color-commerce: #e8785f;        /* coral                 —  6.9:1       */
+  --color-commerce: #e8785f;        /* coral                 -  6.9:1       */
   --color-commerce-bright: #f28e76;
   --color-commerce-line: color-mix(in srgb, var(--color-commerce) 34%, transparent);
   --color-commerce-soft: color-mix(in srgb, var(--color-commerce) 12%, transparent);
@@ -108,7 +108,7 @@
   --tracking-wordmark: 0.22em;
 
   /* ---------------------------------------------------------------------
-     Spacing — a single scale used for margins, padding and gaps.
+     Spacing - a single scale used for margins, padding and gaps.
      --------------------------------------------------------------------- */
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
@@ -148,7 +148,7 @@
   --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.9);
 
   /* ---------------------------------------------------------------------
-     Motion — every transition in the system references these.
+     Motion - every transition in the system references these.
      --------------------------------------------------------------------- */
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --duration-fast: 140ms;
@@ -162,7 +162,7 @@
 }
 
 /*
-  Self-hosted font slot — uncomment and adjust once you add real files.
+  Self-hosted font slot - uncomment and adjust once you add real files.
 
   @font-face {
     font-family: "IAZZUS Display";

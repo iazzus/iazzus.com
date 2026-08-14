@@ -1,5 +1,5 @@
 /* ==========================================================================
-   responsive.css — breakpoint overrides, motion and print.
+   responsive.css - breakpoint overrides, motion and print.
 
    The base styles are the narrow-screen layout; everything here adds
    capability as the viewport grows. Loaded last so it always wins.
@@ -102,7 +102,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   >= 900px — desktop navigation
+   >= 900px - desktop navigation
    -------------------------------------------------------------------------- */
 
 @media (min-width: 56.25em) {
@@ -208,7 +208,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Coarse pointers — give touch targets more room
+   Coarse pointers - give touch targets more room
    -------------------------------------------------------------------------- */
 
 @media (pointer: coarse) {

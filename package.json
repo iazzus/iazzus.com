@@ -2,7 +2,7 @@
   "name": "iazzus-com",
   "version": "1.0.0",
   "private": true,
-  "description": "iazzus.com — static personal site, deployed to Cloudflare Workers",
+  "description": "iazzus.com - static personal site, deployed to Cloudflare Workers",
   "scripts": {
     "dev": "python tools/dev-server.py",
     "deploy": "wrangler deploy",

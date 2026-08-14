@@ -6,7 +6,7 @@
 #
 # IMPORTANT: only relative URLs are allowed here. Unlike Cloudflare Pages,
 # Workers rejects absolute destinations and fails the whole deploy with
-# "Only relative URLs are allowed [code: 100324]" — so no rule in this file
+# "Only relative URLs are allowed [code: 100324]" - so no rule in this file
 # may start with a scheme or hostname.
 #
 # That means www -> apex CANNOT live here. It is handled by a zone-level

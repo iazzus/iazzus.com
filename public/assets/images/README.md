@@ -1,7 +1,7 @@
 # Images
 
 Drop exported images straight into this folder. Nothing needs to be
-registered anywhere — the HTML references files by path.
+registered anywhere - the HTML references files by path.
 
 ## Naming
 
@@ -18,11 +18,11 @@ already reference these:
 | `og-default.png`                | social preview       | 1.91:1 | 1200 × 630  |
 
 The Apple touch icon lives in **`assets/icons/apple-touch-icon.png`**, not
-here — that is the path referenced by every page's `<link rel>`.
+here - that is the path referenced by every page's `<link rel>`.
 
 ## Format and size
 
-- **WebP** for photography. Quality 78–85 is usually indistinguishable from
+- **WebP** for photography. Quality 78-85 is usually indistinguishable from
   the original at these dimensions.
 - **PNG** only for the Open Graph image (some scrapers still handle WebP
   poorly) and for flat graphics.
@@ -62,7 +62,7 @@ visible before scrolling.
 ## Serving multiple sizes later
 
 When it becomes worth it, export a 600 px and 1200 px version and switch to
-`srcset` — no CSS changes needed:
+`srcset` - no CSS changes needed:
 
 ```html
 <img src="/assets/images/ian-physique-front-1200.webp"

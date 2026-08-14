@@ -1,5 +1,5 @@
 /* ==========================================================================
-   main.js — IAZZUS.com
+   main.js - IAZZUS.com
    Progressive enhancement only. Every page is fully readable and navigable
    with this file blocked. No dependencies, no build step.
 
@@ -18,12 +18,15 @@
   /* ------------------------------------------------------------------------
      Configuration
 
-     CONTACT_ENDPOINT stays empty until a real backend exists (for example a
-     Cloudflare Worker or Pages Function at /api/contact). While it is empty
-     the form validates but reports honestly that it cannot send yet — it
-     never pretends a message was delivered. See README "Contact form".
+     The contact form posts here. This is served by src/index.js, which
+     sends the message on through Cloudflare's Email Service binding.
+
+     The form also carries method="post" action="/api/contact" in the
+     markup, so it still submits without this file: the Worker answers a
+     native submission with a real HTML page instead of JSON. Everything
+     below is an enhancement on top of that, not a requirement.
      ------------------------------------------------------------------------ */
-  var CONTACT_ENDPOINT = "";
+  var CONTACT_ENDPOINT = "/api/contact";
 
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -305,15 +308,6 @@
         return;
       }
 
-      if (!CONTACT_ENDPOINT) {
-        setStatus(
-          "This form passed validation, but no backend is connected yet, " +
-            "so nothing was sent. Message delivery is not yet configured.",
-          "error"
-        );
-        return;
-      }
-
       submit(form, setStatus);
     });
   }
@@ -344,17 +338,43 @@
 
     fetch(CONTACT_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
       body: JSON.stringify(payload)
     })
       .then(function (response) {
-        if (!response.ok) throw new Error("Request failed: " + response.status);
-        form.reset();
-        setStatus("Message sent. I will get back to you.", "success");
+        // The Worker explains what went wrong in the body. Surfacing its
+        // wording beats a generic failure, which tells the visitor nothing
+        // about whether retrying is worth it.
+        return response
+          .json()
+          .catch(function () {
+            return {};
+          })
+          .then(function (result) {
+            if (!response.ok || !result.ok) {
+              var failure = new Error(
+                result.error || "The message was not sent. Please try again."
+              );
+              // Marks wording that came from our own endpoint and is safe
+              // to show. Anything unmarked is a browser-level error whose
+              // message ("Failed to fetch", "network") means nothing to a
+              // visitor, so it never reaches the page.
+              failure.fromServer = true;
+              throw failure;
+            }
+            form.reset();
+            setStatus("Message sent. I will get back to you.", "success");
+          });
       })
-      .catch(function () {
+      .catch(function (error) {
         setStatus(
-          "Something went wrong and the message was not sent. Please try again.",
+          error && error.fromServer
+            ? error.message
+            : "The message could not be sent. Check your connection and try " +
+                "again, or email ian.vulovic@live.com directly.",
           "error"
         );
       })

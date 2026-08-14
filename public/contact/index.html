@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact | IAZZUS</title>
+<title>Contact - Ian Vulovic | IAZZUS</title>
 <meta name="description" content="Get in touch with Ian Vulovic about IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <link rel="canonical" href="https://iazzus.com/contact/">
 <meta name="author" content="Ian Vulovic">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IAZZUS">
 <meta property="og:url" content="https://iazzus.com/contact/">
-<meta property="og:title" content="Contact Ian Vulovic">
+<meta property="og:title" content="Contact - Ian Vulovic">
 <meta property="og:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <meta property="og:image" content="https://iazzus.com/assets/images/og-default.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact Ian Vulovic">
+<meta name="twitter:title" content="Contact - Ian Vulovic">
 <meta name="twitter:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
 <meta name="twitter:image" content="https://iazzus.com/assets/images/og-default.png">
 
@@ -45,7 +45,7 @@
   "@type": "ContactPage",
   "@id": "https://iazzus.com/contact/",
   "url": "https://iazzus.com/contact/",
-  "name": "Contact Ian Vulovic",
+  "name": "Contact - Ian Vulovic",
   "description": "Contact form for IT consulting, bodybuilding and general enquiries.",
   "inLanguage": "en",
   "isPartOf": { "@id": "https://iazzus.com/#website" },
@@ -109,26 +109,11 @@
       <div class="stack stack--md" data-reveal>
         <h2 class="visually-hidden" id="form-title">Contact form</h2>
 
-        <div class="notice">
-          <p>
-            <span class="notice__title">Form status</span>
-            Message delivery is not connected yet. The form validates your
-            input, but nothing is transmitted or stored: no backend endpoint
-            has been configured. See the README for how to wire it up.
-          </p>
-        </div>
-
-        <noscript>
-          <div class="notice">
-            <p>
-              <span class="notice__title">JavaScript required</span>
-              This form is submitted with JavaScript. With scripting disabled
-              it cannot send a message.
-            </p>
-          </div>
-        </noscript>
-
-        <form class="form" data-contact-form>
+        <!-- method and action are on the form itself, so it still submits
+             with JavaScript blocked. main.js intercepts and posts JSON when
+             it can; the Worker at /api/contact accepts either and answers a
+             native submission with a real page. -->
+        <form class="form" method="post" action="/api/contact" data-contact-form>
           <div class="field">
             <label class="field__label" for="name">
               Name <span class="field__required" aria-hidden="true">*</span>
@@ -236,8 +221,8 @@
         <h2 id="alt-title">Direct contact</h2>
 
         <p>
-          Email works and reaches me directly. Until the form has a backend,
-          it is the only route that actually delivers.
+          The form reaches my inbox. If you would rather not use it, or you
+          need to attach something, email works just as well.
         </p>
 
         <!-- EDIT: add professional profile links (LinkedIn, GitHub) as extra
@@ -298,8 +283,8 @@
         </dl>
 
         <p class="meta">
-          Nothing submitted through the form is stored or sent while it is
-          unconnected. Use email in the meantime.
+          Your message is emailed to me and nothing else. It is not stored on
+          this site, and the address you give is used to reply to you.
         </p>
       </aside>
 

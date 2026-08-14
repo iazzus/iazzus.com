@@ -1,5 +1,5 @@
 /* ==========================================================================
-   components.css — reusable interface pieces.
+   components.css - reusable interface pieces.
 
    Naming: .block, .block__element, .block--modifier
    Every value references a token from variables.css.
@@ -241,7 +241,7 @@
   background-color: var(--color-accent-soft);
 }
 
-/* Commerce variant — money or engagement only. See --color-commerce. */
+/* Commerce variant - money or engagement only. See --color-commerce. */
 .btn--commerce {
   background-color: var(--color-commerce);
   color: var(--color-on-commerce);
@@ -332,7 +332,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Discipline split — the two-path block on the homepage
+   Discipline split - the two-path block on the homepage
    -------------------------------------------------------------------------- */
 
 .discipline {
@@ -491,7 +491,7 @@ a.tag:hover {
   color: var(--color-commerce);
 }
 
-/* Service panel on /work-with-me/ — a card with a commerce-tinted edge. */
+/* Service panel on /work-with-me/ - a card with a commerce-tinted edge. */
 .service {
   border-color: var(--color-border-strong);
 }
@@ -593,7 +593,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Status grid — the same idea as .stat, but for words instead of figures.
+   Status grid - the same idea as .stat, but for words instead of figures.
 
    .stat sets its value at display size because a number reads fine that
    large. A phrase like "Men's Physique" does not, so this keeps the value
@@ -632,7 +632,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Rotation — an ordered sequence shown inline, e.g. the training split.
+   Rotation - an ordered sequence shown inline, e.g. the training split.
    Wraps rather than scrolls, so it survives a 320px viewport.
    -------------------------------------------------------------------------- */
 
@@ -662,7 +662,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Entry — used for capabilities, projects and focus items
+   Entry - used for capabilities, projects and focus items
    -------------------------------------------------------------------------- */
 
 .entry-list {
@@ -705,7 +705,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Platform groups — grouped tag lists on the technology page
+   Platform groups - grouped tag lists on the technology page
    -------------------------------------------------------------------------- */
 
 .platform-group {
@@ -843,7 +843,7 @@ a.tag:hover {
   gap: var(--space-xs);
 }
 
-/* Commerce CTA — the one on /work-with-me/ and the hire prompts. */
+/* Commerce CTA - the one on /work-with-me/ and the hire prompts. */
 .cta--commerce {
   border-color: var(--color-commerce-line);
   background-color: var(--color-commerce-soft);
@@ -858,7 +858,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Statement — one line that carries a section on its own.
+   Statement - one line that carries a section on its own.
    -------------------------------------------------------------------------- */
 
 .statement {
@@ -880,7 +880,7 @@ a.tag:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Notice — informational panel (e.g. "backend not yet configured")
+   Notice - informational panel (e.g. "backend not yet configured")
    -------------------------------------------------------------------------- */
 
 .notice {
@@ -1031,7 +1031,7 @@ select.field__control {
   color: var(--color-success);
 }
 
-/* Honeypot — hidden from humans, tempting to naive bots. */
+/* Honeypot - hidden from humans, tempting to naive bots. */
 .form__trap {
   position: absolute;
   inline-size: 1px;
@@ -1042,7 +1042,7 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   Definition rows — label/value pairs
+   Definition rows - label/value pairs
    -------------------------------------------------------------------------- */
 
 .def-list {
@@ -1091,7 +1091,7 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   Data table — progress log and any future tabular content.
+   Data table - progress log and any future tabular content.
    Always wrap in .table-scroll so narrow screens scroll the table, never
    the page.
    -------------------------------------------------------------------------- */
@@ -1151,7 +1151,7 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   Fact cards — a straight figure with the real answer underneath
+   Fact cards - a straight figure with the real answer underneath
    -------------------------------------------------------------------------- */
 
 .fact-grid {
@@ -1367,7 +1367,7 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   Breadcrumb — sub-pages under a hub
+   Breadcrumb - sub-pages under a hub
    -------------------------------------------------------------------------- */
 
 .breadcrumb__list {
@@ -1485,7 +1485,7 @@ select.field__control {
   text-decoration: none;
 }
 
-/* Only real links react — the "Focus" column is plain text. */
+/* Only real links react - the "Focus" column is plain text. */
 a.footer-nav__link:hover {
   color: var(--color-accent-bright);
 }
@@ -1645,7 +1645,7 @@ a.footer-nav__link:hover {
   margin-block-end: var(--space-sm);
 }
 
-/* Media box with no enforced aspect ratio — the image sets its own. */
+/* Media box with no enforced aspect ratio - the image sets its own. */
 .media--natural {
   aspect-ratio: auto;
 }
@@ -1656,7 +1656,7 @@ a.footer-nav__link:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Check-in — a dated progress entry: metadata, three views, notes.
+   Check-in - a dated progress entry: metadata, three views, notes.
 
    Currently unused. It exists so that the physique progress record can be
    switched on by pasting markup, without the page needing to be laid out
@@ -1699,7 +1699,7 @@ a.footer-nav__link:hover {
 }
 
 /* --------------------------------------------------------------------------
-   Empty state — where real data will eventually live
+   Empty state - where real data will eventually live
    -------------------------------------------------------------------------- */
 
 .empty-state {

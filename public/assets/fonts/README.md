@@ -8,7 +8,7 @@ zero font requests, zero layout shift, and nothing to license.
 
 ## If you want a self-hosted display face
 
-1. Get a `.woff2` file you are licensed to host. Variable fonts are ideal —
+1. Get a `.woff2` file you are licensed to host. Variable fonts are ideal -
    one file covers every weight.
 2. Put it here, e.g. `assets/fonts/iazzus-display.woff2`.
 3. Uncomment the `@font-face` block at the bottom of
@@ -34,5 +34,5 @@ visible while the font loads.
 The Content-Security-Policy in `_headers` sets `font-src 'self'`. Loading
 fonts from Google Fonts or another CDN would require loosening that policy
 and would add a third-party dependency and an extra DNS lookup. Self-host
-instead — and add the font's own path to the long-cache rule already present
+instead - and add the font's own path to the long-cache rule already present
 in `_headers` for `/assets/fonts/*`.

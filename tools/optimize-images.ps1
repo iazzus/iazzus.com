@@ -27,7 +27,7 @@ param(
     # File or folder to read from. Originals are never modified.
     [Parameter(Mandatory)][string]$Source,
 
-    # Gallery name — becomes public/assets/images/<Gallery>/
+    # Gallery name - becomes public/assets/images/<Gallery>/
     [Parameter(Mandatory)]
     [ValidateSet('frida','reptiles','garden','family','motorcycle','tesla','military','physique')]
     [string]$Gallery,

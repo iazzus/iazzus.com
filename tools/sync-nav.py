@@ -2,7 +2,7 @@
 """Write the shared header and footer into every page.
 
 This is NOT a build step. The HTML files in this repository stay complete
-and deployable on their own — this tool just stops the header and footer
+and deployable on their own - this tool just stops the header and footer
 from drifting apart across fifteen pages when you add a nav link.
 
 Edit tools/partials/header.html or tools/partials/footer.html, then:

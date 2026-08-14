@@ -1,6 +1,6 @@
 # IAZZUS.com
 
-The personal website of **Ian Vulovic** — one online identity covering IT
+The personal website of **Ian Vulovic** - one online identity covering IT
 systems work and the consulting practice growing out of it, Men's Physique
 training, military background, and the rest of life.
 
@@ -20,6 +20,7 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 - [Design system](#design-system)
 - [Images](#images)
 - [Video](#video)
+- [House style](#house-style)
 - [The contact form](#the-contact-form)
 - [Cloudflare deployment](#cloudflare-deployment)
 - [Domain configuration](#domain-configuration)
@@ -37,9 +38,9 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 /
 ├── public/                 <- everything that gets deployed
 │   ├── index.html          Homepage
-├── work-with-me/           Services — IT consulting and training
+├── work-with-me/           Services - IT consulting and training
 ├── technology/             Technical expertise, platforms, consulting
-├── bodybuilding/           Men's Physique training, progress, gallery
+├── bodybuilding/           Men's Physique development + IAZZUS coaching
 │
 ├── garage/                 Hub: the two vehicles
 │   ├── motorcycle/         2016 Kawasaki Ninja 650 ABS
@@ -69,17 +70,23 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 │   ├── icons/              apple-touch-icon.png
 │   └── fonts/              Empty by design (has its own README)
 │
+├── src/index.js            Worker: /api/contact, else fall through to assets
+│
 ├── tools/
 │   ├── sync-nav.py         Writes the shared header/footer into every page
 │   ├── partials/           Single source of truth for header + footer
+│   ├── build-gallery.py    Generates gallery markup from folder contents
+│   ├── check-copy.py       Fails on banned characters (see House style)
 │   └── dev-server.py       Local server that replays _headers
+│
+├── .githooks/pre-commit    Runs check-copy.py before every commit
 │
 ├── favicon.svg             IA monogram
 ├── robots.txt
 ├── sitemap.xml
 ├── _headers                Response headers (incl. CSP)
 ├── _redirects              www → apex, plus old-URL redirects
-├── wrangler.jsonc          Cloudflare Workers config (assets-only)
+├── wrangler.toml           Workers config: assets, routes, mail binding
 ├── .editorconfig
 ├── .gitattributes
 └── .gitignore
@@ -89,13 +96,13 @@ The stylesheets load in that order on every page and each one has a single
 job. If you are looking for where something is defined, that order is the
 map.
 
-**Note on `/tools/`** — the assets directory is the repository root, so
-without intervention those files would be served at `iazzus.com/tools/…`.
-They are listed in [`.assetsignore`](.assetsignore), which means they are
-never uploaded at all. The `Disallow: /tools/` in `robots.txt` and the
-`X-Robots-Tag: noindex` rule in `_headers` are now belt-and-braces —
-harmless, and still correct if the site is ever served through Pages
-instead.
+**Note on `/tools/` and `/src/`** - the assets directory is `./public`,
+so everything outside it is never uploaded and cannot be reached over the
+web. `src/index.js` is the one exception in spirit: it is not served as a
+file, it is bundled into the Worker itself. The `Disallow: /tools/` in
+`robots.txt` and the `X-Robots-Tag: noindex` rule in `_headers` are
+belt-and-braces, harmless, and still correct if the site is ever served
+through Pages instead.
 
 ---
 
@@ -105,7 +112,7 @@ There is **no build step and nothing to install**. You can double-click
 `index.html`, but relative links like `/technology/` will not resolve from
 `file://`, so use a local server.
 
-**Simplest — Python's built-in server:**
+**Simplest - Python's built-in server:**
 
 ```bash
 python -m http.server 8000
@@ -113,7 +120,7 @@ python -m http.server 8000
 
 Then open <http://localhost:8000>.
 
-**Recommended — the included dev server**, which also replays the headers
+**Recommended - the included dev server**, which also replays the headers
 from `_headers` (so you can verify the Content-Security-Policy locally) and
 serves `404.html` with a real 404 status:
 
@@ -130,7 +137,7 @@ Code "Live Server" extension.
 ### After editing
 
 - Hard-refresh (Ctrl+F5) if a CSS change does not appear.
-- Check the browser console — the site should produce **zero** console
+- Check the browser console - the site should produce **zero** console
   output.
 - Test at a narrow width (375 px) and a wide one. The navigation switches to
   the mobile panel below 900 px.
@@ -158,7 +165,7 @@ That rewrites the region between `<!-- header:start -->` and
 the top of `tools/sync-nav.py` with the nav key that should be highlighted.
 Also add a `<url>` block to `sitemap.xml`.
 
-This is not a build step — the committed HTML is complete and deployable on
+This is not a build step - the committed HTML is complete and deployable on
 its own. The tool exists only so fifteen copies of the same nav cannot drift
 apart. Active state is driven by `aria-current="page"`, which the tool
 applies from the nav key; there is no separate "active" class.
@@ -171,8 +178,8 @@ underlines, focus rings, the hero wash and the status dots all derive from
 it.
 
 ```css
---color-accent:   #45b8ac;   /* teal  — everyday accent */
---color-commerce: #e8785f;   /* coral — money moments only */
+--color-accent:   #45b8ac;   /* teal  - everyday accent */
+--color-commerce: #e8785f;   /* coral - money moments only */
 ```
 
 If you change either, keep the contrast against `--color-bg` at **4.5:1 or
@@ -184,7 +191,7 @@ you re-theme: the stroke in `favicon.svg`, and the generated
 
 ### Text
 
-Copy is written directly in the HTML — no CMS, no data files. Search for the
+Copy is written directly in the HTML - no CMS, no data files. Search for the
 phrase you want to change and edit it.
 
 Two conventions are used to mark provisional content:
@@ -196,11 +203,14 @@ Two conventions are used to mark provisional content:
 
 ### Contact details
 
-`contact/index.html` publishes **one** channel: `ian.vulovic@iazzus.com`.
+`contact/index.html` publishes **one** channel: `ian.vulovic@live.com`.
+It is also where the contact form delivers, via `CONTACT_TO` in
+`wrangler.toml`. Change it in both places, or replies will arrive somewhere
+you are not reading.
 
 **No phone number appears anywhere on this site, by deliberate choice.** A
 number published in HTML is scraped within days and cannot be recalled once
-it is in a broker's dataset — and unlike an email address, you cannot filter
+it is in a broker's dataset - and unlike an email address, you cannot filter
 your way out of it. If you ever decide to add one, understand that is a
 one-way door.
 
@@ -218,7 +228,7 @@ whenever you happen to notice it.
 
 ## Design system
 
-**Palette** — a dark neutral base with one restrained accent.
+**Palette** - a dark neutral base with one restrained accent.
 
 | Token                    | Value     | Use                        |
 | ------------------------ | --------- | -------------------------- |
@@ -228,12 +238,12 @@ whenever you happen to notice it.
 | `--color-text`           | `#F4F4F5` | Headings, primary text     |
 | `--color-text-secondary` | `#A1A1AA` | Body copy                  |
 | `--color-muted`          | `#8B8B94` | Metadata, captions, labels |
-| `--color-accent`         | `#45B8AC` | Teal — the everyday accent |
-| `--color-commerce`       | `#E8785F` | Coral — commercial moments |
+| `--color-accent`         | `#45B8AC` | Teal - the everyday accent |
+| `--color-commerce`       | `#E8785F` | Coral - commercial moments |
 
 **The two accents mean different things.** Teal is the everyday accent:
 links, eyebrows, rules, focus rings, status dots. Coral is reserved for
-moments where money or engagement is on the table — the Work With Me button,
+moments where money or engagement is on the table - the Work With Me button,
 service badges, pricing, the commerce CTA block. That is the entire value of
 having it: a visitor learns within one page that coral means "this is the
 one that costs something". Start using it decoratively and it stops being a
@@ -247,23 +257,23 @@ that point with size and weight instead.
 
 `global.css` loads before `components.css`, so a single-class utility in
 `global.css` loses to a single-class component rule. Two places rely on
-raised specificity rather than `!important` — `.placeholder-text` and
-`.site-header__cta` — and both are commented where they are defined. If you
+raised specificity rather than `!important` - `.placeholder-text` and
+`.site-header__cta` - and both are commented where they are defined. If you
 add a utility that must beat a component, do the same rather than reaching
 for `!important`.
 
-**Typography** — system font stacks, so there are zero font requests and no
+**Typography** - system font stacks, so there are zero font requests and no
 layout shift. Headings and display type use a grotesque stack; eyebrows,
 labels, metadata and stat captions use a **monospace** stack, which is what
 gives the site its technical register without any graphics. Sizes are fluid
 via `clamp()`.
 
-**Components** — buttons, nav, cards, disciplines, tags, badges, stats,
+**Components** - buttons, nav, cards, disciplines, tags, badges, stats,
 entries, platform groups, media containers, CTA blocks, notices, forms,
 tables, empty states and the footer. All in `components.css`, all built on
 tokens, named `.block__element--modifier`.
 
-**Motion** — short transitions on hover and focus, plus a one-time fade-and-
+**Motion** - short transitions on hover and focus, plus a one-time fade-and-
 rise as sections enter the viewport (`data-reveal`). Nothing loops, nothing
 parallaxes. `prefers-reduced-motion: reduce` disables all of it, and the
 design is intended to look finished that way.
@@ -285,8 +295,8 @@ and `loading="lazy"`.
 
 ## Video
 
-`/motorcycle/` has two video slots. Video is **self-hosted only** — no
-YouTube or Vimeo embeds — which is what keeps `media-src 'self'` in the CSP
+`/motorcycle/` has two video slots. Video is **self-hosted only** - no
+YouTube or Vimeo embeds - which is what keeps `media-src 'self'` in the CSP
 and avoids a third-party dependency. Encoding commands, size limits and the
 markup to swap in are in [`assets/video/README.md`](assets/video/README.md).
 
@@ -296,33 +306,97 @@ caps individual files at 25 MB).
 
 ---
 
+## House style
+
+**No em dashes, and no en dashes.** Not in visitor-facing copy, not in
+headings, not in source comments. Write a plain hyphen, a comma, or a
+colon. The rule is absolute so there is nothing to argue about at the point
+of writing.
+
+It is enforced rather than remembered:
+
+```bash
+python tools/check-copy.py
+```
+
+`.githooks/pre-commit` runs it before every commit, wired up with:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+That config is per clone, so run it once after cloning. The hook prints
+`file:line:column` for every hit and blocks the commit. `--no-verify`
+bypasses it if you ever genuinely need to.
+
+The banned characters are listed as codepoints inside `check-copy.py` on
+purpose: a checker containing the characters it bans would flag itself, and
+excluding that file by name would leave a hole in the check.
+
+---
+
 ## The contact form
 
-The form **validates but does not send**. `CONTACT_ENDPOINT` at the top of
-`assets/js/main.js` is an empty string, and while it is empty the form
-reports plainly that no backend is connected rather than faking a success
-message. This is deliberate — nothing on the site pretends to work.
+The form posts to `/api/contact`, handled by `src/index.js` and delivered
+by **Cloudflare's own Email Service**. Sending to a verified destination
+address on your own account is free on every plan and does not consume a
+sending quota, so there is no third-party mail provider in the path, no API
+key to store, and nothing to renew.
 
-To connect it:
+### One-time setup in the dashboard
 
-1. Build an endpoint that accepts a JSON `POST` — on Workers you add a `main` field to `wrangler.jsonc` pointing at a small
-   script that handles `/api/contact` and falls through to `env.ASSETS`
-   for everything else. It deploys with the same project.
-2. Set the constant:
+The code is deployed and complete. It cannot send until these two steps are
+done, because a Worker may only send from a domain it owns, to an address
+that has agreed to receive:
 
-   ```js
-   var CONTACT_ENDPOINT = "/api/contact";
-   ```
+1. **Enable Email Routing on `iazzus.com`.**
+   Dashboard → **Compute** → **Email Service** → **Email Routing**, select
+   the zone, enable. This is what authorises `CONTACT_FROM`
+   (`contact@iazzus.com`) as a sender. The mailbox does not have to exist.
+2. **Verify the destination address.**
+   Same section → **Destination Addresses** → add `ian.vulovic@live.com`,
+   then click the link in the confirmation email Cloudflare sends. Until
+   this is done the address cannot receive.
 
-3. Keep the endpoint same-origin. The CSP sets `connect-src 'self'`, so
-   posting to a third-party host would require loosening the policy.
-4. Validate again server-side. Front-end validation is a convenience, not a
-   control.
-5. The form includes a hidden honeypot field named `company`. Reject any
-   submission where it is non-empty.
+Both addresses live in `[vars]` in `wrangler.toml`. Neither is secret, and
+changing either is a config edit plus a deploy.
 
-Never put an API key or webhook secret in `main.js` — it ships to every
-visitor. Use a Worker route with an environment variable.
+Until setup is finished the endpoint returns `503` with a message telling
+the visitor to email directly. It never reports a message as sent when it
+was not.
+
+### How it behaves
+
+- **Without JavaScript it still works.** The form carries
+  `method="post" action="/api/contact"`, and the Worker answers a native
+  submission with a real HTML page rendered in the site's own styles.
+  `main.js` intercepts and posts JSON when it can.
+- **Reply-To is the visitor.** Hitting reply in a mail client goes to
+  whoever filled in the form, not to `contact@iazzus.com`.
+- **Everything is validated again server-side.** Front-end validation is a
+  convenience, not a control.
+- **The honeypot field is named `company`.** A non-empty value gets a
+  success response and nothing is sent, so the bot does not retry.
+- **Cross-origin posts are refused.** A submission carrying a foreign
+  `Origin` is rejected, which stops the endpoint being used as a spam relay
+  from someone else's page.
+- **Bodies are capped at 16 KB**, measured after reading rather than
+  trusting `Content-Length`.
+- **CR and LF are stripped from single-line fields** before they reach the
+  mail API, so a subject cannot carry a forged header.
+- **Nothing is stored.** The message is emailed and discarded. There is no
+  database and no log of submissions.
+
+### If spam becomes a problem
+
+The honeypot handles naive bots. The next step is
+[Turnstile](https://developers.cloudflare.com/turnstile/): add the widget
+to the form, and verify the token in `handleContact` before sending. That
+needs a site key and a secret, so the secret goes in
+`wrangler secret put TURNSTILE_SECRET` and never in `main.js`.
+
+Never put an API key or webhook secret in `main.js` - it ships to every
+visitor.
 
 ---
 
@@ -340,13 +414,13 @@ not compile anything.
 
 [`wrangler.jsonc`](wrangler.jsonc) declares an assets-only site:
 
-- **no `main` field** — there is no Worker script, so no code runs per
+- **no `main` field** - there is no Worker script, so no code runs per
   request; Cloudflare serves files straight from the edge
 - `assets.directory` is the repository root
 - `not_found_handling: "404-page"` serves `404.html` with a real 404 status
 
 [`.assetsignore`](.assetsignore) excludes everything that is not site
-content — `tools/`, project docs, VCS metadata, the config files
+content - `tools/`, project docs, VCS metadata, the config files
 themselves. That is what keeps `iazzus.com/tools/…` from existing.
 
 > **The `name` in `wrangler.jsonc` must match the Worker in your dashboard.**
@@ -367,7 +441,7 @@ Cloudflare dashboard → **Workers & Pages** → your project → **Settings** �
 | Build variables  | *(none)*          |
 
 **Root directory must be empty, not `/`.** It is a path *inside the
-repository* used to `cd` before building — it is not a URL path and not
+repository* used to `cd` before building - it is not a URL path and not
 the Pages "build output directory". Setting it to `/` points at the
 filesystem root and every build fails before it reads any config.
 
@@ -384,14 +458,14 @@ npx wrangler@4 deploy
 ```
 
 `_headers` and `_redirects` are read from the output directory on every
-deploy — no configuration needed.
+deploy - no configuration needed.
 
 ---
 
 ## Domain configuration
 
 You own `iazzus.com` in Cloudflare, so this is short. **Do these steps
-yourself in the dashboard** — nothing here changes DNS automatically.
+yourself in the dashboard** - nothing here changes DNS automatically.
 
 1. **Attach the apex domain.** Worker → **Settings** → **Domains & Routes**
    → **Add** → **Custom domain** → `iazzus.com`. Cloudflare creates the
@@ -436,14 +510,14 @@ nothing, and you can retire one without migrating anything.
 ### Choosing a provider
 
 You administer both of these for a living, so the honest summary is short.
-**Google Workspace** or **Microsoft 365 Business Basic** — either is around
-$6–7/user/month for one mailbox, both give you real deliverability and a
+**Google Workspace** or **Microsoft 365 Business Basic** - either is around
+$6-7/user/month for one mailbox, both give you real deliverability and a
 real admin console, and both let you send *as* an alias, which cheaper
 options often do not. Pick whichever you would rather demo to a client,
 since this mailbox is also a portfolio piece.
 
 Cloudflare Email Routing is free and forwards `*@iazzus.com` to an existing
-inbox, but it is **receive-only** — you cannot send as `ian@iazzus.com`.
+inbox, but it is **receive-only** - you cannot send as `ian@iazzus.com`.
 Fine as a stopgap, wrong as the destination.
 
 ### DNS you will configure in Cloudflare
@@ -451,14 +525,14 @@ Fine as a stopgap, wrong as the destination.
 Do this yourself in the dashboard; nothing here changes DNS.
 
 1. **MX records** as supplied by the provider. Remove any existing MX first
-   — mixed MX records from two providers is the classic way to lose mail.
-2. **SPF** — one TXT record at the apex, exactly one `v=spf1` record:
+   - mixed MX records from two providers is the classic way to lose mail.
+2. **SPF** - one TXT record at the apex, exactly one `v=spf1` record:
    `v=spf1 include:_spf.google.com ~all` (or
    `include:spf.protection.outlook.com`). Never publish two.
-3. **DKIM** — generate the key in the provider's admin console, publish the
+3. **DKIM** - generate the key in the provider's admin console, publish the
    CNAME or TXT records it gives you, then **enable signing**. Publishing
    the record without enabling signing is a common half-finished state.
-4. **DMARC** — start at `v=DMARC1; p=none; rua=mailto:ian@iazzus.com`, watch
+4. **DMARC** - start at `v=DMARC1; p=none; rua=mailto:ian@iazzus.com`, watch
    the reports for a couple of weeks, then move to `p=quarantine` and
    finally `p=reject`. Do not start at `p=reject`.
 5. **MTA-STS and TLS-RPT** are worth adding once the above is stable.
@@ -478,7 +552,7 @@ Update the address in `contact/index.html` if it changes, and set the
 ## Taking payments
 
 Planned, not yet built. `/work-with-me/` describes services and says plainly
-that pricing is quoted per engagement — no invented figures, and no payment
+that pricing is quoted per engagement - no invented figures, and no payment
 flow that does not work.
 
 The important constraint: **this site is static, and it must stay that way
@@ -491,7 +565,7 @@ Stripe, generate Payment Links, and make the button on `/work-with-me/` a
 plain `<a href>` to that link. The visitor pays on Stripe's domain. No card
 data touches your site, no PCI scope, no JavaScript, no CSP change, and you
 can be taking money the same afternoon. Invoicing for consulting work is the
-same idea — Stripe Invoicing sends a hosted payment page by email.
+same idea - Stripe Invoicing sends a hosted payment page by email.
 
 **2. Embedded checkout.** Only if you need the payment to happen without
 leaving the site. This requires loading Stripe's JavaScript, which means
@@ -503,7 +577,7 @@ area for a marginal gain.
 
 - Your Stripe secret key goes in a **Cloudflare Workers environment
   variable**, read only inside a Worker route. It must never appear in
-  `main.js` or anywhere in this repository — anything shipped to the browser
+  `main.js` or anywhere in this repository - anything shipped to the browser
   is public, and a leaked secret key can move money.
 - Only the publishable key (`pk_live_…`) may appear client-side.
 - Verify webhook signatures if you add webhooks.
@@ -533,7 +607,7 @@ in about five minutes:
 1. **Zero Trust** → **Access** → **Applications** → **Add an application**
    → **Self-hosted**.
 2. Application domain: `iazzus.com`, path `frida`.
-3. Add a policy — **Allow**, with the rule **Emails** and your own address
+3. Add a policy - **Allow**, with the rule **Emails** and your own address
    (add hers only if she wants access).
 4. Save.
 
@@ -572,7 +646,7 @@ zone-level Redirect Rule, not in this file.
 the root path. Every sub-page then returns Cloudflare **error 1000 ("DNS
 points to prohibited IP")**, because the request never reaches the Worker
 and the proxied placeholder `AAAA 100::` record has no other origin to
-fall back to. The homepage works, everything else 403s — which looks like
+fall back to. The homepage works, everything else 403s - which looks like
 a permissions problem and is not.
 
 Routes are declared in `wrangler.toml` so they stay version controlled:
@@ -619,7 +693,7 @@ headers locally. Violations appear in the browser console.
 
 `includeSubDomains` on HSTS means any future `msp.iazzus.com` or
 `lab.iazzus.com` must be served over HTTPS. Everything behind Cloudflare is,
-so this is safe — but be aware of it before pointing a subdomain at
+so this is safe - but be aware of it before pointing a subdomain at
 something else. `preload` is deliberately **not** set; it is very hard to
 undo.
 
@@ -628,7 +702,7 @@ undo.
 - **No secrets in this repository.** Nothing here needs a key. If a future
   feature does, it belongs in a Workers environment variable, never in
   `main.js`.
-- **No third-party requests at all** — no fonts, no CDNs, no analytics, no
+- **No third-party requests at all** - no fonts, no CDNs, no analytics, no
   trackers. Everything is same-origin, which is also why the CSP can stay
   this tight.
 - The `.gitignore` blocks `.env`, `*.pem` and `*.key` as a backstop.
@@ -638,7 +712,7 @@ undo.
 ## Performance
 
 About 49 KB of CSS and 11 KB of JavaScript across the whole site,
-uncompressed, before Cloudflare's Brotli — a large share of both is
+uncompressed, before Cloudflare's Brotli - a large share of both is
 comments. No fonts, no libraries, no
 render-blocking JavaScript (`main.js` is deferred), and no image requests
 until real photographs are added.
@@ -648,7 +722,7 @@ Things worth preserving:
 - Keep JavaScript optional. Everything on the site is readable and navigable
   without it.
 - Give every image explicit `width` and `height` so nothing shifts on load.
-- If you ever add a font, self-host it and preload it — see
+- If you ever add a font, self-host it and preload it - see
   [`assets/fonts/README.md`](assets/fonts/README.md).
 
 Caching in `_headers` is intentionally short for CSS and JS. Because there
@@ -662,32 +736,32 @@ filenames, switch those rules to `max-age=31536000, immutable`.
 
 The structure is designed so these are additive rather than rewrites.
 
-**New pages** — copy an existing page, keep the `<head>` block and the
+**New pages** - copy an existing page, keep the `<head>` block and the
 `<!-- header:start -->` / `<!-- footer:start -->` markers, change the
 content. Then add it to `PAGES` in `tools/sync-nav.py`, run the tool, and
 add a `<url>` block to `sitemap.xml`. Likely candidates: `/blog/`,
 `/projects/`, `/life/travel/`.
 
-**Real project write-ups** — the `.entry` component on
+**Real project write-ups** - the `.entry` component on
 `/technology/` already handles a title, badge, body and tag list. Replace
 the category descriptions with concrete engagements as they become
 publishable.
 
-**Progress logging** — `/bodybuilding/` has a real `<table>` with an empty
-state. Add one `<tr>` per check-in and delete the empty row.
+**Progress logging** - `/bodybuilding/` renders no progress section until
+there is something real to put in it. The `.checkin` component is already
+styled and there is a commented markup template in the "Documented, not
+remembered" section of that page. Drop the photographs into
+`assets/images/physique/`, uncomment, duplicate per check-in.
 
-**Contact backend** — see [the contact form](#the-contact-form). Adding a
-`main` script to the existing Worker is the smallest step.
-
-**Subdomains** (`msp.`, `lab.`, `status.`) — separate Workers projects or
+**Subdomains** (`msp.`, `lab.`, `status.`) - separate Workers projects or
 Workers, attached as custom domains in the same zone. Nothing in this
 repository needs to change.
 
-**Email and payments** — see the two sections above.
+**Email and payments** - see the two sections above.
 
 **When to reconsider the no-build-step decision:** `tools/sync-nav.py`
 handles the header and footer, which was the first real duplication
-problem. The next signal would be needing repeated content *inside* pages —
+problem. The next signal would be needing repeated content *inside* pages -
 a blog index, a shared card list. At that point reach for the smallest
 thing that fixes it, a static site generator that still emits plain HTML,
 rather than a front-end framework.

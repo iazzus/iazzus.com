@@ -1,5 +1,5 @@
 /* ==========================================================================
-   noscript.css — loaded only from <noscript>.
+   noscript.css - loaded only from <noscript>.
 
    Scroll reveals start hidden and are shown by main.js. Without JavaScript
    nothing would ever reveal them, so restore every element to its final

@@ -1,0 +1,20 @@
+#!/bin/sh
+# Blocks a commit that reintroduces em or en dashes anywhere in the source.
+#
+# This directory is tracked, so the hook survives a fresh clone. It is wired
+# up with:
+#
+#     git config core.hooksPath .githooks
+#
+# To bypass it once, commit with --no-verify.
+
+if command -v python >/dev/null 2>&1; then
+  PY=python
+elif command -v python3 >/dev/null 2>&1; then
+  PY=python3
+else
+  echo "pre-commit: no python found, skipping copy check" >&2
+  exit 0
+fi
+
+exec "$PY" tools/check-copy.py

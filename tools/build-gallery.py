@@ -8,7 +8,7 @@ HTML per file, and no chance of a typo'd filename pointing at nothing.
 
 Image dimensions are read straight from the file headers, so every <img>
 gets correct width/height attributes and the page never shifts as photos
-load. No dependencies — PNG, JPEG and WebP headers are parsed here.
+load. No dependencies - PNG, JPEG and WebP headers are parsed here.
 
 It rewrites whatever sits between the marker comments in each page:
 
@@ -181,7 +181,7 @@ def placeholder(kind: str, folder: str) -> str:
 
     Visitor-facing copy only. The instructions for whoever maintains the
     site go in an HTML comment beside it, so they are visible in the source
-    but never rendered — a page should not explain its own build process to
+    but never rendered - a page should not explain its own build process to
     the person reading it.
     """
     return (
@@ -278,7 +278,7 @@ def main() -> int:
 
     print(f"\n{total_images} photo(s), {total_videos} video(s) written")
     if total_images == 0 and total_videos == 0:
-        print("Nothing found — check the folders listed in GALLERIES.")
+        print("Nothing found - check the folders listed in GALLERIES.")
     return 0
 
 

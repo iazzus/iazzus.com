@@ -3,7 +3,7 @@
 Self-hosted video only. Nothing on this site embeds a third-party player,
 which is why the Content-Security-Policy can stay closed (`media-src 'self'`
 in `_headers`). Adding a YouTube or Vimeo iframe would require opening
-`frame-src` to that host — possible, but it is a real tradeoff, not a
+`frame-src` to that host - possible, but it is a real tradeoff, not a
 formality.
 
 ## Filenames

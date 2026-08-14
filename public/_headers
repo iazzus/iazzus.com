@@ -1,9 +1,16 @@
-# Cloudflare Pages response headers
-# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# Response headers for the static assets.
+# Docs: https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# These rules apply to files served out of public/. They do NOT apply to
+# responses the Worker generates itself, so src/index.js sets its own
+# headers on the /api/contact replies.
 #
 # The site contains no inline <style> or executable inline <script>, so the
 # CSP below needs neither 'unsafe-inline' nor nonces. If you ever add an
 # inline script or style, add a hash rather than loosening the policy.
+#
+# form-action 'self' is what allows the contact form to post to
+# /api/contact without JavaScript. connect-src 'self' allows the fetch path.
 #
 # Cache-Control on /assets/* is deliberately short. Filenames are not
 # content-hashed (there is no build step), so a long max-age would strand
@@ -26,7 +33,7 @@
   Cache-Control: no-store
 
 # Unlisted personal page. X-Robots-Tag is the part that actually keeps it
-# out of search results — robots.txt is deliberately silent about this path,
+# out of search results - robots.txt is deliberately silent about this path,
 # because a Disallow line would publish the path to anyone who reads it.
 #
 # This is obscurity, not access control. Anyone with the URL can still open
