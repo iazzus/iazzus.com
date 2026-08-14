@@ -1,13 +1,15 @@
-# Cloudflare Workers configuration — static assets only.
+# Cloudflare Workers configuration.
 #
-# Deliberately minimal. There is no "main" key because there is no Worker
-# script: this site is pure static files, so Cloudflare serves them from
-# the edge and no code runs per request.
+# The site is static files with one exception: the contact form needs
+# somewhere to post to, so src/index.js runs for /api/* and everything else
+# is served straight from public/ without invoking any code.
 #
 # "name" must match the Worker in the dashboard, or `wrangler deploy`
 # creates a second Worker and the custom domain stays on the old one.
 # Verified against the account: iazzus-com is correct.
 name = "iazzus-com"
+
+main = "./src/index.js"
 
 # Set in the past on purpose. Wrangler rejects a compatibility_date newer
 # than the release it was built from, so a same-day value can fail the
@@ -36,5 +38,38 @@ zone_name = "iazzus.com"
 # public/ can be published by accident.
 directory = "./public"
 
+# Lets the Worker hand a request back to the file system with
+# env.ASSETS.fetch(request).
+binding = "ASSETS"
+
 # Serve public/404.html with a real 404 status for unmatched paths.
 not_found_handling = "404-page"
+
+# Static files win by default, which is what we want for every real page.
+# /api/* has no file behind it, so it is routed to the Worker explicitly
+# rather than relying on the 404 fallback to get there.
+run_worker_first = [ "/api/*" ]
+
+# --------------------------------------------------------------------------
+# Contact form delivery
+#
+# Cloudflare's own Email Service. Sending to a verified destination address
+# on this account is free on every plan and does not consume a quota, so
+# there is no third-party mail provider and no API key anywhere.
+#
+# This binding only works once, in the dashboard:
+#   1. Email Routing is enabled on the iazzus.com zone
+#   2. CONTACT_TO below is added and verified as a destination address
+# Until both are done the Worker returns a clear error and points people at
+# the mailto link instead of silently dropping messages.
+# --------------------------------------------------------------------------
+[[send_email]]
+name = "EMAIL"
+
+[vars]
+# Where form submissions land. Not a secret: it is published on /contact/.
+CONTACT_TO = "ian.vulovic@live.com"
+# Must be on a domain with Email Routing enabled. The mailbox does not have
+# to exist; this is the envelope sender, and Reply-To is set to whoever
+# filled in the form.
+CONTACT_FROM = "contact@iazzus.com"
