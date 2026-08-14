@@ -359,15 +359,21 @@ themselves. That is what keeps `iazzus.com/tools/…` from existing.
 Cloudflare dashboard → **Workers & Pages** → your project → **Settings** →
 **Build**:
 
-| Field            | Value                  |
-| ---------------- | ---------------------- |
-| Build command    | *(leave empty)*        |
-| Deploy command   | `npx wrangler@4 deploy` |
-| Root directory   | `/`                    |
-| Build variables  | *(none)*               |
+| Field            | Value             |
+| ---------------- | ----------------- |
+| Build command    | *(leave empty)*   |
+| Deploy command   | `npx wrangler deploy` |
+| Root directory   | *(leave empty)*   |
+| Build variables  | *(none)*          |
 
-Pinning to `wrangler@4` stops an unattended major-version bump from
-breaking a deploy. Every push to `main` redeploys automatically.
+**Root directory must be empty, not `/`.** It is a path *inside the
+repository* used to `cd` before building — it is not a URL path and not
+the Pages "build output directory". Setting it to `/` points at the
+filesystem root and every build fails before it reads any config.
+
+The wrangler version comes from `package.json`, which is why that file
+exists despite the site itself having no dependencies. Every push to
+`main` redeploys automatically.
 
 ### Deploying by hand
 
