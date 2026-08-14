@@ -242,40 +242,12 @@
         <h2 class="section-header__title" id="gallery-title">Photography</h2>
       </div>
 
-      <!-- Replace each .media__placeholder with an <img> using the filename
-           shown in its hint. Keep the wrapping .media element so the aspect
-           ratio stays reserved. -->
-      <div class="gallery" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Exterior</span>
-              <span class="media__placeholder-hint">tesla-exterior.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Exterior &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Interior</span>
-              <span class="media__placeholder-hint">tesla-interior.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Interior &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Charging</span>
-              <span class="media__placeholder-hint">tesla-charging.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Charging &mdash; placeholder</figcaption>
-        </figure>
-      </div>
+      <!-- gallery:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No photos yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/images/tesla/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- gallery:end -->
     </div>
   </section>
 

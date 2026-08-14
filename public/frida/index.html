@@ -133,91 +133,18 @@
         <p class="eyebrow">Photographs</p>
         <h2 class="section-header__title" id="gallery-title">Gallery</h2>
         <p class="section-header__intro">
-          Drop files into <code>assets/images/frida/</code> and swap each
-          placeholder for an <code>&lt;img&gt;</code>. Add as many as you
-          like — copy any figure block below.
+          Drop files into <code>public/assets/images/frida/</code> and run
+          <code>python tools/build-gallery.py</code>. Everything below is
+          generated — do not hand-edit it.
         </p>
       </div>
 
-      <!-- Replace each .media__placeholder with:
-             <img src="/assets/images/frida/frida-01.webp" alt=""
-                  width="1200" height="1500" loading="lazy" decoding="async">
-           Keep the wrapping .media element so the aspect ratio is reserved.
-           Empty alt="" is correct for purely personal photographs. -->
-      <div class="gallery" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 01</span>
-              <span class="media__placeholder-hint">frida/frida-01.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 02</span>
-              <span class="media__placeholder-hint">frida/frida-02.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 03</span>
-              <span class="media__placeholder-hint">frida/frida-03.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 04</span>
-              <span class="media__placeholder-hint">frida/frida-04.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 05</span>
-              <span class="media__placeholder-hint">frida/frida-05.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 06</span>
-              <span class="media__placeholder-hint">frida/frida-06.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 07</span>
-              <span class="media__placeholder-hint">frida/frida-07.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 08</span>
-              <span class="media__placeholder-hint">frida/frida-08.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Photo 09</span>
-              <span class="media__placeholder-hint">frida/frida-09.webp &middot; 4:5</span>
-            </div>
-          </div>
-        </figure>
-      </div>
+      <!-- gallery:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No photos yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/images/frida/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- gallery:end -->
     </div>
   </section>
 
@@ -233,30 +160,12 @@
         </p>
       </div>
 
-      <!-- Replace with:
-             <video controls preload="none" playsinline
-                    poster="/assets/images/frida/clip-01-poster.jpg"
-                    width="1920" height="1080">
-               <source src="/assets/video/frida/clip-01.mp4" type="video/mp4">
-             </video> -->
-      <div class="grid grid--2" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--wide">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Clip 01</span>
-              <span class="media__placeholder-hint">frida/clip-01.mp4 &middot; 16:9</span>
-            </div>
-          </div>
-        </figure>
-        <figure class="gallery__item">
-          <div class="media media--wide">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Clip 02</span>
-              <span class="media__placeholder-hint">frida/clip-02.mp4 &middot; 16:9</span>
-            </div>
-          </div>
-        </figure>
-      </div>
+      <!-- videos:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No video yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/video/frida/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- videos:end -->
     </div>
   </section>
 

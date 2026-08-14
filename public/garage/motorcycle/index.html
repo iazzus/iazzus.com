@@ -363,43 +363,12 @@
         </p>
       </div>
 
-      <!-- Replace each .media__placeholder with an <img> using the filename
-           shown in its hint, for example:
-             <img src="/assets/images/ninja-650-right.webp"
-                  alt="2016 Kawasaki Ninja 650 ABS, right side profile"
-                  width="1800" height="1200" loading="lazy" decoding="async">
-           Keep the wrapping .media element so the aspect ratio is reserved. -->
-      <div class="gallery" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Right profile</span>
-              <span class="media__placeholder-hint">ninja-650-right.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Right side &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Left profile</span>
-              <span class="media__placeholder-hint">ninja-650-left.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Left side &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--landscape">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Detail</span>
-              <span class="media__placeholder-hint">ninja-650-detail.webp &middot; 3:2 &middot; 1800&times;1200</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Detail &mdash; placeholder</figcaption>
-        </figure>
-      </div>
+      <!-- gallery:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No photos yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/images/motorcycle/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- gallery:end -->
     </div>
   </section>
 
@@ -415,37 +384,12 @@
         </p>
       </div>
 
-      <!-- Replace each .media__placeholder with a self-hosted <video>:
-             <video controls preload="none" playsinline
-                    poster="/assets/images/ninja-650-ride-poster.jpg"
-                    width="1920" height="1080">
-               <source src="/assets/video/ninja-650-ride.mp4" type="video/mp4">
-               <track kind="captions" src="/assets/video/ninja-650-ride.vtt"
-                      srclang="en" label="English">
-               Your browser cannot play this video.
-             </video>
-           Encoding guidance is in assets/video/README.md. -->
-      <div class="grid grid--2" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--wide">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Ride footage</span>
-              <span class="media__placeholder-hint">ninja-650-ride.mp4 &middot; 16:9 &middot; 1920&times;1080</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Ride clip &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--wide">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Walkaround</span>
-              <span class="media__placeholder-hint">ninja-650-walkaround.mp4 &middot; 16:9 &middot; 1920&times;1080</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Walkaround &mdash; placeholder</figcaption>
-        </figure>
-      </div>
+      <!-- videos:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No video yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/video/motorcycle/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- videos:end -->
 
       <div class="empty-state" data-reveal>
         <h3 class="empty-state__title">Video status</h3>

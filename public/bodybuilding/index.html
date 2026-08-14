@@ -384,43 +384,12 @@
         </p>
       </div>
 
-      <!-- Replace each .media__placeholder with an <img> using the filename
-           shown in its hint, for example:
-             <img src="/assets/images/ian-physique-front.webp"
-                  alt="Ian Vulovic, front relaxed pose"
-                  width="1200" height="1500" loading="lazy" decoding="async">
-           Keep the wrapping .media element so the aspect ratio is reserved. -->
-      <div class="gallery" data-reveal>
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Front relaxed</span>
-              <span class="media__placeholder-hint">ian-physique-front.webp &middot; 4:5 &middot; 1200&times;1500</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Front &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Back</span>
-              <span class="media__placeholder-hint">ian-physique-back.webp &middot; 4:5 &middot; 1200&times;1500</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Back &mdash; placeholder</figcaption>
-        </figure>
-
-        <figure class="gallery__item">
-          <div class="media media--portrait">
-            <div class="media__placeholder">
-              <span class="media__placeholder-label">Side</span>
-              <span class="media__placeholder-hint">ian-physique-side.webp &middot; 4:5 &middot; 1200&times;1500</span>
-            </div>
-          </div>
-          <figcaption class="media__caption">Side &mdash; placeholder</figcaption>
-        </figure>
-      </div>
+      <!-- gallery:start -->
+        <div class="empty-state">
+          <h3 class="empty-state__title">No photos yet</h3>
+          <p class="empty-state__body">Drop files into <code>public/assets/images/physique/</code> and run <code>python tools/build-gallery.py</code>.</p>
+        </div>
+      <!-- gallery:end -->
 
       <div class="empty-state" data-reveal>
         <h3 class="empty-state__title">Gallery status</h3>
