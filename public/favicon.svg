@@ -1,13 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IAZZUS">
-  <!-- IAZZUS monogram: geometric "IA", drawn as strokes so it stays crisp
-       at 16px. Colours match the bg, text and accent tokens in
-       assets/css/variables.css and must be updated by hand if those change. -->
+  <!-- Trident mark. Drawn as strokes rather than a filled silhouette so it
+       stays legible at 16px, where fine detail closes up. The centre tine
+       rises above the outer two, which is what reads as a trident rather
+       than a psi at small sizes. Colours match the bg, text and accent
+       tokens in assets/css/variables.css. -->
   <rect width="64" height="64" rx="12" fill="#08090A"/>
   <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="11.25" fill="none"
         stroke="#45B8AC" stroke-opacity="0.42" stroke-width="1.5"/>
-  <g fill="none" stroke="#F4F4F5" stroke-width="6.5" stroke-linecap="butt">
-    <path d="M18.5 18.5V45.5"/>
-    <path d="M29.5 45.5 39.5 18.5 49.5 45.5" stroke-linejoin="miter"/>
-    <path d="M34 36.5h11" stroke-width="5.5"/>
+  <g fill="none" stroke="#F4F4F5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- centre tine and shaft, one continuous line -->
+    <path d="M32 10.5V53.5"/>
+    <!-- outer tines, set wide and stopping short of the centre -->
+    <path d="M15.5 16.5V30"/>
+    <path d="M48.5 16.5V30"/>
+    <!-- crossbar joining all three -->
+    <path d="M15.5 30h33"/>
   </g>
 </svg>
