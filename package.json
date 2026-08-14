@@ -1,0 +1,14 @@
+{
+  "name": "iazzus-com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "iazzus.com — static personal site, deployed to Cloudflare Workers",
+  "scripts": {
+    "dev": "python tools/dev-server.py",
+    "deploy": "wrangler deploy",
+    "sync-nav": "python tools/sync-nav.py"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
