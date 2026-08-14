@@ -995,6 +995,205 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
+   Interest tiles
+   Outbound links that read as cards rather than underlined blue text.
+   -------------------------------------------------------------------------- */
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: var(--space-xs);
+}
+
+.interest {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: border-color var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out);
+}
+
+.interest__name {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+}
+
+.interest__note {
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+a.interest:hover {
+  border-color: var(--color-accent-line);
+  background-color: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+
+a.interest:hover .interest__name {
+  color: var(--color-accent-bright);
+}
+
+/* Small outbound marker, only on tiles that actually go somewhere. */
+a.interest .interest__name::after {
+  content: "↗";
+  margin-inline-start: 0.4em;
+  font-size: 0.75em;
+  color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Fact cards — a straight figure with the real answer underneath
+   -------------------------------------------------------------------------- */
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: var(--space-sm);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.fact__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.fact__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.15;
+  color: var(--color-text);
+}
+
+.fact__twist {
+  margin-block-start: var(--space-2xs);
+  padding-block-start: var(--space-2xs);
+  border-block-start: var(--border-width) solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Poems and quiet asides
+   -------------------------------------------------------------------------- */
+
+.poem {
+  max-width: 44ch;
+  padding-inline-start: var(--space-md);
+  border-inline-start: 2px solid var(--color-accent-line);
+}
+
+.poem__title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.poem p {
+  margin: 0;
+  max-width: none;
+  line-height: 1.85;
+  color: var(--color-text-secondary);
+}
+
+.poem p + p {
+  margin-block-start: var(--space-sm);
+}
+
+.poem strong {
+  color: var(--color-text);
+  font-weight: var(--weight-regular);
+}
+
+/* One-line jabs dropped between sections. */
+.aside-line {
+  padding-block: var(--space-lg);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  line-height: 1.7;
+  color: var(--color-muted);
+  max-width: 52ch;
+  margin-inline: auto;
+}
+
+.aside-line em {
+  color: var(--color-accent);
+  font-style: normal;
+}
+
+/* Something you have to open. Native <details>, so no JavaScript. */
+.reveal {
+  border: var(--border-width) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.reveal > summary {
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-accent);
+  list-style: none;
+}
+
+.reveal > summary::-webkit-details-marker {
+  display: none;
+}
+
+.reveal > summary:hover {
+  color: var(--color-accent-bright);
+}
+
+.reveal[open] > summary {
+  margin-block-end: var(--space-sm);
+}
+
+.reveal p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Bottom-of-page line, for whoever scrolls that far. */
+.secret {
+  margin-block-start: var(--space-lg);
+  font-size: var(--text-sm);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+/* --------------------------------------------------------------------------
    Audio track
    Native <audio> controls are deliberately left unstyled: they are keyboard
    accessible, familiar, and behave correctly on mobile. Only the container

@@ -164,11 +164,19 @@ def video_figure(src: str, poster: str | None) -> str:
 
 
 def placeholder(kind: str, folder: str) -> str:
+    """Empty state for a gallery with no files yet.
+
+    Visitor-facing copy only. The instructions for whoever maintains the
+    site go in an HTML comment beside it, so they are visible in the source
+    but never rendered — a page should not explain its own build process to
+    the person reading it.
+    """
     return (
+        f"        <!-- Empty: add files to public/{folder}/ then run\n"
+        "             python tools/build-gallery.py -->\n"
         '        <div class="empty-state">\n'
         f'          <h3 class="empty-state__title">No {kind} yet</h3>\n'
-        f'          <p class="empty-state__body">Drop files into <code>public/{folder}/</code> '
-        "and run <code>python tools/build-gallery.py</code>.</p>\n"
+        '          <p class="empty-state__body">Coming soon.</p>\n'
         "        </div>"
     )
 

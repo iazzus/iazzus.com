@@ -4,15 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Frida Chip</title>
-<meta name="description" content="A private page.">
+<meta name="description" content="A page for Frida.">
 
-<!-- Unlisted and non-indexable. Kept out of sitemap.xml on purpose, and
-     deliberately NOT mentioned in robots.txt: a Disallow line would publish
-     the path to anyone who reads it. The X-Robots-Tag header in _headers is
-     what actually keeps this out of search results.
+<!-- ==========================================================================
+     MAINTENANCE NOTES — none of this is visible on the page, on purpose.
+     Implementation detail belongs here and in the README, not in front of
+     the person this page is for.
 
-     This is still only obscurity. For real privacy, put Cloudflare Access
-     in front of /frida/* — see the README. -->
+     PHOTOS   public/assets/images/frida/   (images, plural)
+     VIDEO    public/assets/video/frida/
+     AUDIO    public/assets/audio/frida/
+
+     To add media:
+       .\tools\optimize-images.ps1 -Source "<folder or file>" -Gallery frida
+       python tools/build-gallery.py
+     Then commit and push. The gallery:start/end and videos:start/end blocks
+     below are generated — do not hand-edit them.
+
+     PRIVACY  Unlisted, not private. No inbound links, absent from
+     sitemap.xml, and noindexed via X-Robots-Tag in _headers. robots.txt is
+     deliberately silent about this path, because a Disallow line would
+     publish it to anyone who reads the file. Anyone with the URL can still
+     open it — put Cloudflare Access in front of /frida/* for real
+     protection. Steps are in the README.
+     ========================================================================== -->
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#08090A">
@@ -70,53 +85,51 @@
   <!-- ============================================================ Hero -->
   <section class="page-hero">
     <div class="container page-hero__inner">
-      <p class="eyebrow">Unlisted</p>
+      <p class="eyebrow">Houston, Texas &middot; July 13</p>
       <h1 class="page-hero__title">Frida Chip</h1>
       <p class="lead page-hero__intro">
-        A page that is not linked from anywhere on this site. Just somewhere
-        to keep the photographs, the videos, and the things worth
-        remembering.
+        Somewhere to keep a person I love — in photographs, music, dumb
+        jokes, little pieces of time, and whatever else deserves not to
+        disappear.
       </p>
     </div>
   </section>
 
-  <!-- =========================================================== Words -->
-  <section class="section" aria-labelledby="words-title">
+  <!-- ========================================================== Opening -->
+  <section class="section" aria-labelledby="opening-title">
     <div class="container container--narrow" data-reveal>
-      <p class="eyebrow">July 13</p>
-      <h2 id="words-title">Her</h2>
+      <h2 class="visually-hidden" id="opening-title">About this page</h2>
       <div class="prose">
-        <!-- EDIT: this is yours to write. What is here now is a starting
-             point, not a substitute for your own words — replace all of it.
-             Deliberately not presumptuous about where things stand. -->
-        <p>
+        <p class="lead">
           Houston to San Diego, roughly once a month. An SDFC game. Moonlight
           Beach still on the list.
         </p>
         <p>
-          She is the person I made the collage for — eighty photographs,
-          traced by hand, mailed rather than sent. That took a while and I
-          would do it again.
+          You are the person I made the collage for — eighty photographs,
+          traced by hand, mailed instead of sent. It took far longer than it
+          should have and I would do it again tomorrow.
         </p>
-        <p class="placeholder-text">
-          Write the rest here.
+        <p>
+          So this is the same idea with fewer paper cuts.
         </p>
       </div>
     </div>
   </section>
 
   <!-- =========================================================== Track -->
-  <section class="section" aria-labelledby="track-title">
+  <section class="section section--band" aria-labelledby="track-title">
     <div class="container container--narrow" data-reveal>
       <div class="section-header">
-        <p class="eyebrow">Track</p>
-        <h2 class="section-header__title" id="track-title">Here I Am</h2>
+        <p class="eyebrow">Sound</p>
+        <h2 class="section-header__title" id="track-title">Press play</h2>
+        <p class="section-header__intro">
+          It felt wrong to build the whole thing in silence.
+        </p>
       </div>
 
-      <!-- No autoplay, deliberately. Browsers block audio that starts on
-           its own, so it would not work anyway, and a page that makes noise
-           uninvited is hostile. preload="none" means the 5 MB file is not
-           downloaded until someone presses play. -->
+      <!-- No autoplay: browsers block it, and a page that makes noise
+           uninvited is hostile. preload="none" so the file is not fetched
+           until someone actually presses play. -->
       <div class="track">
         <p class="track__artist">The Hellp</p>
         <h3 class="track__title">Here I Am</h3>
@@ -128,38 +141,83 @@
     </div>
   </section>
 
-  <!-- ========================================================== Things -->
-  <section class="section section--band" aria-labelledby="things-title">
+  <!-- ======================================================= Her things -->
+  <section class="section" aria-labelledby="things-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Hers</p>
-        <h2 class="section-header__title" id="things-title">Things she likes</h2>
+        <h2 class="section-header__title" id="things-title">Documented obsessions</h2>
+        <p class="section-header__intro">
+          A reasonably complete list, assembled without your knowledge or
+          consent over several months.
+        </p>
       </div>
 
-      <ul class="tag-list" data-reveal>
-        <li class="tag tag--accent">UFC</li>
-        <li class="tag">Pluckers</li>
-        <li class="tag">Trashcans</li>
-        <li class="tag">Ken Carson</li>
-        <li class="tag">2hollis</li>
-        <li class="tag">Movies</li>
-        <li class="tag">The Hellp</li>
-        <li class="tag">The Dark Knight Rises</li>
-        <li class="tag">Joker</li>
-      </ul>
+      <!-- EDIT: three tiles have no link yet because I would rather leave a
+           gap than guess a URL and send her somewhere wrong. Add the
+           official sites for Ken Carson, 2hollis and The Hellp and change
+           <div class="interest"> to <a class="interest" href="..."
+           target="_blank" rel="noopener noreferrer">. -->
+      <div class="interest-grid" data-reveal>
+        <a class="interest" href="https://www.ufc.com" target="_blank" rel="noopener noreferrer">
+          <span class="interest__name">UFC</span>
+          <span class="interest__note">The strongest signal in the dataset. Not close.</span>
+        </a>
+
+        <a class="interest" href="https://www.pluckers.com" target="_blank" rel="noopener noreferrer">
+          <span class="interest__name">Pluckers</span>
+          <span class="interest__note">Wings, trashcans, and apparently a load-bearing Houston institution.</span>
+        </a>
+
+        <div class="interest">
+          <span class="interest__name">Trashcans</span>
+          <span class="interest__note">Listed separately because it earned that.</span>
+        </div>
+
+        <div class="interest">
+          <span class="interest__name">Ken Carson</span>
+          <span class="interest__note">Non-negotiable.</span>
+        </div>
+
+        <div class="interest">
+          <span class="interest__name">2hollis</span>
+          <span class="interest__note">Also non-negotiable.</span>
+        </div>
+
+        <div class="interest">
+          <span class="interest__name">The Hellp</span>
+          <span class="interest__note">The band. Not the film. I have been corrected.</span>
+        </div>
+
+        <a class="interest" href="https://www.imdb.com/title/tt1345836/" target="_blank" rel="noopener noreferrer">
+          <span class="interest__name">The Dark Knight Rises</span>
+          <span class="interest__note">Accepted without argument.</span>
+        </a>
+
+        <a class="interest" href="https://www.imdb.com/title/tt7286456/" target="_blank" rel="noopener noreferrer">
+          <span class="interest__name">Joker</span>
+          <span class="interest__note">Ditto.</span>
+        </a>
+
+        <a class="interest" href="https://www.imdb.com/title/tt0242423/" target="_blank" rel="noopener noreferrer">
+          <span class="interest__name">Dude, Where's My Car?</span>
+          <span class="interest__note">A cinematic achievement, allegedly.</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ========================================================= Gallery -->
-  <section class="section" aria-labelledby="gallery-title">
+  <!-- ===================================================== Photographs -->
+  <section class="section section--band" aria-labelledby="gallery-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Photographs</p>
-        <h2 class="section-header__title" id="gallery-title">Gallery</h2>
+        <h2 class="section-header__title" id="gallery-title">Some of my favourite versions of you</h2>
         <p class="section-header__intro">
-          Drop files into <code>public/assets/images/frida/</code> and run
-          <code>python tools/build-gallery.py</code>. Everything below is
-          generated — do not hand-edit it.
+          Some of my favourite moments with you, and probably a few
+          photographs I have no reasonable excuse for liking as much as I do.
+          No particular order. No explanation required. Just things I wanted
+          to keep.
         </p>
       </div>
 
@@ -173,37 +231,235 @@
     </div>
   </section>
 
-  <!-- =========================================================== Video -->
+  <div class="container">
+    <p class="aside-line" data-reveal>
+      California has the tallest trees on Earth. Houston has you.
+      <em>Texas wins this round.</em>
+    </p>
+  </div>
+
+  <!-- ========================================================= Houston -->
+  <section class="section" aria-labelledby="houston-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Research</p>
+        <h2 class="section-header__title" id="houston-title">Things I know about Houston now</h2>
+        <p class="section-header__intro">
+          I did not previously have opinions about Houston. This is entirely
+          your fault.
+        </p>
+      </div>
+
+      <div class="fact-grid" data-reveal>
+        <div class="fact">
+          <span class="fact__label">Population</span>
+          <span class="fact__value">2,392,327</span>
+          <span class="fact__twist">People there I care about: 1</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Land area</span>
+          <span class="fact__value">671.745 mi&sup2;</span>
+          <span class="fact__twist">Relevant portion: wherever you are</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Nickname</span>
+          <span class="fact__value">Space City</span>
+          <span class="fact__twist">Primary celestial body: Frida Chip</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Founded</span>
+          <span class="fact__value">1836</span>
+          <span class="fact__twist">Became relevant to me: 2026</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">National ranking</span>
+          <span class="fact__value">4th largest</span>
+          <span class="fact__twist">In my ranking it moved up considerably</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Buffalo Bayou</span>
+          <span class="fact__value">52 miles</span>
+          <span class="fact__twist">Distance between us: substantially more</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Museum District</span>
+          <span class="fact__value">18 institutions</span>
+          <span class="fact__twist">Number I have visited: pending</span>
+        </div>
+
+        <div class="fact">
+          <span class="fact__label">Pluckers locations</span>
+          <span class="fact__value">Several</span>
+          <span class="fact__twist">Suspiciously well known to you</span>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <p class="aside-line">
+          Houston has NASA. California has trees older than most countries.
+          <em>You still live in the wrong one.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== Clips -->
   <section class="section section--band" aria-labelledby="video-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Video</p>
-        <h2 class="section-header__title" id="video-title">Clips</h2>
+        <p class="eyebrow">Clips</p>
+        <h2 class="section-header__title" id="video-title">Photographs freeze things. These don't.</h2>
         <p class="section-header__intro">
-          Self-hosted, same as everywhere else on this site. Encoding
-          settings are in <code>assets/video/README.md</code>.
+          Little pieces of time — your voice, your expressions, the way you
+          move, the things that would otherwise exist for a few seconds and
+          disappear. I wanted somewhere for those too.
         </p>
       </div>
 
       <!-- videos:start -->
+        <!-- Empty: add files to public/assets/video/frida/ then run
+             python tools/build-gallery.py -->
         <div class="empty-state">
           <h3 class="empty-state__title">No video yet</h3>
-          <p class="empty-state__body">Drop files into <code>public/assets/video/frida/</code> and run <code>python tools/build-gallery.py</code>.</p>
+          <p class="empty-state__body">Coming soon.</p>
         </div>
       <!-- videos:end -->
     </div>
   </section>
 
-  <!-- ========================================================== Notice -->
+  <!-- ========================================================== Poetry -->
+  <section class="section" aria-labelledby="poems-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Written down</p>
+        <h2 class="section-header__title" id="poems-title">Little things for Frida</h2>
+      </div>
+
+      <div class="grid grid--2" data-reveal>
+        <div class="poem">
+          <h3 class="poem__title">Space City</h3>
+          <p>
+            You come from Space City,<br>
+            which feels a little too appropriate.
+          </p>
+          <p>
+            Because somehow a person<br>
+            several states away,<br>
+            and one obnoxiously long flight away,<br>
+            became someone I carry everywhere.
+          </p>
+          <p><strong>Houston can keep the rockets.</strong></p>
+          <p>I found what I was looking for.</p>
+        </div>
+
+        <div class="poem">
+          <h3 class="poem__title">California trees</h3>
+          <p>
+            California has redwoods<br>
+            old enough to have watched<br>
+            entire lifetimes come and go.
+          </p>
+          <p>
+            Trees taller than buildings,<br>
+            roots underneath places<br>
+            people haven't even named yet.
+          </p>
+          <p>And still —</p>
+          <p>
+            if somebody asked me what I would cross<br>
+            all that distance to see,<br>
+            <strong>it would be you.</strong>
+          </p>
+        </div>
+
+        <div class="poem">
+          <h3 class="poem__title">Between here and Houston</h3>
+          <p>
+            There are highways, airports,<br>
+            time zones, departures, arrivals,<br>
+            plans made weeks ahead<br>
+            for days that disappear too quickly.
+          </p>
+          <p>
+            And somehow none of that<br>
+            has ever made you feel temporary.
+          </p>
+          <p>
+            You became part of my life from far away.<br>
+            <strong>I think that's beautiful.</strong>
+          </p>
+        </div>
+
+        <div class="poem">
+          <h3 class="poem__title">Proud</h3>
+          <p>I am proud of you.</p>
+          <p>
+            Not only when something goes right.<br>
+            Not only when there is something obvious<br>
+            to celebrate.
+          </p>
+          <p>
+            I am proud of the woman you are,<br>
+            the woman you are becoming,<br>
+            the life you are building,<br>
+            and the way you keep becoming<br>
+            more yourself.
+          </p>
+          <p>
+            <strong>I love you for more reasons<br>
+            than I could fit on this page.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== Easter egg -->
   <section class="section section--tight">
-    <div class="container container--narrow">
-      <div class="notice" data-reveal>
+    <div class="container container--narrow" data-reveal>
+      <p class="aside-line">
+        Houston &rarr; San Diego.<br>
+        San Diego &rarr; Houston.
+      </p>
+      <details class="reveal">
+        <summary>And then?</summary>
         <p>
-          <span class="notice__title">This page is unlisted, not private</span>
-          Nothing links here and search engines are told to skip it, but
-          anyone with the URL can open it. Put Cloudflare Access in front of
-          <code>/frida/*</code> to make that untrue — steps are in the
-          README. Delete this block once Access is switched on.
+          And then Houston &rarr; San Diego again. And then San Diego &rarr;
+          Houston again. And then a page on the internet that nobody asked
+          for. Dude, you got a website.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ======================================================= For Frida -->
+  <section class="section section--band" aria-labelledby="forfrida-title">
+    <div class="container container--narrow" data-reveal>
+      <p class="eyebrow">Last thing</p>
+      <h2 id="forfrida-title">For Frida</h2>
+      <div class="prose">
+        <p>
+          This page isn't here to explain you to anybody else.
+        </p>
+        <p>
+          It's here because I love you. Because I am proud of you. Because
+          you have become part of the things I want to remember, preserve,
+          build around, and look back on.
+        </p>
+        <p>
+          Some people get photographs in your camera roll.
+        </p>
+        <p class="lead"><strong>You got a URL.</strong></p>
+
+        <p class="secret">
+          I made a page for you because apparently simply missing you like a
+          normal person wasn't enough.
         </p>
       </div>
     </div>
