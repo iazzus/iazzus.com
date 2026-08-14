@@ -8,7 +8,7 @@ Hand-written HTML, CSS and vanilla JavaScript. **No framework, no build
 step, no dependencies.** Every file in this repository is the file that gets
 served. Open any of them and what you read is what runs.
 
-Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
+Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 
 ---
 
@@ -21,7 +21,7 @@ Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
 - [Images](#images)
 - [Video](#video)
 - [The contact form](#the-contact-form)
-- [Cloudflare Pages deployment](#cloudflare-pages-deployment)
+- [Cloudflare deployment](#cloudflare-deployment)
 - [Domain configuration](#domain-configuration)
 - [Email on iazzus.com](#email-on-iazzuscom)
 - [Taking payments](#taking-payments)
@@ -76,8 +76,10 @@ Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
 ├── favicon.svg             IA monogram
 ├── robots.txt
 ├── sitemap.xml
-├── _headers                Cloudflare Pages response headers (incl. CSP)
+├── _headers                Response headers (incl. CSP)
 ├── _redirects              www → apex, plus old-URL redirects
+├── wrangler.jsonc          Cloudflare Workers config (assets-only)
+├── .assetsignore           What NOT to deploy (tools, docs, VCS)
 ├── .editorconfig
 ├── .gitattributes
 └── .gitignore
@@ -87,11 +89,13 @@ The stylesheets load in that order on every page and each one has a single
 job. If you are looking for where something is defined, that order is the
 map.
 
-**Note on `/tools/`** — Cloudflare Pages publishes the whole repository
-root, so those files are reachable at `iazzus.com/tools/…`. They hold no
-secrets and nothing executes server-side, but they are not content, so they
-are excluded from search engines by `Disallow: /tools/` in `robots.txt` and
-an `X-Robots-Tag: noindex` header in `_headers`.
+**Note on `/tools/`** — the assets directory is the repository root, so
+without intervention those files would be served at `iazzus.com/tools/…`.
+They are listed in [`.assetsignore`](.assetsignore), which means they are
+never uploaded at all. The `Disallow: /tools/` in `robots.txt` and the
+`X-Robots-Tag: noindex` rule in `_headers` are now belt-and-braces —
+harmless, and still correct if the site is ever served through Pages
+instead.
 
 ---
 
@@ -287,7 +291,7 @@ and avoids a third-party dependency. Encoding commands, size limits and the
 markup to swap in are in [`assets/video/README.md`](assets/video/README.md).
 
 The two rules that matter: `preload="none"` so nothing downloads until
-someone presses play, and **keep each file under ~20 MB** (Cloudflare Pages
+someone presses play, and **keep each file under ~20 MB** (Cloudflare
 caps individual files at 25 MB).
 
 ---
@@ -301,9 +305,9 @@ message. This is deliberate — nothing on the site pretends to work.
 
 To connect it:
 
-1. Build an endpoint that accepts a JSON `POST` — a Cloudflare Pages
-   Function at `functions/api/contact.js` is the path of least resistance,
-   since it deploys with the same project and needs no extra service.
+1. Build an endpoint that accepts a JSON `POST` — on Workers you add a `main` field to `wrangler.jsonc` pointing at a small
+   script that handles `/api/contact` and falls through to `env.ASSETS`
+   for everything else. It deploys with the same project.
 2. Set the constant:
 
    ```js
@@ -318,36 +322,60 @@ To connect it:
    submission where it is non-empty.
 
 Never put an API key or webhook secret in `main.js` — it ships to every
-visitor. Use a Pages Function with an environment variable.
+visitor. Use a Worker route with an environment variable.
 
 ---
 
-## Cloudflare Pages deployment
+## Cloudflare deployment
 
-### Option A — Git integration (recommended)
+This site deploys as a **Worker with static assets**, not as a Pages
+project. Cloudflare now steers new projects to Workers, and the two are
+equivalent for a static site: `_headers` and `_redirects` are supported
+natively either way.
 
-1. Push this repository to GitHub or GitLab.
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** →
-   **Connect to Git**, then pick the repository.
-3. Build settings:
+There is still **no build step**. `wrangler deploy` uploads files; it does
+not compile anything.
 
-   | Field                  | Value             |
-   | ---------------------- | ----------------- |
-   | Framework preset       | **None**          |
-   | Build command          | *(leave empty)*   |
-   | Build output directory | `/` *(the root)*  |
+### Configuration
 
-4. **Save and Deploy.** It will be live on
-   `your-project.pages.dev` in under a minute.
+[`wrangler.jsonc`](wrangler.jsonc) declares an assets-only site:
 
-Every push to the production branch deploys automatically; pull requests get
-their own preview URLs.
+- **no `main` field** — there is no Worker script, so no code runs per
+  request; Cloudflare serves files straight from the edge
+- `assets.directory` is the repository root
+- `not_found_handling: "404-page"` serves `404.html` with a real 404 status
 
-### Option B — Direct upload
+[`.assetsignore`](.assetsignore) excludes everything that is not site
+content — `tools/`, project docs, VCS metadata, the config files
+themselves. That is what keeps `iazzus.com/tools/…` from existing.
 
-**Workers & Pages** → **Create** → **Pages** → **Upload assets**, then drag
-the project folder in. Fine for a one-off, but you lose deploy history and
-rollback.
+> **The `name` in `wrangler.jsonc` must match the Worker in your dashboard.**
+> If it does not, `wrangler deploy` creates a *second* Worker and your
+> custom domain stays pointed at the old, empty one. This is the single
+> most common way this setup goes wrong.
+
+### Workers Builds settings
+
+Cloudflare dashboard → **Workers & Pages** → your project → **Settings** →
+**Build**:
+
+| Field            | Value                  |
+| ---------------- | ---------------------- |
+| Build command    | *(leave empty)*        |
+| Deploy command   | `npx wrangler@4 deploy` |
+| Root directory   | `/`                    |
+| Build variables  | *(none)*               |
+
+Pinning to `wrangler@4` stops an unattended major-version bump from
+breaking a deploy. Every push to `main` redeploys automatically.
+
+### Deploying by hand
+
+You never need to, but if the dashboard is unavailable:
+
+```bash
+npx wrangler@4 deploy
+```
 
 `_headers` and `_redirects` are read from the output directory on every
 deploy — no configuration needed.
@@ -359,13 +387,14 @@ deploy — no configuration needed.
 You own `iazzus.com` in Cloudflare, so this is short. **Do these steps
 yourself in the dashboard** — nothing here changes DNS automatically.
 
-1. **Attach the apex domain.** Pages project → **Custom domains** → **Set up
-   a custom domain** → `iazzus.com`. Cloudflare creates the required DNS
-   record and issues the certificate.
+1. **Attach the apex domain.** Worker → **Settings** → **Domains & Routes**
+   → **Add** → **Custom domain** → `iazzus.com`. Cloudflare creates the
+   required DNS record and issues the certificate.
 2. **Attach `www`** the same way. Adding it is what makes the `www → apex`
    rule in `_redirects` take effect.
 3. **Preferred: redirect www at the zone level instead.** It is faster
-   (handled at the edge before Pages is reached) and works on the free plan:
+   (handled at the edge before the Worker is reached) and works on the free
+   plan:
 
    **iazzus.com** → **Rules** → **Redirect Rules** → **Create rule**
 
@@ -461,13 +490,13 @@ same idea — Stripe Invoicing sends a hosted payment page by email.
 **2. Embedded checkout.** Only if you need the payment to happen without
 leaving the site. This requires loading Stripe's JavaScript, which means
 adding `js.stripe.com` to `script-src` and `frame-src` in `_headers`, and a
-Pages Function to create sessions server-side. Meaningfully more surface
+Worker route to create sessions server-side. Meaningfully more surface
 area for a marginal gain.
 
 **Non-negotiables either way:**
 
-- Your Stripe secret key goes in a **Cloudflare Pages environment
-  variable**, read only inside a Pages Function. It must never appear in
+- Your Stripe secret key goes in a **Cloudflare Workers environment
+  variable**, read only inside a Worker route. It must never appear in
   `main.js` or anywhere in this repository — anything shipped to the browser
   is public, and a leaked secret key can move money.
 - Only the publishable key (`pk_live_…`) may appear client-side.
@@ -517,7 +546,7 @@ undo.
 ### Other precautions
 
 - **No secrets in this repository.** Nothing here needs a key. If a future
-  feature does, it belongs in a Pages Function environment variable, never in
+  feature does, it belongs in a Workers environment variable, never in
   `main.js`.
 - **No third-party requests at all** — no fonts, no CDNs, no analytics, no
   trackers. Everything is same-origin, which is also why the CSP can stay
@@ -567,10 +596,10 @@ publishable.
 **Progress logging** — `/bodybuilding/` has a real `<table>` with an empty
 state. Add one `<tr>` per check-in and delete the empty row.
 
-**Contact backend** — see [the contact form](#the-contact-form). A Pages
-Function is the smallest step.
+**Contact backend** — see [the contact form](#the-contact-form). Adding a
+`main` script to the existing Worker is the smallest step.
 
-**Subdomains** (`msp.`, `lab.`, `status.`) — separate Pages projects or
+**Subdomains** (`msp.`, `lab.`, `status.`) — separate Workers projects or
 Workers, attached as custom domains in the same zone. Nothing in this
 repository needs to change.
 
