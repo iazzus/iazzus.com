@@ -42,14 +42,13 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 ├── technology/             Technical expertise, platforms, consulting
 ├── bodybuilding/           Men's Physique development + IAZZUS coaching
 │
-├── garage/                 Hub: the two vehicles
-│   ├── motorcycle/         2016 Kawasaki Ninja 650 ABS
-│   └── tesla/              Tesla ownership notes
-│
-├── life/                   Hub: family, reptiles, garden
+├── life/                   Hub: family, reptiles, garden, garage
 │   ├── family/             Photographs, no identifying detail
 │   ├── reptiles/           Husbandry, records, gallery
-│   └── garden/             Beds, approach, season log
+│   ├── garden/             Beds, approach, season log
+│   └── garage/             Hub: the two vehicles
+│       ├── motorcycle/     2016 Kawasaki Ninja 650 ABS
+│       └── tesla/          Tesla ownership notes
 │
 ├── about/                  Who Ian is and how the sides connect
 │   └── military/           Service background
@@ -85,7 +84,7 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 ├── robots.txt
 ├── sitemap.xml
 ├── _headers                Response headers (incl. CSP)
-├── _redirects              www → apex, plus old-URL redirects
+├── _redirects              Old-URL redirects (relative destinations only)
 ├── wrangler.toml           Workers config: assets, routes, mail binding
 ├── .editorconfig
 ├── .gitattributes
@@ -159,14 +158,14 @@ source of truth and push it out:
    ```
 
 That rewrites the region between `<!-- header:start -->` and
-`<!-- header:end -->` (likewise for the footer) in all fifteen pages.
+`<!-- header:end -->` (likewise for the footer) in all sixteen pages.
 
 **Adding a page:** create the HTML file, then add it to the `PAGES` dict at
 the top of `tools/sync-nav.py` with the nav key that should be highlighted.
 Also add a `<url>` block to `sitemap.xml`.
 
 This is not a build step - the committed HTML is complete and deployable on
-its own. The tool exists only so fifteen copies of the same nav cannot drift
+its own. The tool exists only so sixteen copies of the same nav cannot drift
 apart. Active state is driven by `aria-current="page"`, which the tool
 applies from the nav key; there is no separate "active" class.
 

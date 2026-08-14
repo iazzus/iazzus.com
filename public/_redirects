@@ -13,7 +13,18 @@
 # Redirect Rule instead, which is faster anyway (it runs at the edge before
 # the Worker) and is documented in the README under Domain configuration.
 
-# Section moves. The motorcycle page moved under the Garage hub; keep these
-# so any link that was already shared still resolves.
-/motorcycle/*  /garage/motorcycle/:splat  301
-/motorcycle    /garage/motorcycle/        301
+# Section moves. Keep these so any link that was already shared, indexed or
+# bookmarked still resolves.
+#
+# The garage moved under Life. The splat rule covers the hub itself (empty
+# splat) and both sub-pages in one line. The bare /garage rule is separate
+# because a splat pattern does not match the path without its trailing
+# slash.
+/garage/*      /life/garage/:splat        301
+/garage        /life/garage/              301
+
+# The motorcycle page was top-level before it moved under the garage. These
+# point straight at the final URL rather than chaining through /garage/, so
+# there is only ever one redirect to follow.
+/motorcycle/*  /life/garage/motorcycle/:splat  301
+/motorcycle    /life/garage/motorcycle/        301

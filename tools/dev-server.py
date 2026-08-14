@@ -6,6 +6,8 @@ script exists so local behavior matches Cloudflare Pages more closely:
 
   * response headers are replayed from the repository's `_headers` file,
     so the Content-Security-Policy can be tested before deploying;
+  * `_redirects` rules are replayed too, so a section move can be checked
+    locally instead of being discovered by a broken link in production;
   * unknown paths render `404.html` with a real 404 status.
 
 Usage:
@@ -56,6 +58,46 @@ def load_headers(path: Path) -> list[tuple[str, list[tuple[str, str]]]]:
 HEADER_RULES = load_headers(ROOT / "_headers")
 
 
+def load_redirects(path: Path) -> list[tuple[str, str, int]]:
+    """Parse `_redirects` into (source, destination, status).
+
+    Same shape Cloudflare uses: whitespace-separated, optional trailing
+    status code, first match wins. Only the `*` / `:splat` form is
+    supported, which is all this site uses.
+    """
+    rules: list[tuple[str, str, int]] = []
+    if not path.is_file():
+        return rules
+
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        status = 301
+        if len(parts) >= 3 and parts[2].isdigit():
+            status = int(parts[2])
+        rules.append((parts[0], parts[1], status))
+    return rules
+
+
+REDIRECT_RULES = load_redirects(ROOT / "_redirects")
+
+
+def redirect_for(path: str) -> tuple[str, int] | None:
+    """First matching rule wins, exactly as Cloudflare evaluates them."""
+    for source, destination, status in REDIRECT_RULES:
+        if source.endswith("*"):
+            prefix = source[:-1]
+            if path.startswith(prefix):
+                return destination.replace(":splat", path[len(prefix):]), status
+        elif source == path:
+            return destination, status
+    return None
+
+
 def headers_for(path: str) -> list[tuple[str, str]]:
     """Collect every rule matching `path`, later rules winning."""
     matched: dict[str, str] = {}
@@ -80,6 +122,23 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
+
+    def send_head(self):
+        # Redirects are evaluated before the file system, the same order
+        # Cloudflare uses. Without this a moved path would still resolve
+        # locally from a stale folder and the rule would never be exercised.
+        path, _, query = self.path.partition("?")
+        hit = redirect_for(path)
+        if hit:
+            target, status = hit
+            if query:
+                target += "?" + query
+            self.send_response(status)
+            self.send_header("Location", target)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return None
+        return super().send_head()
 
     def end_headers(self):
         for name, value in headers_for(self.path.split("?", 1)[0]):
@@ -120,6 +179,7 @@ def main() -> int:
         print(f"iazzus.com -> http://localhost:{port}")
         print(f"serving     {ROOT}")
         print(f"headers     {len(HEADER_RULES)} rule(s) from _headers")
+        print(f"redirects   {len(REDIRECT_RULES)} rule(s) from _redirects")
         print("ctrl-c to stop")
         try:
             httpd.serve_forever()

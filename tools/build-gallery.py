@@ -59,12 +59,12 @@ GALLERIES: dict[str, dict] = {
         "images": "assets/images/family",
         "shape": "landscape",
     },
-    "garage/motorcycle/index.html": {
+    "life/garage/motorcycle/index.html": {
         "images": "assets/images/motorcycle",
         "videos": "assets/video/motorcycle",
         "shape": "landscape",
     },
-    "garage/tesla/index.html": {
+    "life/garage/tesla/index.html": {
         "images": "assets/images/tesla",
         "shape": "landscape",
     },
