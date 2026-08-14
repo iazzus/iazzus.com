@@ -442,6 +442,28 @@
   color: var(--color-accent);
 }
 
+/* Tags that are links. Reads as a button, not underlined blue text. */
+a.tag {
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+a.tag:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-bright);
+  transform: translateY(-1px);
+}
+
+/* Slightly larger pills, for when they are the content rather than metadata. */
+.tag-list--lg .tag {
+  padding: 0.45rem 0.95rem;
+  font-size: var(--text-sm);
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -995,63 +1017,6 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   Interest tiles
-   Outbound links that read as cards rather than underlined blue text.
-   -------------------------------------------------------------------------- */
-
-.interest-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: var(--space-xs);
-}
-
-.interest {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3xs);
-  padding: var(--space-sm) var(--space-md);
-  background-color: var(--color-surface);
-  border: var(--border-width) solid var(--color-border);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  transition: border-color var(--duration) var(--ease-out),
-    background-color var(--duration) var(--ease-out),
-    transform var(--duration) var(--ease-out);
-}
-
-.interest__name {
-  font-family: var(--font-display);
-  font-size: var(--text-body);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-tight);
-  color: var(--color-text);
-}
-
-.interest__note {
-  font-size: var(--text-xs);
-  line-height: 1.45;
-  color: var(--color-muted);
-}
-
-a.interest:hover {
-  border-color: var(--color-accent-line);
-  background-color: var(--color-surface-hover);
-  transform: translateY(-2px);
-}
-
-a.interest:hover .interest__name {
-  color: var(--color-accent-bright);
-}
-
-/* Small outbound marker, only on tiles that actually go somewhere. */
-a.interest .interest__name::after {
-  content: "↗";
-  margin-inline-start: 0.4em;
-  font-size: 0.75em;
-  color: var(--color-accent);
-}
-
-/* --------------------------------------------------------------------------
    Fact cards — a straight figure with the real answer underneath
    -------------------------------------------------------------------------- */
 
@@ -1495,6 +1460,30 @@ a.footer-nav__link:hover {
 
 .gallery__item {
   margin: 0;
+}
+
+/* Masonry variant for mixed portrait/landscape sets. CSS columns give real
+   masonry with no JavaScript, and because nothing is forced to a fixed
+   aspect ratio, no photograph gets cropped. Column counts are set in
+   responsive.css. */
+.gallery--masonry {
+  display: block;
+  column-gap: var(--space-sm);
+}
+
+.gallery--masonry .gallery__item {
+  break-inside: avoid;
+  margin-block-end: var(--space-sm);
+}
+
+/* Media box with no enforced aspect ratio — the image sets its own. */
+.media--natural {
+  aspect-ratio: auto;
+}
+
+.media--natural img {
+  block-size: auto;
+  object-fit: fill;
 }
 
 /* --------------------------------------------------------------------------

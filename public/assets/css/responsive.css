@@ -26,6 +26,11 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .gallery--masonry {
+    grid-template-columns: none;
+    columns: 2;
+  }
+
   .def-list__row {
     grid-template-columns: minmax(120px, 180px) 1fr;
     align-items: baseline;
@@ -161,6 +166,11 @@
 
   .gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery--masonry {
+    grid-template-columns: none;
+    columns: 3;
   }
 
   .section-header--split {

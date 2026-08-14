@@ -40,7 +40,7 @@ GALLERIES: dict[str, dict] = {
     "frida/index.html": {
         "images": "assets/images/frida",
         "videos": "assets/video/frida",
-        "shape": "portrait",
+        "masonry": True,
     },
     "life/reptiles/index.html": {
         "images": "assets/images/reptiles",
@@ -213,11 +213,21 @@ def main() -> int:
         img_folder = cfg.get("images")
         if img_folder:
             files = collect(SITE / img_folder, IMAGE_TYPES)
+            # Masonry galleries let every photo keep its own proportions, so
+            # nothing is cropped. Otherwise everything is forced to one shape.
+            masonry = cfg.get("masonry", False)
+            item_shape = "natural" if masonry else shape
             blocks = [
-                figure(f"/{img_folder}/{f.name}", shape, dimensions(f))
+                figure(f"/{img_folder}/{f.name}", item_shape, dimensions(f))
                 for f in files
             ]
-            body = "\n".join(blocks) if blocks else placeholder("photos", img_folder)
+            if blocks:
+                css = "gallery gallery--masonry" if masonry else "gallery"
+                body = (f'      <div class="{css}" data-reveal>\n'
+                        + "\n".join(blocks)
+                        + "\n      </div>")
+            else:
+                body = placeholder("photos", img_folder)
             text, found = replace_block(text, "gallery", body)
             if found and files:
                 total_images += len(files)
@@ -237,7 +247,12 @@ def main() -> int:
                         poster = f"/{img_folder}/{stem}-poster{ext}"
                         break
                 blocks.append(video_figure(f"/{vid_folder}/{f.name}", poster))
-            body = "\n".join(blocks) if blocks else placeholder("video", vid_folder)
+            if blocks:
+                body = ('      <div class="grid grid--2" data-reveal>\n'
+                        + "\n".join(blocks)
+                        + "\n      </div>")
+            else:
+                body = placeholder("video", vid_folder)
             text, found = replace_block(text, "videos", body)
             if found and files:
                 total_videos += len(files)
