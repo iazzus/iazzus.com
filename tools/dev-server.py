@@ -22,7 +22,7 @@ import socketserver
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent / "public"
 DEFAULT_PORT = 8000
 
 

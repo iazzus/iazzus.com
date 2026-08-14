@@ -35,7 +35,8 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 
 ```text
 /
-├── index.html              Homepage
+├── public/                 <- everything that gets deployed
+│   ├── index.html          Homepage
 ├── work-with-me/           Services — IT consulting and training
 ├── technology/             Technical expertise, platforms, consulting
 ├── bodybuilding/           Men's Physique training, progress, gallery
@@ -79,7 +80,6 @@ Deployed on **Cloudflare Workers** (static assets) at `https://iazzus.com`.
 ├── _headers                Response headers (incl. CSP)
 ├── _redirects              www → apex, plus old-URL redirects
 ├── wrangler.jsonc          Cloudflare Workers config (assets-only)
-├── .assetsignore           What NOT to deploy (tools, docs, VCS)
 ├── .editorconfig
 ├── .gitattributes
 └── .gitignore

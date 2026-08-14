@@ -30,6 +30,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SITE = ROOT / "public"          # deployable site lives here
 PARTIALS = ROOT / "tools" / "partials"
 
 # page path (relative to repo root) -> active nav key
@@ -92,7 +93,7 @@ def main() -> int:
     updated, skipped, missing = [], [], []
 
     for rel, key in PAGES.items():
-        path = ROOT / rel
+        path = SITE / rel
         if not path.is_file():
             missing.append(rel)
             continue
