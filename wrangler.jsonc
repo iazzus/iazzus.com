@@ -10,8 +10,13 @@
   // to the old one. Verified against the account: this is correct.
   "name": "iazzus-com",
 
-  // Pins the Workers runtime behaviour to a known date. Safe to leave.
-  "compatibility_date": "2026-08-13",
+  // Pins the Workers runtime behaviour to a known date.
+  //
+  // Deliberately set in the past rather than to today. Wrangler rejects a
+  // compatibility_date newer than the release it was built from, so a
+  // same-day value can fail the build depending on which version npm
+  // resolves. Nothing here needs recent runtime behaviour.
+  "compatibility_date": "2025-06-01",
 
   "assets": {
     // Everything that gets served lives in public/. Deployable content and
