@@ -1,0 +1,29 @@
+# Files in this directory that must NOT be uploaded as public site assets.
+#
+# Cloudflare Workers serves everything in the assets directory (the repo
+# root, per wrangler.jsonc). Anything listed here is excluded from the
+# deployment entirely — it is not merely hidden, it is never uploaded.
+
+# Version control and OS noise
+**/.git
+**/.gitignore
+**/.gitattributes
+**/.DS_Store
+**/Thumbs.db
+**/node_modules
+
+# Development tooling — not site content.
+# This is what keeps iazzus.com/tools/... from existing at all.
+tools
+
+# Project configuration and documentation, not pages
+README.md
+wrangler.jsonc
+.assetsignore
+.editorconfig
+.claude
+
+# Per-directory documentation for assets
+assets/images/README.md
+assets/video/README.md
+assets/fonts/README.md

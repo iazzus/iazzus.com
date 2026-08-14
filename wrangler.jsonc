@@ -1,0 +1,32 @@
+{
+  // Cloudflare Workers configuration — static assets only.
+  //
+  // There is no Worker script. This site is pure static files, so there is
+  // no "main" field: Cloudflare serves the assets directly from its edge
+  // and no code runs per request.
+  //
+  // IMPORTANT: "name" must exactly match the Worker that already exists in
+  // your Cloudflare dashboard. If it does not match, `wrangler deploy`
+  // creates a SECOND Worker instead of updating the one your custom domain
+  // is attached to. Check Workers & Pages → your project → the name at the
+  // top, and edit the value below to match.
+  "name": "iazzus-com",
+
+  // Pins the Workers runtime behaviour to a known date. Safe to leave.
+  "compatibility_date": "2026-08-13",
+
+  "assets": {
+    // The whole repository root is the site. Files listed in
+    // .assetsignore are excluded from the upload.
+    "directory": "./",
+
+    // Serve /404.html with a real 404 status for unmatched paths, rather
+    // than an empty Cloudflare error page.
+    "not_found_handling": "404-page"
+  },
+
+  // Surfaces build and request logs in the dashboard.
+  "observability": {
+    "enabled": true
+  }
+}
