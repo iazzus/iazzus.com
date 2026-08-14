@@ -50,6 +50,9 @@ PAGES: dict[str, str | None] = {
     "work-with-me/index.html": "work",
     "contact/index.html": "contact",
     "404.html": None,
+    # Unlisted. Gets the shared header/footer like any other page, but is
+    # not in the nav, not in sitemap.xml, and noindexed via _headers.
+    "frida/index.html": None,
 }
 
 MARKERS = {

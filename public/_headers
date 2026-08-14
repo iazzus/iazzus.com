@@ -19,12 +19,22 @@
   Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), xr-spatial-tracking=()
   Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; upgrade-insecure-requests
 
-# Cloudflare Pages deploys the whole repository root, so the dev tooling in
-# /tools/ is publicly reachable. It holds no secrets and nothing executes
-# server-side, but it is not content — keep it out of search results.
+# Development tooling. Not deployed at all under Workers (it lives outside
+# public/), but this rule stays correct if the site is ever served via Pages.
 /tools/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+# Unlisted personal page. X-Robots-Tag is the part that actually keeps it
+# out of search results — robots.txt is deliberately silent about this path,
+# because a Disallow line would publish the path to anyone who reads it.
+#
+# This is obscurity, not access control. Anyone with the URL can still open
+# it. Put Cloudflare Access in front of /frida/* for real protection.
+/frida/*
+  X-Robots-Tag: noindex, nofollow, noarchive, noimageindex
+  Referrer-Policy: no-referrer
+  Cache-Control: private, no-store
 
 /assets/css/*
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400

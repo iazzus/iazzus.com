@@ -511,6 +511,45 @@ area for a marginal gain.
 
 ---
 
+## The unlisted page
+
+`/frida/` is not linked from anywhere, not in `sitemap.xml`, and carries
+`X-Robots-Tag: noindex` from `_headers`.
+
+`robots.txt` says nothing about it **on purpose**. A `Disallow: /frida/`
+line would publish the path to anyone who opens `robots.txt`, which is the
+opposite of the goal. The header is what actually keeps it out of search
+results.
+
+**None of that is access control.** Anyone with the URL can open it. The
+URL leaks through browser history, shared devices, referrer headers, and
+anyone you send it to. Treat it as unlisted, not private.
+
+### Making it actually private
+
+Cloudflare Access is free for up to 50 users and gives real authentication
+in about five minutes:
+
+1. **Zero Trust** → **Access** → **Applications** → **Add an application**
+   → **Self-hosted**.
+2. Application domain: `iazzus.com`, path `frida`.
+3. Add a policy — **Allow**, with the rule **Emails** and your own address
+   (add hers only if she wants access).
+4. Save.
+
+After that the page prompts for a one-time code by email before it will
+render. Delete the warning block at the bottom of the page once this is on.
+
+### What is deliberately not on that page
+
+Photographs and your own words are yours to publish. Another person's
+searchable identity is not, so the page carries no surname, birth year,
+employer, hometown, family members' names or social handles. A page like
+this is permanent and copyable in ways that are hard to undo, and she has
+not agreed to any of it. Keep it that way even when adding content.
+
+---
+
 ## Workers gotchas that cost real time
 
 Two behaviours differ from Cloudflare Pages and both fail in ways that do
