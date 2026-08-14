@@ -39,8 +39,13 @@ VIDEO_TYPES = (".mp4", ".webm", ".mov")
 GALLERIES: dict[str, dict] = {
     "frida/index.html": {
         "images": "assets/images/frida",
-        "videos": "assets/video/frida",
         "masonry": True,
+        # No "videos" key on purpose: the clips section is not rendered on
+        # that page right now, so there is nothing to write into and an
+        # empty placeholder would be worse than nothing. Video support is
+        # untouched and still used by other pages. To bring it back, add
+        # "videos": "assets/video/frida" here and put videos:start/end
+        # markers back on the page.
     },
     "life/reptiles/index.html": {
         "images": "assets/images/reptiles",

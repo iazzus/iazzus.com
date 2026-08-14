@@ -1029,36 +1029,71 @@ select.field__control {
 .fact {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3xs);
+  gap: var(--space-2xs);
   padding: var(--space-md);
   background-color: var(--color-surface);
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
 }
 
-.fact__label {
+.fact__title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.fact__body {
+  margin: 0;
+  max-width: none;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* Citation, present but quiet. */
+.fact__source {
+  margin-block-start: auto;
+  padding-block-start: var(--space-2xs);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   color: var(--color-muted);
+  text-decoration: none;
 }
 
-.fact__value {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.15;
+.fact__source:hover {
+  color: var(--color-accent-bright);
+}
+
+/* The one card that is not a fact about the city. */
+.fact--personal {
+  border-color: var(--color-accent-line);
+  background-color: var(--color-accent-soft);
+}
+
+.fact--personal .fact__body {
   color: var(--color-text);
 }
 
-.fact__twist {
-  margin-block-start: var(--space-2xs);
-  padding-block-start: var(--space-2xs);
-  border-block-start: var(--border-width) solid var(--color-border);
+/* Understated outbound link, used for her profile. */
+.link-out {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  font-family: var(--font-mono);
   font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
   color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link-out:hover {
+  color: var(--color-accent-bright);
 }
 
 /* --------------------------------------------------------------------------

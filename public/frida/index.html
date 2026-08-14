@@ -7,25 +7,33 @@
 <meta name="description" content="A page for Frida.">
 
 <!-- ==========================================================================
-     MAINTENANCE NOTES — none of this is visible on the page, on purpose.
+     MAINTENANCE NOTES - none of this is visible on the page, on purpose.
      Implementation detail belongs here and in the README, not in front of
      the person this page is for.
 
      PHOTOS   public/assets/images/frida/   (images, plural)
-     VIDEO    public/assets/video/frida/
      AUDIO    public/assets/audio/frida/
 
-     To add media:
+     To add photos:
        .\tools\optimize-images.ps1 -Source "<folder or file>" -Gallery frida
        python tools/build-gallery.py
-     Then commit and push. The gallery:start/end and videos:start/end blocks
-     below are generated — do not hand-edit them.
+     Then commit and push. The gallery:start/end block below is generated -
+     do not hand-edit it.
+
+     VIDEO    The clips section is intentionally not rendered right now.
+     Video support still exists site-wide in tools/build-gallery.py and is
+     used by other pages; frida is simply not registered for it. To bring it
+     back, re-add "videos": "assets/video/frida" to the frida entry in
+     GALLERIES and put videos:start/end markers back on this page.
+
+     COPY     No em dashes anywhere in the visible copy on this page. Use a
+     normal hyphen instead.
 
      PRIVACY  Unlisted, not private. No inbound links, absent from
      sitemap.xml, and noindexed via X-Robots-Tag in _headers. robots.txt is
      deliberately silent about this path, because a Disallow line would
      publish it to anyone who reads the file. Anyone with the URL can still
-     open it — put Cloudflare Access in front of /frida/* for real
+     open it. Put Cloudflare Access in front of /frida/* for real
      protection. Steps are in the README.
      ========================================================================== -->
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
@@ -52,7 +60,7 @@
 <!-- header:start -->
 <header class="site-header" data-header>
   <div class="site-header__inner container">
-    <a class="wordmark" href="/" aria-label="IAZZUS — home">IAZZUS</a>
+    <a class="wordmark" href="/" aria-label="IAZZUS - home">IAZZUS</a>
 
     <nav class="nav" id="primary-nav" aria-label="Primary" data-nav>
       <ul class="nav__list">
@@ -88,7 +96,7 @@
       <p class="eyebrow">Houston, Texas &middot; July 13</p>
       <h1 class="page-hero__title">Frida Chip</h1>
       <p class="lead page-hero__intro">
-        Somewhere to keep a person I love — in photographs, music, dumb
+        Somewhere to keep a person I love - in photographs, music, dumb
         jokes, little pieces of time, and whatever else deserves not to
         disappear.
       </p>
@@ -98,19 +106,24 @@
   <!-- ========================================================== Opening -->
   <section class="section" aria-labelledby="opening-title">
     <div class="container container--narrow" data-reveal>
-      <h2 class="visually-hidden" id="opening-title">About this page</h2>
+      <h2 class="visually-hidden" id="opening-title">Why this page exists</h2>
       <div class="prose">
         <p class="lead">
-          Houston to San Diego, roughly once a month. An SDFC game. Moonlight
-          Beach still on the list.
+          Somewhere between Houston and San Diego, you became part of the
+          rhythm of my life.
         </p>
         <p>
-          You are the person I made the collage for — eighty photographs,
-          traced by hand, mailed instead of sent. It took far longer than it
-          should have and I would do it again tomorrow.
+          There have been flights, an SDFC game, days together that always
+          seem to go by too quickly, and a collage made from eighty
+          photographs I traced by hand because apparently printing them
+          normally would have been too easy. Moonlight Beach is still
+          waiting for us.
         </p>
         <p>
-          So this is the same idea with fewer paper cuts.
+          I think this page comes from the same instinct as that collage -
+          wanting to keep the little things, give them somewhere to live,
+          and make something for you that could only ever really belong to
+          you.
         </p>
       </div>
     </div>
@@ -141,15 +154,16 @@
     </div>
   </section>
 
-  <!-- ======================================================= Her things -->
+  <!-- ====================================================== Very Frida -->
   <section class="section" aria-labelledby="things-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Hers</p>
-        <h2 class="section-header__title" id="things-title">Documented obsessions</h2>
+        <p class="eyebrow">Very Frida</p>
+        <h2 class="section-header__title" id="things-title">Things that feel like Frida</h2>
         <p class="section-header__intro">
-          A reasonably complete list, assembled without your knowledge or
-          consent over several months. Every one of them goes somewhere.
+          The movies, music, places, people, and little things I've learned
+          to associate with you. Somewhere along the way, knowing what you
+          love became one of my favorite ways of knowing you.
         </p>
       </div>
 
@@ -168,21 +182,46 @@
         <li><a class="tag" href="https://en.wikipedia.org/wiki/Dude,_Where%27s_My_Car%3F" target="_blank" rel="noopener noreferrer">Dude, Where's My Car?</a></li>
       </ul>
 
-      <p class="aside-line" data-reveal>
-        Pluckers is a wing bar in Houston. I have been told this is
-        important context. <em>Trashcans are a drink there, apparently.</em>
-      </p>
+      <!-- FRIDA_TWITTER_URL
+           TODO: replace with Frida's exact Twitter profile URL.
+           This is the only place it appears. Keep the twitter.com form
+           rather than rewriting it to x.com. -->
+      <div class="stack" data-reveal>
+        <p class="eyebrow eyebrow--plain">Frida online</p>
+        <p>
+          <a class="link-out" href="https://twitter.com/" target="_blank" rel="me noopener noreferrer">Her Twitter <span aria-hidden="true">&#8599;</span></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== Pluckers -->
+  <section class="section section--band" aria-labelledby="pluckers-title">
+    <div class="container container--narrow" data-reveal>
+      <p class="eyebrow">The usual</p>
+      <h2 id="pluckers-title">Pluckers</h2>
+      <div class="prose">
+        <p>
+          <strong>Pluckers is your favorite bar in Houston.</strong> Wings, a
+          Trashcan, and somewhere to decompress after a long shift at HEB -
+          especially when Brenda is there with you.
+        </p>
+        <p>
+          I've never needed a Houston travel guide. At this point I could
+          probably find Pluckers entirely from hearing you talk about it.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- ===================================================== Photographs -->
-  <section class="section section--band" aria-labelledby="gallery-title">
+  <section class="section" aria-labelledby="gallery-title">
     <div class="container">
       <div class="section-header" data-reveal>
         <p class="eyebrow">Photographs</p>
-        <h2 class="section-header__title" id="gallery-title">Some of my favourite versions of you</h2>
+        <h2 class="section-header__title" id="gallery-title">Some of my favorite versions of you</h2>
         <p class="section-header__intro">
-          Some of my favourite moments with you, and probably a few
+          Some of my favorite moments with you, and probably a few
           photographs I have no reasonable excuse for liking as much as I do.
           No particular order. No explanation required. Just things I wanted
           to keep.
@@ -286,105 +325,86 @@
     </div>
   </section>
 
-  <div class="container">
-    <p class="aside-line" data-reveal>
-      California has the tallest trees on Earth. Houston has you.
-      <em>Texas wins this round.</em>
-    </p>
-  </div>
-
   <!-- ========================================================= Houston -->
-  <section class="section" aria-labelledby="houston-title">
+  <section class="section section--band" aria-labelledby="houston-title">
     <div class="container">
       <div class="section-header" data-reveal>
-        <p class="eyebrow">Research</p>
-        <h2 class="section-header__title" id="houston-title">Things I know about Houston now</h2>
-        <p class="section-header__intro">
-          I did not previously have opinions about Houston. This is entirely
-          your fault.
-        </p>
+        <p class="eyebrow">Houston</p>
+        <h2 class="section-header__title" id="houston-title">Houston, because of you</h2>
+      </div>
+
+      <div class="container--narrow" data-reveal>
+        <div class="prose">
+          <p class="lead">
+            Houston used to be a place on a map to me. Now it has landmarks.
+          </p>
+          <p>
+            HEB. Pluckers. The roads you drive. The places you go after work.
+            The people you spend your time with. The airport I associate with
+            seeing you and leaving you.
+          </p>
+          <p>
+            It's strange how knowing one person can slowly give an entire
+            city meaning.
+          </p>
+        </div>
       </div>
 
       <div class="fact-grid" data-reveal>
-        <div class="fact">
-          <span class="fact__label">Population</span>
-          <span class="fact__value">2,392,327</span>
-          <span class="fact__twist">People there I care about: 1</span>
-        </div>
+        <article class="fact">
+          <h3 class="fact__title">Space City</h3>
+          <p class="fact__body">
+            Home to NASA's Johnson Space Center, and tied to American human
+            spaceflight for as long as there has been such a thing.
+          </p>
+          <a class="fact__source" href="https://www.nasa.gov/johnson/" target="_blank" rel="noopener noreferrer">NASA &#8599;</a>
+        </article>
 
-        <div class="fact">
-          <span class="fact__label">Land area</span>
-          <span class="fact__value">671.745 mi&sup2;</span>
-          <span class="fact__twist">Relevant portion: wherever you are</span>
-        </div>
+        <article class="fact">
+          <h3 class="fact__title">1836</h3>
+          <p class="fact__body">
+            Founded near Buffalo Bayou, which makes it older than most of
+            California's cities and all of my opinions about Texas.
+          </p>
+          <a class="fact__source" href="https://en.wikipedia.org/wiki/Houston" target="_blank" rel="noopener noreferrer">Wikipedia &#8599;</a>
+        </article>
 
-        <div class="fact">
-          <span class="fact__label">Nickname</span>
-          <span class="fact__value">Space City</span>
-          <span class="fact__twist">Primary celestial body: Frida Chip</span>
-        </div>
+        <article class="fact">
+          <h3 class="fact__title">Buffalo Bayou</h3>
+          <p class="fact__body">
+            Roughly 52 miles of slow water running through the city, and the
+            reason Houston is where it is at all.
+          </p>
+          <a class="fact__source" href="https://en.wikipedia.org/wiki/Buffalo_Bayou" target="_blank" rel="noopener noreferrer">Wikipedia &#8599;</a>
+        </article>
 
-        <div class="fact">
-          <span class="fact__label">Founded</span>
-          <span class="fact__value">1836</span>
-          <span class="fact__twist">Became relevant to me: 2026</span>
-        </div>
+        <article class="fact">
+          <h3 class="fact__title">Fourth largest</h3>
+          <p class="fact__body">
+            The fourth-largest city in the United States by population, which
+            still somehow feels too small a place to hold you.
+          </p>
+          <a class="fact__source" href="https://en.wikipedia.org/wiki/Houston" target="_blank" rel="noopener noreferrer">Wikipedia &#8599;</a>
+        </article>
 
-        <div class="fact">
-          <span class="fact__label">National ranking</span>
-          <span class="fact__value">4th largest</span>
-          <span class="fact__twist">In my ranking it moved up considerably</span>
-        </div>
+        <article class="fact">
+          <h3 class="fact__title">The Museum District</h3>
+          <p class="fact__body">
+            A dense run of museums, galleries and public spaces packed into a
+            few walkable blocks. Still on my list.
+          </p>
+          <a class="fact__source" href="https://en.wikipedia.org/wiki/Houston_Museum_District" target="_blank" rel="noopener noreferrer">Wikipedia &#8599;</a>
+        </article>
 
-        <div class="fact">
-          <span class="fact__label">Buffalo Bayou</span>
-          <span class="fact__value">52 miles</span>
-          <span class="fact__twist">Distance between us: substantially more</span>
-        </div>
-
-        <div class="fact">
-          <span class="fact__label">Museum District</span>
-          <span class="fact__value">18 institutions</span>
-          <span class="fact__twist">Number I have visited: pending</span>
-        </div>
-
-        <div class="fact">
-          <span class="fact__label">Pluckers locations</span>
-          <span class="fact__value">Several</span>
-          <span class="fact__twist">Suspiciously well known to you</span>
-        </div>
+        <article class="fact fact--personal">
+          <h3 class="fact__title">Your Houston</h3>
+          <p class="fact__body">
+            HEB shifts. Brenda. Pluckers. Wings and Trashcans. The places you
+            know without needing directions, and the ordinary parts of your
+            life I started learning because they're yours.
+          </p>
+        </article>
       </div>
-
-      <div data-reveal>
-        <p class="aside-line">
-          Houston has NASA. California has trees older than most countries.
-          <em>You still live in the wrong one.</em>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================== Clips -->
-  <section class="section section--band" aria-labelledby="video-title">
-    <div class="container">
-      <div class="section-header" data-reveal>
-        <p class="eyebrow">Clips</p>
-        <h2 class="section-header__title" id="video-title">Photographs freeze things. These don't.</h2>
-        <p class="section-header__intro">
-          Little pieces of time — your voice, your expressions, the way you
-          move, the things that would otherwise exist for a few seconds and
-          disappear. I wanted somewhere for those too.
-        </p>
-      </div>
-
-      <!-- videos:start -->
-        <!-- Empty: add files to public/assets/video/frida/ then run
-             python tools/build-gallery.py -->
-        <div class="empty-state">
-          <h3 class="empty-state__title">No video yet</h3>
-          <p class="empty-state__body">Coming soon.</p>
-        </div>
-      <!-- videos:end -->
     </div>
   </section>
 
@@ -425,7 +445,7 @@
             roots underneath places<br>
             people haven't even named yet.
           </p>
-          <p>And still —</p>
+          <p>And still -</p>
           <p>
             if somebody asked me what I would cross<br>
             all that distance to see,<br>
@@ -490,33 +510,11 @@
           for. Dude, you got a website.
         </p>
       </details>
-    </div>
-  </section>
 
-  <!-- ======================================================= For Frida -->
-  <section class="section section--band" aria-labelledby="forfrida-title">
-    <div class="container container--narrow" data-reveal>
-      <p class="eyebrow">Last thing</p>
-      <h2 id="forfrida-title">For Frida</h2>
-      <div class="prose">
-        <p>
-          This page isn't here to explain you to anybody else.
-        </p>
-        <p>
-          It's here because I love you. Because I am proud of you. Because
-          you have become part of the things I want to remember, preserve,
-          build around, and look back on.
-        </p>
-        <p>
-          Some people get photographs in your camera roll.
-        </p>
-        <p class="lead"><strong>You got a URL.</strong></p>
-
-        <p class="secret">
-          I made a page for you because apparently simply missing you like a
-          normal person wasn't enough.
-        </p>
-      </div>
+      <p class="secret">
+        I made a page for you because apparently simply missing you like a
+        normal person wasn't enough.
+      </p>
     </div>
   </section>
 
@@ -529,7 +527,7 @@
       <div>
         <a class="wordmark" href="/">IAZZUS</a>
         <p class="site-footer__tagline">
-          The personal site of Ian Vulovic — technology, training, service,
+          The personal site of Ian Vulovic - technology, training, service,
           and the systems behind all of it.
         </p>
 
