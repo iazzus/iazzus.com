@@ -1,0 +1,6 @@
+# https://iazzus.com/robots.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://iazzus.com/sitemap.xml

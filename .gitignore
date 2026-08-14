@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------------------
+# IAZZUS.com
+# There is no build step, so almost nothing should be ignored. Keep this list
+# short and deliberate.
+# ---------------------------------------------------------------------------
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Editors and local agent tooling
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+*~
+
+# Local tooling
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets — never commit anything matching these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+wrangler.toml.local
+.dev.vars
+
+# Cloudflare / Wrangler local state
+.wrangler/
+
+# Source files for images (keep exports in assets/images, not the originals)
+assets/images/_source/
+*.psd
+*.xcf
+*.raw
+*.cr2
+*.nef

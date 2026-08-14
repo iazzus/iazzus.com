@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Ian Vulovic | IAZZUS</title>
+<meta name="description" content="Get in touch with Ian Vulovic about IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
+<link rel="canonical" href="https://iazzus.com/contact/">
+<meta name="author" content="Ian Vulovic">
+<meta name="theme-color" content="#08090A">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IAZZUS">
+<meta property="og:url" content="https://iazzus.com/contact/">
+<meta property="og:title" content="Contact — Ian Vulovic">
+<meta property="og:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
+<meta property="og:image" content="https://iazzus.com/assets/images/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="IAZZUS wordmark with the lines Ian Vulovic, technology, physique, discipline.">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Ian Vulovic">
+<meta name="twitter:description" content="IT consulting, migrations and systems work, bodybuilding, or general enquiries.">
+<meta name="twitter:image" content="https://iazzus.com/assets/images/og-default.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+<link rel="stylesheet" href="/assets/css/reset.css">
+<link rel="stylesheet" href="/assets/css/variables.css">
+<link rel="stylesheet" href="/assets/css/global.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/responsive.css">
+<noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "https://iazzus.com/contact/",
+  "url": "https://iazzus.com/contact/",
+  "name": "Contact — Ian Vulovic",
+  "description": "Contact form for IT consulting, bodybuilding and general enquiries.",
+  "inLanguage": "en",
+  "isPartOf": { "@id": "https://iazzus.com/#website" },
+  "about": { "@id": "https://iazzus.com/#ian" }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner container">
+    <a class="wordmark" href="/" aria-label="IAZZUS — home">IAZZUS</a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary" data-nav>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="/">Home</a></li>
+        <li><a class="nav__link" href="/technology/">Technology</a></li>
+        <li><a class="nav__link" href="/bodybuilding/">Bodybuilding</a></li>
+        <li><a class="nav__link" href="/motorcycle/">Motorcycle</a></li>
+        <li><a class="nav__link" href="/about/">About</a></li>
+        <li><a class="nav__link" href="/contact/" aria-current="page">Contact</a></li>
+      </ul>
+      <p class="nav__footer meta">iazzus.com</p>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu" data-nav-toggle>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ Hero -->
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <p class="eyebrow">Contact</p>
+      <h1 class="page-hero__title">Get in touch</h1>
+      <p class="lead page-hero__intro">
+        Consulting enquiries, migration and systems work, training questions,
+        or anything else. Pick a category so the message arrives with the
+        right context.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ Form -->
+  <section class="section" aria-labelledby="form-title">
+    <div class="container split split--weighted">
+
+      <div class="stack stack--md" data-reveal>
+        <h2 class="visually-hidden" id="form-title">Contact form</h2>
+
+        <div class="notice">
+          <p>
+            <span class="notice__title">Form status</span>
+            Message delivery is not connected yet. The form validates your
+            input, but nothing is transmitted or stored — no backend endpoint
+            has been configured. See the README for how to wire it up.
+          </p>
+        </div>
+
+        <noscript>
+          <div class="notice">
+            <p>
+              <span class="notice__title">JavaScript required</span>
+              This form is submitted with JavaScript. With scripting disabled
+              it cannot send a message.
+            </p>
+          </div>
+        </noscript>
+
+        <form class="form" data-contact-form>
+          <div class="field">
+            <label class="field__label" for="name">
+              Name <span class="field__required" aria-hidden="true">*</span>
+            </label>
+            <input
+              class="field__control"
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              required
+              minlength="2"
+              aria-describedby="name-error">
+            <p class="field__error" id="name-error" data-empty="Please enter your name."></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="email">
+              Email <span class="field__required" aria-hidden="true">*</span>
+            </label>
+            <input
+              class="field__control"
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-describedby="email-error">
+            <p class="field__error" id="email-error" data-empty="Please enter an email address."></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="category">
+              Category <span class="field__required" aria-hidden="true">*</span>
+            </label>
+            <select
+              class="field__control"
+              id="category"
+              name="category"
+              required
+              aria-describedby="category-error">
+              <option value="">Select one…</option>
+              <option value="it-consulting">IT / Consulting</option>
+              <option value="bodybuilding">Bodybuilding</option>
+              <option value="motorcycle">Motorcycle</option>
+              <option value="general">General</option>
+              <option value="other">Other</option>
+            </select>
+            <p class="field__error" id="category-error" data-empty="Please choose a category."></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="subject">
+              Subject <span class="field__required" aria-hidden="true">*</span>
+            </label>
+            <input
+              class="field__control"
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              minlength="3"
+              aria-describedby="subject-error">
+            <p class="field__error" id="subject-error" data-empty="Please add a subject."></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="message">
+              Message <span class="field__required" aria-hidden="true">*</span>
+            </label>
+            <textarea
+              class="field__control"
+              id="message"
+              name="message"
+              rows="7"
+              required
+              minlength="20"
+              aria-describedby="message-hint message-error"></textarea>
+            <p class="field__hint" id="message-hint">
+              Detail helps. What the environment is, what is happening, and
+              what you need it to do instead.
+            </p>
+            <p class="field__error" id="message-error" data-empty="Please write a message."></p>
+          </div>
+
+          <!-- Honeypot: hidden from people, ignored by browsers' autofill. -->
+          <div class="form__trap" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off" data-trap>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit">Send message</button>
+            <p class="form__status" role="status" aria-live="polite" data-form-status></p>
+          </div>
+        </form>
+      </div>
+
+      <aside class="stack" aria-labelledby="alt-title" data-reveal>
+        <p class="eyebrow">Other ways</p>
+        <h2 id="alt-title">Direct contact</h2>
+
+        <p>
+          Email works and reaches me directly. Until the form has a backend,
+          it is the only route that actually delivers.
+        </p>
+
+        <!-- EDIT: add professional profile links (LinkedIn, GitHub) as extra
+             rows here when you want them public. No phone number is published
+             on this site by design. -->
+        <dl class="def-list">
+          <div class="def-list__row">
+            <dt class="def-list__term">Email</dt>
+            <dd class="def-list__desc">
+              <a class="text-link break-anywhere" href="mailto:ian.vulovic@iazzus.com">ian.vulovic@iazzus.com</a>
+            </dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Based in</dt>
+            <dd class="def-list__desc">United States</dd>
+          </div>
+        </dl>
+
+        <h3 class="footer-nav__title">What each category covers</h3>
+        <dl class="def-list">
+          <div class="def-list__row">
+            <dt class="def-list__term">IT / Consulting</dt>
+            <dd class="def-list__desc">
+              Microsoft 365 and Google Workspace work, migrations, identity,
+              email and endpoint projects.
+            </dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Bodybuilding</dt>
+            <dd class="def-list__desc">
+              Training, preparation and anything related to the physique side
+              of IAZZUS.
+            </dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">Motorcycle</dt>
+            <dd class="def-list__desc">
+              Anything about the Ninja 650 — riding, maintenance or parts.
+            </dd>
+          </div>
+          <div class="def-list__row">
+            <dt class="def-list__term">General</dt>
+            <dd class="def-list__desc">
+              Everything that does not fit neatly into the first three.
+            </dd>
+          </div>
+        </dl>
+
+        <p class="meta">
+          Nothing submitted through the form is stored or sent while it is
+          unconnected. Use email in the meantime.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="/">IAZZUS</a>
+        <p class="site-footer__tagline">
+          The personal site of Ian Vulovic — technology, training, and the
+          systems behind both.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-labelledby="footer-site-title">
+        <h2 class="footer-nav__title" id="footer-site-title">Site</h2>
+        <ul class="footer-nav__list">
+          <li><a class="footer-nav__link" href="/">Home</a></li>
+          <li><a class="footer-nav__link" href="/technology/">Technology</a></li>
+          <li><a class="footer-nav__link" href="/bodybuilding/">Bodybuilding</a></li>
+          <li><a class="footer-nav__link" href="/motorcycle/">Motorcycle</a></li>
+          <li><a class="footer-nav__link" href="/about/">About</a></li>
+          <li><a class="footer-nav__link" href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-nav">
+        <h2 class="footer-nav__title">Focus</h2>
+        <ul class="footer-nav__list">
+          <li><span class="footer-nav__link">Microsoft 365</span></li>
+          <li><span class="footer-nav__link">Google Workspace</span></li>
+          <li><span class="footer-nav__link">Identity &amp; migrations</span></li>
+          <li><span class="footer-nav__link">Men's Physique</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; <span data-current-year>2026</span> Ian Vulovic</p>
+      <p>iazzus.com</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

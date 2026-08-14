@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IAZZUS — Ian Vulovic | Technology, Physique, Discipline</title>
+<meta name="description" content="Personal site of Ian Vulovic. Ten years in IT — Microsoft 365, Google Workspace, identity, migrations, security — alongside Men's Physique bodybuilding.">
+<link rel="canonical" href="https://iazzus.com/">
+<meta name="author" content="Ian Vulovic">
+<meta name="theme-color" content="#08090A">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IAZZUS">
+<meta property="og:url" content="https://iazzus.com/">
+<meta property="og:title" content="IAZZUS — Ian Vulovic">
+<meta property="og:description" content="Technology, physique, discipline. The personal site of Ian Vulovic.">
+<meta property="og:image" content="https://iazzus.com/assets/images/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="IAZZUS wordmark with the lines Ian Vulovic, technology, physique, discipline.">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IAZZUS — Ian Vulovic">
+<meta name="twitter:description" content="Technology, physique, discipline. The personal site of Ian Vulovic.">
+<meta name="twitter:image" content="https://iazzus.com/assets/images/og-default.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+<link rel="stylesheet" href="/assets/css/reset.css">
+<link rel="stylesheet" href="/assets/css/variables.css">
+<link rel="stylesheet" href="/assets/css/global.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/responsive.css">
+<noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
+
+<script src="/assets/js/main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://iazzus.com/#website",
+      "url": "https://iazzus.com/",
+      "name": "IAZZUS",
+      "description": "The personal site of Ian Vulovic — technology and Men's Physique bodybuilding.",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://iazzus.com/#ian" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://iazzus.com/#ian",
+      "name": "Ian Vulovic",
+      "alternateName": "IAZZUS",
+      "url": "https://iazzus.com/",
+      "jobTitle": "IT Systems Administrator",
+      "knowsAbout": [
+        "Microsoft 365 administration",
+        "Google Workspace administration",
+        "Identity and access management",
+        "Email systems and mail flow",
+        "Tenant migrations",
+        "Endpoint management",
+        "DNS administration",
+        "Information security",
+        "PowerShell automation",
+        "Bodybuilding"
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner container">
+    <a class="wordmark" href="/" aria-label="IAZZUS — home">IAZZUS</a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary" data-nav>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="/" aria-current="page">Home</a></li>
+        <li><a class="nav__link" href="/technology/">Technology</a></li>
+        <li><a class="nav__link" href="/bodybuilding/">Bodybuilding</a></li>
+        <li><a class="nav__link" href="/motorcycle/">Motorcycle</a></li>
+        <li><a class="nav__link" href="/about/">About</a></li>
+        <li><a class="nav__link" href="/contact/">Contact</a></li>
+      </ul>
+      <p class="nav__footer meta">iazzus.com</p>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu" data-nav-toggle>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ Hero -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <h1 class="hero__title">
+        <span class="display">IAZZUS</span>
+        <span class="hero__name">Ian Vulovic</span>
+      </h1>
+
+      <ul class="hero__statement">
+        <li>Technology</li>
+        <li>Physique</li>
+        <li>Discipline</li>
+      </ul>
+
+      <p class="lead">
+        I work in the part of IT where identity, email, endpoints and security
+        overlap — and I train for Men's Physique with the same approach.
+        Build the system, measure it, fix what does not hold.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/technology/">
+          Technology <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="btn btn--secondary" href="/bodybuilding/">Bodybuilding</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== Two disciplines -->
+  <section class="section section--band" aria-labelledby="disciplines-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Two disciplines</p>
+        <h2 class="section-header__title" id="disciplines-title">One method, applied twice.</h2>
+        <p class="section-header__intro">
+          Different domains, same operating principle: define the system,
+          run it consistently, measure the output, correct the drift.
+        </p>
+      </div>
+
+      <div class="grid grid--disciplines" data-reveal>
+        <article class="discipline">
+          <div>
+            <p class="card__index">01</p>
+            <h3 class="discipline__title">Technology</h3>
+            <p class="discipline__body">
+              Around ten years administering Microsoft 365 and Google Workspace
+              environments — identity, mail flow, collaboration platforms,
+              endpoints, migrations and the security layer around all of it.
+            </p>
+          </div>
+          <div class="discipline__footer">
+            <a class="discipline__link" href="/technology/">Areas of expertise</a>
+            <span aria-hidden="true" class="text-accent">&rarr;</span>
+          </div>
+        </article>
+
+        <article class="discipline">
+          <div>
+            <p class="card__index">02</p>
+            <h3 class="discipline__title">Men's Physique</h3>
+            <p class="discipline__body">
+              Training toward a Men's Physique standard — shoulders, chest, arms,
+              back width and thickness, and the conditioning that makes
+              proportion readable. Structured, tracked and revised.
+            </p>
+          </div>
+          <div class="discipline__footer">
+            <a class="discipline__link" href="/bodybuilding/">Training &amp; progress</a>
+            <span aria-hidden="true" class="text-accent">&rarr;</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== About -->
+  <section class="section" aria-labelledby="about-title">
+    <div class="container split split--weighted" data-reveal>
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">Ian Vulovic</h2>
+        <div class="prose">
+          <p>
+            I am a systems administrator based in the United States. Most of my
+            work sits in mid-sized environments where identity, email,
+            collaboration and endpoint management are tangled together, and
+            where a change in one of them quietly breaks another.
+          </p>
+          <p>
+            IAZZUS is the name I put on everything I build — the consulting
+            work, the training, and this site. It is meant to stay useful for a
+            long time rather than look impressive for a week.
+          </p>
+          <p><a class="text-link" href="/about/">More about how the two sides connect</a></p>
+        </div>
+      </div>
+
+      <dl class="def-list">
+        <div class="def-list__row">
+          <dt class="def-list__term">Discipline</dt>
+          <dd class="def-list__desc">IT systems administration</dd>
+        </div>
+        <div class="def-list__row">
+          <dt class="def-list__term">Experience</dt>
+          <dd class="def-list__desc">~10 years</dd>
+        </div>
+        <div class="def-list__row">
+          <dt class="def-list__term">Core platforms</dt>
+          <dd class="def-list__desc">Microsoft 365, Google Workspace</dd>
+        </div>
+        <div class="def-list__row">
+          <dt class="def-list__term">Training</dt>
+          <dd class="def-list__desc">Men's Physique</dd>
+        </div>
+        <div class="def-list__row">
+          <dt class="def-list__term">Availability</dt>
+          <dd class="def-list__desc">Open to consulting enquiries</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- =============================================== Technology preview -->
+  <section class="section section--band" aria-labelledby="tech-preview-title">
+    <div class="container">
+      <div class="section-header section-header--split" data-reveal>
+        <div class="stack">
+          <p class="eyebrow">Technology</p>
+          <h2 class="section-header__title" id="tech-preview-title">What I actually do</h2>
+        </div>
+        <a class="btn btn--ghost" href="/technology/">
+          Full capabilities <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="grid grid--4" data-reveal>
+        <article class="card">
+          <p class="card__index">01</p>
+          <h3 class="card__title">Identity &amp; access</h3>
+          <p class="card__body">
+            Microsoft Entra ID and Google Workspace directory work: user
+            lifecycle, groups, conditional access, MFA rollouts, delegated
+            administration and least-privilege cleanup.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="card__index">02</p>
+          <h3 class="card__title">Email &amp; collaboration</h3>
+          <p class="card__body">
+            Exchange Online and Gmail administration, mail routing and
+            deliverability, DNS records, shared mailboxes, and the
+            SharePoint, OneDrive and Drive layer that sits alongside them.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="card__index">03</p>
+          <h3 class="card__title">Migrations</h3>
+          <p class="card__body">
+            Tenant-to-tenant and cross-platform moves — mail, files, identity
+            and endpoints — planned around cutover windows, coexistence and
+            the part everyone forgets: what breaks the day after.
+          </p>
+        </article>
+
+        <article class="card">
+          <p class="card__index">04</p>
+          <h3 class="card__title">Endpoints &amp; security</h3>
+          <p class="card__body">
+            Endpoint management across Windows and macOS fleets, plus the
+            security and compliance surface: Defender, Purview, firewall
+            policy and the alerting that makes any of it useful.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= Physique preview -->
+  <section class="section" aria-labelledby="physique-preview-title">
+    <div class="container split" data-reveal>
+      <div>
+        <p class="eyebrow">Men's Physique</p>
+        <h2 id="physique-preview-title">Built to a standard, not a mood</h2>
+        <div class="prose">
+          <p>
+            Men's Physique rewards a specific shape: wide shoulders, a
+            developed chest and arms, a back with both width and thickness,
+            and a waist that keeps the proportion honest. That is the target,
+            and everything in the programme is judged against it.
+          </p>
+          <p>
+            Training is planned in blocks, logged every session, and adjusted
+            on evidence rather than enthusiasm.
+          </p>
+          <p><a class="text-link" href="/bodybuilding/">Training, nutrition and progress</a></p>
+        </div>
+
+        <ul class="tag-list tag-list--spaced">
+          <li class="tag">Shoulders</li>
+          <li class="tag">Chest</li>
+          <li class="tag">Arms</li>
+          <li class="tag">Back width</li>
+          <li class="tag">Back thickness</li>
+          <li class="tag">Conditioning</li>
+          <li class="tag">Symmetry</li>
+        </ul>
+      </div>
+
+      <!-- Replace with /assets/images/ian-physique-front.webp when available. -->
+      <figure class="gallery__item">
+        <div class="media media--portrait">
+          <div class="media__placeholder">
+            <span class="media__placeholder-label">Physique image</span>
+            <span class="media__placeholder-hint">ian-physique-front.webp &middot; 4:5 &middot; 1200&times;1500</span>
+          </div>
+        </div>
+        <figcaption class="media__caption">Placeholder — personal photography to be added.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- =================================================== Current focus -->
+  <section class="section section--band" aria-labelledby="focus-title">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Current focus</p>
+        <h2 class="section-header__title" id="focus-title">What I am building now</h2>
+      </div>
+
+      <ol class="entry-list" data-reveal>
+        <li class="entry">
+          <div class="entry__aside">
+            <span class="badge"><span class="status-dot" aria-hidden="true"></span> In progress</span>
+            <span class="meta">Consulting</span>
+          </div>
+          <div class="entry__main">
+            <h3 class="entry__title">An independent IT practice under IAZZUS</h3>
+            <p class="entry__body">
+              Building the service definitions, tooling and operating process
+              behind a small managed-services and consulting practice. Not a
+              company yet — a foundation being put together deliberately.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <span class="badge"><span class="status-dot" aria-hidden="true"></span> Ongoing</span>
+            <span class="meta">Training</span>
+          </div>
+          <div class="entry__main">
+            <h3 class="entry__title">Men's Physique development block</h3>
+            <p class="entry__body">
+              Structured upper-body emphasis with progress tracked week to
+              week: load, volume, bodyweight and photographic comparison
+              against the same reference points.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <span class="badge badge--neutral">Automation</span>
+            <span class="meta">Tooling</span>
+          </div>
+          <div class="entry__main">
+            <h3 class="entry__title">Repeatable administration</h3>
+            <p class="entry__body">
+              PowerShell, Microsoft Graph and GAMADV-XTD3 tooling for the
+              administrative work that should never be done twice by hand —
+              onboarding, offboarding, auditing and reporting.
+            </p>
+          </div>
+        </li>
+
+        <li class="entry">
+          <div class="entry__aside">
+            <span class="badge badge--neutral">v1</span>
+            <span class="meta">This site</span>
+          </div>
+          <div class="entry__main">
+            <h3 class="entry__title">iazzus.com</h3>
+            <p class="entry__body">
+              Hand-written HTML, CSS and JavaScript with no framework and no
+              build step, deployed on Cloudflare Pages. Infrastructure I own
+              and can read end to end.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================================================== Garage -->
+  <section class="section" aria-labelledby="garage-title">
+    <div class="container split" data-reveal>
+      <div>
+        <p class="eyebrow">Garage</p>
+        <h2 id="garage-title">2016 Kawasaki Ninja 650 ABS</h2>
+        <div class="prose">
+          <p>
+            A 649cc parallel twin, kept properly rather than kept clean. The
+            specifications, the reasoning and the service record are all
+            written down for the same reason everything else here is.
+          </p>
+          <p><a class="text-link" href="/motorcycle/">Specifications and service record</a></p>
+        </div>
+      </div>
+
+      <!-- Replace with /assets/images/ninja-650-right.webp when available. -->
+      <figure class="gallery__item">
+        <div class="media media--landscape">
+          <div class="media__placeholder">
+            <span class="media__placeholder-label">Right profile</span>
+            <span class="media__placeholder-hint">ninja-650-right.webp &middot; 3:2 &middot; 1800&times;1200</span>
+          </div>
+        </div>
+        <figcaption class="media__caption">Placeholder — photography to be added.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================= CTA -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta" data-reveal>
+        <div>
+          <h2 class="cta__title">Have something that needs sorting out?</h2>
+          <p class="cta__body">
+            Consulting enquiries, migration work, or anything else — the
+            fastest route is a short message.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="/contact/">
+            Get in touch <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="btn btn--secondary" href="/about/">About Ian</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <a class="wordmark" href="/">IAZZUS</a>
+        <p class="site-footer__tagline">
+          The personal site of Ian Vulovic — technology, training, and the
+          systems behind both.
+        </p>
+      </div>
+
+      <nav class="footer-nav" aria-labelledby="footer-site-title">
+        <h2 class="footer-nav__title" id="footer-site-title">Site</h2>
+        <ul class="footer-nav__list">
+          <li><a class="footer-nav__link" href="/">Home</a></li>
+          <li><a class="footer-nav__link" href="/technology/">Technology</a></li>
+          <li><a class="footer-nav__link" href="/bodybuilding/">Bodybuilding</a></li>
+          <li><a class="footer-nav__link" href="/motorcycle/">Motorcycle</a></li>
+          <li><a class="footer-nav__link" href="/about/">About</a></li>
+          <li><a class="footer-nav__link" href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-nav">
+        <h2 class="footer-nav__title">Focus</h2>
+        <ul class="footer-nav__list">
+          <li><span class="footer-nav__link">Microsoft 365</span></li>
+          <li><span class="footer-nav__link">Google Workspace</span></li>
+          <li><span class="footer-nav__link">Identity &amp; migrations</span></li>
+          <li><span class="footer-nav__link">Men's Physique</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>&copy; <span data-current-year>2026</span> Ian Vulovic</p>
+      <p>iazzus.com</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

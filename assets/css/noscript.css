@@ -1,0 +1,13 @@
+/* ==========================================================================
+   noscript.css — loaded only from <noscript>.
+
+   Scroll reveals start hidden and are shown by main.js. Without JavaScript
+   nothing would ever reveal them, so restore every element to its final
+   state. This keeps the whole site readable with scripting disabled.
+   ========================================================================== */
+
+[data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}

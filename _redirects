@@ -1,0 +1,15 @@
+# Cloudflare Pages redirects
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# Format: <source> <destination> <status>
+# Rules are evaluated top to bottom; the first match wins. Limit: 2100 rules,
+# of which 100 may be dynamic (containing * or :placeholder).
+#
+# www -> apex. This only takes effect once www.iazzus.com is attached to the
+# Pages project as a custom domain. A Cloudflare Redirect Rule at the zone
+# level is the more robust option and is documented in the README; keeping
+# both is harmless because the zone-level rule runs first.
+https://www.iazzus.com/* https://iazzus.com/:splat 301
+
+# Future section moves go here, for example:
+# /resume  /technology/  301

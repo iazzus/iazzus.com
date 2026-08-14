@@ -1,0 +1,268 @@
+/* ==========================================================================
+   responsive.css — breakpoint overrides, motion and print.
+
+   The base styles are the narrow-screen layout; everything here adds
+   capability as the viewport grows. Loaded last so it always wins.
+
+   Breakpoints
+     560px  small phones -> large phones
+     760px  large phones -> tablets
+     900px  navigation switches to the horizontal desktop bar
+     1100px wide desktop refinements
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   >= 560px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 35em) {
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .def-list__row {
+    grid-template-columns: minmax(120px, 180px) 1fr;
+    align-items: baseline;
+  }
+
+  /* Wide enough for all three words on one line, so the dots earn their
+     place as separators rather than dangling at a line break. */
+  .hero__statement {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-md);
+  }
+
+  .hero__statement li:not(:last-child)::after {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   >= 760px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 47.5em) {
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--disciplines {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .entry {
+    grid-template-columns: minmax(150px, 210px) 1fr;
+  }
+
+  .section-header--split {
+    align-items: flex-end;
+  }
+
+  .cta {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+  }
+
+  .cta__actions {
+    flex: none;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+}
+
+/* --------------------------------------------------------------------------
+   >= 900px — desktop navigation
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 56.25em) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    block-size: auto;
+    padding: 0;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .nav__link {
+    position: relative;
+    padding-block: var(--space-2xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.01em;
+    border: 0;
+  }
+
+  /* Underline that grows from the left on hover and stays for the
+     current page. */
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: 1px;
+    background-color: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration) var(--ease-out);
+  }
+
+  .nav__link:hover::after,
+  .nav__link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+
+  .nav__footer {
+    display: none;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .section-header--split {
+    flex-direction: row;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   >= 1100px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 68.75em) {
+  .hero__inner {
+    gap: var(--space-lg);
+  }
+
+  /* Four columns only once each one can hold a readable line. */
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .entry {
+    grid-template-columns: minmax(180px, 240px) 1fr;
+  }
+
+  /* Slightly asymmetric split reads more editorial at wide sizes. */
+  .split--weighted {
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Coarse pointers — give touch targets more room
+   -------------------------------------------------------------------------- */
+
+@media (pointer: coarse) {
+  .footer-nav__link,
+  .nav__link {
+    padding-block: var(--space-2xs);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   The site is designed to look finished with every animation disabled.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .discipline::before {
+    transform: scaleX(1);
+  }
+
+  .btn:active {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .nav-toggle,
+  .hero::before,
+  .cta__actions {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  h1,
+  h2,
+  h3,
+  .display {
+    color: #000;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}

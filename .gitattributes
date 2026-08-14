@@ -1,0 +1,14 @@
+# Normalise line endings. Everything is stored in the repository with LF,
+# which is what Cloudflare Pages serves and what .editorconfig expects.
+* text=auto eol=lf
+
+# Binaries must never be touched.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.ico  binary
+*.mp4  binary
+*.mov  binary
+*.woff  binary
+*.woff2 binary
