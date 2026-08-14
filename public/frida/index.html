@@ -104,6 +104,29 @@
     </div>
   </section>
 
+  <!-- =========================================================== Track -->
+  <section class="section" aria-labelledby="track-title">
+    <div class="container container--narrow" data-reveal>
+      <div class="section-header">
+        <p class="eyebrow">Track</p>
+        <h2 class="section-header__title" id="track-title">Here I Am</h2>
+      </div>
+
+      <!-- No autoplay, deliberately. Browsers block audio that starts on
+           its own, so it would not work anyway, and a page that makes noise
+           uninvited is hostile. preload="none" means the 5 MB file is not
+           downloaded until someone presses play. -->
+      <div class="track">
+        <p class="track__artist">The Hellp</p>
+        <h3 class="track__title">Here I Am</h3>
+        <audio controls preload="none">
+          <source src="/assets/audio/frida/the-hellp-here-i-am.mp3" type="audio/mpeg">
+          Your browser cannot play this audio.
+        </audio>
+      </div>
+    </div>
+  </section>
+
   <!-- ========================================================== Things -->
   <section class="section section--band" aria-labelledby="things-title">
     <div class="container">
@@ -119,7 +142,7 @@
         <li class="tag">Ken Carson</li>
         <li class="tag">2hollis</li>
         <li class="tag">Movies</li>
-        <li class="tag">The Help</li>
+        <li class="tag">The Hellp</li>
         <li class="tag">The Dark Knight Rises</li>
         <li class="tag">Joker</li>
       </ul>
