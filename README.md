@@ -511,6 +511,41 @@ area for a marginal gain.
 
 ---
 
+## Workers gotchas that cost real time
+
+Two behaviours differ from Cloudflare Pages and both fail in ways that do
+not point at the cause. Recorded here so they are not rediscovered.
+
+**`_redirects` allows only relative URLs.** Pages accepted absolute
+destinations, so a `www -> apex` rule could live in the file. Workers
+rejects them and fails the *entire deploy*:
+
+```
+Invalid _redirects configuration:
+Line 12: Only relative URLs are allowed. [code: 100324]
+```
+
+The deploy fails wholesale, so the symptom is "no build ever succeeds"
+rather than "one redirect is broken". `www -> apex` therefore belongs in a
+zone-level Redirect Rule, not in this file.
+
+**Route patterns must end in `/*`.** A route of `iazzus.com` matches only
+the root path. Every sub-page then returns Cloudflare **error 1000 ("DNS
+points to prohibited IP")**, because the request never reaches the Worker
+and the proxied placeholder `AAAA 100::` record has no other origin to
+fall back to. The homepage works, everything else 403s — which looks like
+a permissions problem and is not.
+
+Routes are declared in `wrangler.toml` so they stay version controlled:
+
+```toml
+[[routes]]
+pattern = "iazzus.com/*"
+zone_name = "iazzus.com"
+```
+
+---
+
 ## Security
 
 A static site has a small attack surface, but the defaults are still worth
