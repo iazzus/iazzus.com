@@ -152,8 +152,13 @@ abbr[title] {
   color: var(--color-muted);
 }
 
-/* Marks copy that is intentionally provisional. Also easy to grep for. */
-.placeholder-text {
+/* Marks copy that is intentionally provisional. Also easy to grep for.
+
+   The class is doubled deliberately. global.css loads before
+   components.css, so a plain .placeholder-text would lose to component
+   text colours such as .def-list__desc. Doubling raises specificity to
+   (0,2,0) without resorting to !important, which keeps it overridable. */
+.placeholder-text.placeholder-text {
   color: var(--color-muted);
   font-style: italic;
 }

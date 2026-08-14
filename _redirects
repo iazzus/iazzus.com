@@ -11,5 +11,7 @@
 # both is harmless because the zone-level rule runs first.
 https://www.iazzus.com/* https://iazzus.com/:splat 301
 
-# Future section moves go here, for example:
-# /resume  /technology/  301
+# Section moves. The motorcycle page moved under the Garage hub; keep this
+# so any link that was already shared still resolves.
+/motorcycle/*  /garage/motorcycle/:splat  301
+/motorcycle    /garage/motorcycle/        301

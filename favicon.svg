@@ -4,7 +4,7 @@
        assets/css/variables.css and must be updated by hand if those change. -->
   <rect width="64" height="64" rx="12" fill="#08090A"/>
   <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="11.25" fill="none"
-        stroke="#C9954A" stroke-opacity="0.38" stroke-width="1.5"/>
+        stroke="#45B8AC" stroke-opacity="0.42" stroke-width="1.5"/>
   <g fill="none" stroke="#F4F4F5" stroke-width="6.5" stroke-linecap="butt">
     <path d="M18.5 18.5V45.5"/>
     <path d="M29.5 45.5 39.5 18.5 49.5 45.5" stroke-linejoin="miter"/>

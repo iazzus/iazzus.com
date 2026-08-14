@@ -150,8 +150,13 @@
     transform: scaleX(1);
   }
 
-  .nav__footer {
+  .nav__footer,
+  .nav__cta {
     display: none;
+  }
+
+  .site-header__actions .site-header__cta {
+    display: inline-flex;
   }
 
   .gallery {

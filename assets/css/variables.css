@@ -27,18 +27,40 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.14);
 
-  --color-accent: #c9954a;          /* brass                 —  7.5:1       */
-  --color-accent-bright: #dcab63;   /* hover / active                       */
+  /* ---------------------------------------------------------------------
+     Accent — teal. This is the everyday accent: links, eyebrows, rules,
+     focus rings, status dots. If you change one colour on this site,
+     change this one.
+     --------------------------------------------------------------------- */
+  --color-accent: #45b8ac;          /* teal                  —  8.3:1       */
+  --color-accent-bright: #5fd0c3;   /* hover / active                       */
   --color-accent-line: color-mix(in srgb, var(--color-accent) 34%, transparent);
   --color-accent-soft: color-mix(in srgb, var(--color-accent) 11%, transparent);
   --color-accent-wash: color-mix(in srgb, var(--color-accent) 7%, transparent);
-  --color-on-accent: #14100a;       /* text on a filled accent surface      */
+  --color-on-accent: #04201d;       /* text on a filled accent surface      */
+
+  /* ---------------------------------------------------------------------
+     Commerce — warm coral, the complement of the teal.
+
+     Reserved for moments where money or engagement is on the table: the
+     Work With Me button, service pricing, booking CTAs. Nothing else.
+     Its whole value is that it means something specific — start using it
+     decoratively and it stops reading as a signal.
+     --------------------------------------------------------------------- */
+  --color-commerce: #e8785f;        /* coral                 —  6.9:1       */
+  --color-commerce-bright: #f28e76;
+  --color-commerce-line: color-mix(in srgb, var(--color-commerce) 34%, transparent);
+  --color-commerce-soft: color-mix(in srgb, var(--color-commerce) 12%, transparent);
+  --color-on-commerce: #1c0b06;
 
   --color-success: #6fbf8b;
-  --color-danger: #e5786f;
+  /* Pushed pink rather than orange so a validation error never reads as
+     the commerce coral. Errors also carry a border and a message, so the
+     distinction never rests on hue alone. */
+  --color-danger: #f2647a;
 
-  --color-focus: #dcab63;           /* focus ring                           */
-  --color-selection: rgba(201, 149, 74, 0.28);
+  --color-focus: #5fd0c3;           /* focus ring                           */
+  --color-selection: color-mix(in srgb, var(--color-accent) 28%, transparent);
 
   /* ---------------------------------------------------------------------
      Typography

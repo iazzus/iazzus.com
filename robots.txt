@@ -3,4 +3,9 @@
 User-agent: *
 Allow: /
 
+# Development tooling. Deployed because Cloudflare Pages publishes the whole
+# repository root, but it is not content. Also sent with X-Robots-Tag:
+# noindex via _headers, which is the part that actually enforces it.
+Disallow: /tools/
+
 Sitemap: https://iazzus.com/sitemap.xml

@@ -1,8 +1,8 @@
 # IAZZUS.com
 
-The personal website of **Ian Vulovic** — a single online identity covering
-two things: IT systems work (and the consulting practice growing out of it),
-and Men's Physique bodybuilding.
+The personal website of **Ian Vulovic** — one online identity covering IT
+systems work and the consulting practice growing out of it, Men's Physique
+training, military background, and the rest of life.
 
 Hand-written HTML, CSS and vanilla JavaScript. **No framework, no build
 step, no dependencies.** Every file in this repository is the file that gets
@@ -19,9 +19,12 @@ Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
 - [Editing the site](#editing-the-site)
 - [Design system](#design-system)
 - [Images](#images)
+- [Video](#video)
 - [The contact form](#the-contact-form)
 - [Cloudflare Pages deployment](#cloudflare-pages-deployment)
 - [Domain configuration](#domain-configuration)
+- [Email on iazzus.com](#email-on-iazzuscom)
+- [Taking payments](#taking-payments)
 - [Security](#security)
 - [Performance](#performance)
 - [Future development](#future-development)
@@ -33,11 +36,22 @@ Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
 ```text
 /
 ├── index.html              Homepage
-├── technology/index.html   Technical expertise, platforms, consulting
-├── bodybuilding/index.html Men's Physique training, progress, gallery
-├── motorcycle/index.html   2016 Kawasaki Ninja 650 ABS — specs, service log
-├── about/index.html        Who Ian is and how the two sides connect
-├── contact/index.html      Contact form + direct email
+├── work-with-me/           Services — IT consulting and training
+├── technology/             Technical expertise, platforms, consulting
+├── bodybuilding/           Men's Physique training, progress, gallery
+│
+├── garage/                 Hub: the two vehicles
+│   ├── motorcycle/         2016 Kawasaki Ninja 650 ABS
+│   └── tesla/              Tesla ownership notes
+│
+├── life/                   Hub: family, reptiles, garden
+│   ├── family/             Photographs, no identifying detail
+│   ├── reptiles/           Husbandry, records, gallery
+│   └── garden/             Beds, approach, season log
+│
+├── about/                  Who Ian is and how the sides connect
+│   └── military/           Service background
+├── contact/                Contact form + direct email
 ├── 404.html                Custom not-found page
 │
 ├── assets/
@@ -54,19 +68,30 @@ Built to deploy on **Cloudflare Pages** at `https://iazzus.com`.
 │   ├── icons/              apple-touch-icon.png
 │   └── fonts/              Empty by design (has its own README)
 │
+├── tools/
+│   ├── sync-nav.py         Writes the shared header/footer into every page
+│   ├── partials/           Single source of truth for header + footer
+│   └── dev-server.py       Local server that replays _headers
+│
 ├── favicon.svg             IA monogram
 ├── robots.txt
 ├── sitemap.xml
 ├── _headers                Cloudflare Pages response headers (incl. CSP)
-├── _redirects              Cloudflare Pages redirects (www → apex)
-├── tools/dev-server.py     Optional local server that replays _headers
+├── _redirects              www → apex, plus old-URL redirects
 ├── .editorconfig
+├── .gitattributes
 └── .gitignore
 ```
 
 The stylesheets load in that order on every page and each one has a single
 job. If you are looking for where something is defined, that order is the
 map.
+
+**Note on `/tools/`** — Cloudflare Pages publishes the whole repository
+root, so those files are reachable at `iazzus.com/tools/…`. They hold no
+secrets and nothing executes server-side, but they are not content, so they
+are excluded from search engines by `Disallow: /tools/` in `robots.txt` and
+an `X-Robots-Tag: noindex` header in `_headers`.
 
 ---
 
@@ -112,19 +137,27 @@ Code "Live Server" extension.
 
 ### Navigation
 
-Navigation markup is repeated in the `<header>` of each of the seven HTML
-files (there is no templating — that is the cost of having no build step).
-To add or rename a link, update it in all seven, and in the footer's "Site"
-list.
+The header and footer are **not** hand-edited per page. Edit the single
+source of truth and push it out:
 
-Mark the current page with `aria-current="page"`:
+1. Edit `tools/partials/header.html` or `tools/partials/footer.html`.
+2. Run:
 
-```html
-<li><a class="nav__link" href="/technology/" aria-current="page">Technology</a></li>
-```
+   ```bash
+   python tools/sync-nav.py
+   ```
 
-That attribute drives both the highlight and the accent underline — there is
-no separate "active" class to keep in sync.
+That rewrites the region between `<!-- header:start -->` and
+`<!-- header:end -->` (likewise for the footer) in all fifteen pages.
+
+**Adding a page:** create the HTML file, then add it to the `PAGES` dict at
+the top of `tools/sync-nav.py` with the nav key that should be highlighted.
+Also add a `<url>` block to `sitemap.xml`.
+
+This is not a build step — the committed HTML is complete and deployable on
+its own. The tool exists only so fifteen copies of the same nav cannot drift
+apart. Active state is driven by `aria-current="page"`, which the tool
+applies from the nav key; there is no separate "active" class.
 
 ### Colours, spacing, type
 
@@ -134,11 +167,16 @@ underlines, focus rings, the hero wash and the status dots all derive from
 it.
 
 ```css
---color-accent: #c9954a;   /* brass */
+--color-accent:   #45b8ac;   /* teal  — everyday accent */
+--color-commerce: #e8785f;   /* coral — money moments only */
 ```
 
-If you change it, keep the contrast against `--color-bg` at **4.5:1 or
-better**. The current value measures 7.5:1.
+If you change either, keep the contrast against `--color-bg` at **4.5:1 or
+better**. Current values measure 8.3:1 and 6.9:1.
+
+Two colours are **not** in `variables.css` and must be changed by hand if
+you re-theme: the stroke in `favicon.svg`, and the generated
+`assets/images/og-default.png` and `assets/icons/apple-touch-icon.png`.
 
 ### Text
 
@@ -186,11 +224,29 @@ whenever you happen to notice it.
 | `--color-text`           | `#F4F4F5` | Headings, primary text     |
 | `--color-text-secondary` | `#A1A1AA` | Body copy                  |
 | `--color-muted`          | `#8B8B94` | Metadata, captions, labels |
-| `--color-accent`         | `#C9954A` | Brass — the only accent    |
+| `--color-accent`         | `#45B8AC` | Teal — the everyday accent |
+| `--color-commerce`       | `#E8785F` | Coral — commercial moments |
+
+**The two accents mean different things.** Teal is the everyday accent:
+links, eyebrows, rules, focus rings, status dots. Coral is reserved for
+moments where money or engagement is on the table — the Work With Me button,
+service badges, pricing, the commerce CTA block. That is the entire value of
+having it: a visitor learns within one page that coral means "this is the
+one that costs something". Start using it decoratively and it stops being a
+signal.
 
 There is deliberately no dimmer text colour than `--color-muted`; the
 obvious next step down fails WCAG AA at body size. Express hierarchy below
 that point with size and weight instead.
+
+### A note on the cascade
+
+`global.css` loads before `components.css`, so a single-class utility in
+`global.css` loses to a single-class component rule. Two places rely on
+raised specificity rather than `!important` — `.placeholder-text` and
+`.site-header__cta` — and both are commented where they are defined. If you
+add a utility that must beat a component, do the same rather than reaching
+for `!important`.
 
 **Typography** — system font stacks, so there are zero font requests and no
 layout shift. Headings and display type use a grotesque stack; eyebrows,
@@ -329,6 +385,97 @@ apex domain, so keep the apex as the canonical host.
 
 ---
 
+## Email on iazzus.com
+
+Planned, not yet configured. The intended layout:
+
+| Address                   | Role                                 |
+| ------------------------- | ------------------------------------ |
+| `ian@iazzus.com`          | Primary mailbox                      |
+| `iazzus@iazzus.com`       | Alias → primary                      |
+| `ian.vulovic@iazzus.com`  | Alias → primary (published on `/contact/`) |
+
+One real mailbox, two aliases. That is the right shape: aliases cost
+nothing, and you can retire one without migrating anything.
+
+### Choosing a provider
+
+You administer both of these for a living, so the honest summary is short.
+**Google Workspace** or **Microsoft 365 Business Basic** — either is around
+$6–7/user/month for one mailbox, both give you real deliverability and a
+real admin console, and both let you send *as* an alias, which cheaper
+options often do not. Pick whichever you would rather demo to a client,
+since this mailbox is also a portfolio piece.
+
+Cloudflare Email Routing is free and forwards `*@iazzus.com` to an existing
+inbox, but it is **receive-only** — you cannot send as `ian@iazzus.com`.
+Fine as a stopgap, wrong as the destination.
+
+### DNS you will configure in Cloudflare
+
+Do this yourself in the dashboard; nothing here changes DNS.
+
+1. **MX records** as supplied by the provider. Remove any existing MX first
+   — mixed MX records from two providers is the classic way to lose mail.
+2. **SPF** — one TXT record at the apex, exactly one `v=spf1` record:
+   `v=spf1 include:_spf.google.com ~all` (or
+   `include:spf.protection.outlook.com`). Never publish two.
+3. **DKIM** — generate the key in the provider's admin console, publish the
+   CNAME or TXT records it gives you, then **enable signing**. Publishing
+   the record without enabling signing is a common half-finished state.
+4. **DMARC** — start at `v=DMARC1; p=none; rua=mailto:ian@iazzus.com`, watch
+   the reports for a couple of weeks, then move to `p=quarantine` and
+   finally `p=reject`. Do not start at `p=reject`.
+5. **MTA-STS and TLS-RPT** are worth adding once the above is stable.
+6. Set the MX and mail-related records to **DNS only** (grey cloud). Proxying
+   them breaks mail.
+
+Afterwards, verify with an external checker before trusting it, and send a
+test message to a Gmail and an Outlook address.
+
+### When email is live
+
+Update the address in `contact/index.html` if it changes, and set the
+`rua=` DMARC address to a mailbox you actually read.
+
+---
+
+## Taking payments
+
+Planned, not yet built. `/work-with-me/` describes services and says plainly
+that pricing is quoted per engagement — no invented figures, and no payment
+flow that does not work.
+
+The important constraint: **this site is static, and it must stay that way
+to keep its CSP and performance.** So do not build a checkout into it.
+
+Two approaches, in order of how much work they are:
+
+**1. Hosted checkout links (recommended to start).** Create products in
+Stripe, generate Payment Links, and make the button on `/work-with-me/` a
+plain `<a href>` to that link. The visitor pays on Stripe's domain. No card
+data touches your site, no PCI scope, no JavaScript, no CSP change, and you
+can be taking money the same afternoon. Invoicing for consulting work is the
+same idea — Stripe Invoicing sends a hosted payment page by email.
+
+**2. Embedded checkout.** Only if you need the payment to happen without
+leaving the site. This requires loading Stripe's JavaScript, which means
+adding `js.stripe.com` to `script-src` and `frame-src` in `_headers`, and a
+Pages Function to create sessions server-side. Meaningfully more surface
+area for a marginal gain.
+
+**Non-negotiables either way:**
+
+- Your Stripe secret key goes in a **Cloudflare Pages environment
+  variable**, read only inside a Pages Function. It must never appear in
+  `main.js` or anywhere in this repository — anything shipped to the browser
+  is public, and a leaked secret key can move money.
+- Only the publishable key (`pk_live_…`) may appear client-side.
+- Verify webhook signatures if you add webhooks.
+- Never store card numbers. There is no version of this where you should.
+
+---
+
 ## Security
 
 A static site has a small attack surface, but the defaults are still worth
@@ -406,11 +553,11 @@ filenames, switch those rules to `max-age=31536000, immutable`.
 
 The structure is designed so these are additive rather than rewrites.
 
-**New top-level sections** — copy an existing page directory, keep the
-`<head>` block and header/footer markup, change the content. Then add the
-nav link (six files), a `<url>` entry in `sitemap.xml`, and a footer link.
-Likely candidates: `/blog/`, `/projects/`, `/services/`, `/training/`,
-`/gallery/`.
+**New pages** — copy an existing page, keep the `<head>` block and the
+`<!-- header:start -->` / `<!-- footer:start -->` markers, change the
+content. Then add it to `PAGES` in `tools/sync-nav.py`, run the tool, and
+add a `<url>` block to `sitemap.xml`. Likely candidates: `/blog/`,
+`/projects/`, `/life/travel/`.
 
 **Real project write-ups** — the `.entry` component on
 `/technology/` already handles a title, badge, body and tag list. Replace
@@ -427,10 +574,14 @@ Function is the smallest step.
 Workers, attached as custom domains in the same zone. Nothing in this
 repository needs to change.
 
-**When to reconsider the no-build-step decision:** if the header and footer
-markup duplicated across pages starts causing drift, that is the signal.
-Reach for the smallest thing that fixes it — a static site generator that
-still emits plain HTML — rather than a front-end framework.
+**Email and payments** — see the two sections above.
+
+**When to reconsider the no-build-step decision:** `tools/sync-nav.py`
+handles the header and footer, which was the first real duplication
+problem. The next signal would be needing repeated content *inside* pages —
+a blog index, a shared card list. At that point reach for the smallest
+thing that fixes it, a static site generator that still emits plain HTML,
+rather than a front-end framework.
 
 ---
 
