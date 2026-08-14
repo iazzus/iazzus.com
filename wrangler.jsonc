@@ -15,6 +15,18 @@
   // Pins the Workers runtime behaviour to a known date. Safe to leave.
   "compatibility_date": "2026-08-13",
 
+  // Custom domains. Declaring them here means `wrangler deploy` creates
+  // the DNS records and provisions the certificates on its own — there is
+  // nothing to click in the dashboard, and the domain configuration lives
+  // in version control with everything else.
+  //
+  // Note: a Custom Domain cannot be created on a hostname that already has
+  // a CNAME record. Both of these are currently unset, so they are clean.
+  "routes": [
+    { "pattern": "iazzus.com", "custom_domain": true },
+    { "pattern": "www.iazzus.com", "custom_domain": true }
+  ],
+
   "assets": {
     // The whole repository root is the site. Files listed in
     // .assetsignore are excluded from the upload.
